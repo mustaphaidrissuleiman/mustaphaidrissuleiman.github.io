@@ -1,0 +1,21 @@
+{
+  "name": "mustapha-portfolio",
+  "version": "1.0.0",
+  "description": "Portfolio website of Mustapha Idris Suleiman — Techno Farmer, CEO @HerdbaseAfrica, AI & NLP Researcher, and Software Engineer.",
+  "main": "index.html",
+  "scripts": {
+    "start": "npx serve -l 3000 .",
+    "dev": "python3 -m http.server 3000"
+  },
+  "keywords": [
+    "portfolio",
+    "mustapha-idris-suleiman",
+    "agritech",
+    "african-nlp",
+    "livestock",
+    "ai-engineer",
+    "nigeria"
+  ],
+  "author": "Mustapha Idris Suleiman <mustapha5th@gmail.com>",
+  "license": "MIT"
+}
