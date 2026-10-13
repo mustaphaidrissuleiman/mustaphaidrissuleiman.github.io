@@ -1,510 +1,478 @@
 /**
- * MUSTAPHA IDRIS SULEIMAN — PORTFOLIO CLIENT JAVASCRIPT
- * Modern vanilla JS for theme management, interactive terminal, project modal, filters & contact form
+ * Mustapha Idris Suleiman — Official Public Profile
+ * Client Logic: Article Reader Modal, Lightbox, Lagos WAT Clock, Theme Engine
  */
 
 document.addEventListener('DOMContentLoaded', () => {
+  initThemeEngine();
+  initLagosClock();
+  initArticleReader();
+  initPhotoArchive();
+  initEmailCopy();
+  initMobileNav();
+});
 
-  // ==========================================
-  // 1. THEME MANAGEMENT (Light / Dark / System)
-  // ==========================================
-  const themeToggle = document.getElementById('themeToggle');
-  const htmlRoot = document.documentElement;
+/* ==========================================================================
+   1. Theme Engine (Light / Dark with System Preference & LocalStorage)
+   ========================================================================== */
+function initThemeEngine() {
+  const toggleBtn = document.getElementById('themeToggle');
+  const htmlEl = document.documentElement;
+  const metaThemeColor = document.querySelector('meta[name="theme-color"]');
 
-  const getPreferredTheme = () => {
-    const saved = localStorage.getItem('mustapha_theme');
-    if (saved) return saved;
-    return window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark';
-  };
+  // Check saved preference or system default
+  const savedTheme = localStorage.getItem('mis_theme');
+  const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
 
-  const setTheme = (theme) => {
-    htmlRoot.setAttribute('data-theme', theme);
-    localStorage.setItem('mustapha_theme', theme);
-  };
+  const currentTheme = savedTheme || (systemPrefersDark ? 'dark' : 'light');
+  applyTheme(currentTheme);
 
-  // Initial theme set
-  setTheme(getPreferredTheme());
-
-  if (themeToggle) {
-    themeToggle.addEventListener('click', () => {
-      const current = htmlRoot.getAttribute('data-theme') || 'dark';
-      const nextTheme = current === 'dark' ? 'light' : 'dark';
-      setTheme(nextTheme);
-      showToast(`Switched to ${nextTheme} mode`);
+  if (toggleBtn) {
+    toggleBtn.addEventListener('click', () => {
+      const activeTheme = htmlEl.getAttribute('data-theme') || 'dark';
+      const newTheme = activeTheme === 'dark' ? 'light' : 'dark';
+      applyTheme(newTheme);
+      localStorage.setItem('mis_theme', newTheme);
     });
   }
 
-  // React to system changes if user hasn't explicitly set a preference
+  function applyTheme(theme) {
+    htmlEl.setAttribute('data-theme', theme);
+    if (metaThemeColor) {
+      metaThemeColor.setAttribute('content', theme === 'dark' ? '#0c0e0d' : '#faf8f5');
+    }
+  }
+
+  // React to system theme change if not explicitly overridden
   window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', (e) => {
-    if (!localStorage.getItem('mustapha_theme')) {
-      setTheme(e.matches ? 'dark' : 'light');
+    if (!localStorage.getItem('mis_theme')) {
+      applyTheme(e.matches ? 'dark' : 'light');
     }
   });
+}
 
-  // ==========================================
-  // 2. MOBILE NAVIGATION MENU
-  // ==========================================
-  const mobileMenuBtn = document.getElementById('mobileMenuBtn');
-  const navMenu = document.getElementById('navMenu');
+/* ==========================================================================
+   2. Live Lagos Time (West Africa Time — UTC+1)
+   ========================================================================== */
+function initLagosClock() {
+  const clockDisplay = document.getElementById('clockDisplay');
+  if (!clockDisplay) return;
 
-  if (mobileMenuBtn && navMenu) {
-    mobileMenuBtn.addEventListener('click', () => {
-      const isOpen = navMenu.classList.toggle('open');
-      mobileMenuBtn.setAttribute('aria-expanded', isOpen);
-    });
-
-    // Close menu when clicking any nav link
-    navMenu.querySelectorAll('.nav-link').forEach(link => {
-      link.addEventListener('click', () => {
-        navMenu.classList.remove('open');
-        mobileMenuBtn.setAttribute('aria-expanded', 'false');
-      });
-    });
-  }
-
-  // ==========================================
-  // 3. COPY EMAIL TO CLIPBOARD & TOAST
-  // ==========================================
-  const toast = document.getElementById('toast');
-  const toastMsg = document.getElementById('toastMsg');
-  let toastTimer = null;
-
-  function showToast(message) {
-    if (!toast) return;
-    toastMsg.textContent = message;
-    toast.classList.add('show');
-    clearTimeout(toastTimer);
-    toastTimer = setTimeout(() => {
-      toast.classList.remove('show');
-    }, 2800);
-  }
-
-  document.querySelectorAll('.copy-email-btn, .copy-small-btn').forEach(btn => {
-    btn.addEventListener('click', async (e) => {
-      e.preventDefault();
-      const email = btn.getAttribute('data-email') || 'mustapha5th@gmail.com';
-      try {
-        await navigator.clipboard.writeText(email);
-        showToast(`Copied ${email} to clipboard!`);
-      } catch (err) {
-        // Fallback
-        const temp = document.createElement('textarea');
-        temp.value = email;
-        document.body.appendChild(temp);
-        temp.select();
-        document.execCommand('copy');
-        document.body.removeChild(temp);
-        showToast(`Copied ${email} to clipboard!`);
-      }
-    });
-  });
-
-  // ==========================================
-  // 4. PROJECT FILTERING TABS
-  // ==========================================
-  const filterBtns = document.querySelectorAll('.filter-btn');
-  const projectCards = document.querySelectorAll('.project-card');
-
-  filterBtns.forEach(btn => {
-    btn.addEventListener('click', () => {
-      filterBtns.forEach(b => b.classList.remove('active'));
-      btn.classList.add('active');
-
-      const filter = btn.getAttribute('data-filter');
-
-      projectCards.forEach(card => {
-        const category = card.getAttribute('data-category') || '';
-        if (filter === 'all' || category.includes(filter)) {
-          card.style.display = 'flex';
-          setTimeout(() => { card.style.opacity = '1'; card.style.transform = 'translateY(0)'; }, 20);
-        } else {
-          card.style.opacity = '0';
-          card.style.transform = 'translateY(12px)';
-          setTimeout(() => { card.style.display = 'none'; }, 200);
-        }
-      });
-    });
-  });
-
-  // ==========================================
-  // 5. INTERACTIVE TERMINAL PLAYGROUND
-  // ==========================================
-  const terminalInput = document.getElementById('terminalInput');
-  const terminalOutput = document.getElementById('terminalOutput');
-  const termChips = document.querySelectorAll('.term-chip');
-
-  const COMMANDS = {
-    help: `Available commands:
-  • whoami    : Learn about Mustapha Idris Suleiman
-  • projects  : List key production Agri-Tech & AI systems
-  • skills    : View technical & agronomic stack
-  • impact    : Quantified agricultural & AI reach
-  • contact   : Get in touch & social links
-  • date      : Current local time in Lagos, Nigeria
-  • clear     : Clear terminal history`,
-
-    whoami: `Mustapha Idris Suleiman
-Role: Techno Farmer • CEO @ Herdbase Africa • AI & NLP Researcher
-Location: Lagos State & Kano State, Nigeria
-Specialization: Low-resource African NLP (Hausa), Multimodal Agricultural AI, and high-load livestock ERP systems.`,
-
-    projects: `Flagship Systems:
-1. CropScan      - Multimodal AI leaf diagnosis on Cassava, Maize, Yam, Tomato (React 19 + Gemini).
-2. Herdbase360   - Distributed livestock ERP & veterinary platform (Laravel 11 + Vue 3).
-3. Hausa Chatbot - Small-ruminant veterinary advisor for sheep/goats (Afro-XLM-RoBERTa + FAO).
-4. Hausa NER     - Named entity recognition for low-resource agricultural Hausa dialects.
-5. Livestock Ec. - Value chain research mapping Africa's $1.7T livestock economy.`,
-
-    skills: `Technical Stack:
-• AI / NLP: PyTorch, Transformers, Afro-XLM-RoBERTa, Gemini Vision, NER BIO Tagging.
-• Backend:  Laravel 11 (PHP 8.3), Python (FastAPI), MySQL, SQLite, Queue Architecture.
-• Frontend: React 19, Vue.js 3, TypeScript, Leaflet Maps, Modern Responsive CSS.
-• Domain:   FAO Animal Production, Small-Ruminant Pathology, Crop Disease Management.`,
-
-    impact: `Quantified Scope:
-• 55M+ Cattle & 200M+ Sheep/Goats in Nigerian market ecosystem addressed.
-• 4 Crops targeted with real-time AI computer vision diagnostics.
-• 1st dedicated Hausa agricultural token classification candidate model on Hugging Face.`,
-
-    contact: `Reach Out:
-• Email:    mustapha5th@gmail.com
-• GitHub:   https://github.com/mustaphaidrissuleiman
-• HF Hub:   https://huggingface.co/mustaphaidris
-• Location: Lagos & Northern Nigeria Agricultural Hubs`,
-
-    date: () => {
+  function updateClock() {
+    try {
+      const options = {
+        timeZone: 'Africa/Lagos',
+        hour: '2-digit',
+        minute: '2-digit',
+        second: '2-digit',
+        hour12: false
+      };
+      const lagosTime = new Intl.DateTimeFormat('en-GB', options).format(new Date());
+      clockDisplay.textContent = `${lagosTime} WAT`;
+    } catch {
+      // Fallback
       const now = new Date();
-      return `Lagos (WAT, GMT+1): ${now.toLocaleString('en-US', { timeZone: 'Africa/Lagos' })}`;
+      const utc = now.getTime() + (now.getTimezoneOffset() * 60000);
+      const watTime = new Date(utc + (3600000 * 1));
+      const hours = String(watTime.getHours()).padStart(2, '0');
+      const mins = String(watTime.getMinutes()).padStart(2, '0');
+      clockDisplay.textContent = `${hours}:${mins} WAT`;
     }
-  };
-
-  function executeCommand(rawCmd) {
-    const cmd = rawCmd.trim().toLowerCase();
-    if (!cmd) return;
-
-    if (cmd === 'clear') {
-      terminalOutput.innerHTML = '';
-      return;
-    }
-
-    // Append Command Echo
-    const entryDiv = document.createElement('div');
-    entryDiv.className = 'term-entry';
-
-    const echoDiv = document.createElement('div');
-    echoDiv.className = 'term-cmd-echo';
-    echoDiv.textContent = `mustapha@nigeria:~$ ${rawCmd}`;
-    entryDiv.appendChild(echoDiv);
-
-    // Compute Output
-    let outputText = '';
-    if (COMMANDS[cmd]) {
-      outputText = typeof COMMANDS[cmd] === 'function' ? COMMANDS[cmd]() : COMMANDS[cmd];
-    } else {
-      outputText = `zsh: command not found: ${rawCmd}. Type 'help' for valid commands.`;
-    }
-
-    const outDiv = document.createElement('div');
-    outDiv.className = 'term-output';
-    outDiv.textContent = outputText;
-    entryDiv.appendChild(outDiv);
-
-    terminalOutput.appendChild(entryDiv);
-    terminalOutput.scrollTop = terminalOutput.scrollHeight;
   }
 
-  if (terminalInput) {
-    terminalInput.addEventListener('keydown', (e) => {
-      if (e.key === 'Enter') {
-        executeCommand(terminalInput.value);
-        terminalInput.value = '';
-      }
-    });
-  }
+  updateClock();
+  setInterval(updateClock, 1000);
+}
 
-  termChips.forEach(chip => {
-    chip.addEventListener('click', (e) => {
+/* ==========================================================================
+   3. Authentic Article Archive & Modal Reader
+   Full transcripts scraped & compiled from Mustapha's original publications
+   ========================================================================== */
+const ARTICLES_DATABASE = {
+  'leadership-ai': {
+    title: 'What Value Leaders Bring to Organizations in the AI Era',
+    category: 'Executive Monograph',
+    date: 'July 2026',
+    source: 'Nigerian University of Technology and Management (NUTM) / LinkedIn',
+    content: `
+      <p class="dialog-lead">
+        Artificial intelligence has evolved rapidly over the past few years. What began as simple chatbots 
+        and recommendation systems has developed into powerful engines capable of drafting complex reports, 
+        auditing financial statements, generating production software, and analyzing market signals with minimal human supervision.
+      </p>
+
+      <p>
+        For generations, organizational leaders derived their authority because they possessed specialized information, 
+        technical acumen, and procedural expertise that others did not. They were the individuals with the answers—the ones 
+        teams relied upon for guidance and technical direction. Today, artificial intelligence has fundamentally disrupted that reality. 
+        Access to synthesis, quantitative analysis, and tactical problem-solving is instantly accessible to anyone with an internet connection. 
+        Consequently, the raw information advantage that leaders once leaned on is evaporating.
+      </p>
+
+      <h3>The Five Irreplaceable Functions of Leadership</h3>
+      <p>
+        This seismic shift does not diminish the imperative for leadership; rather, it unmasks what leadership has truly always been. 
+        Leadership is fundamentally about people, judgment, and purpose. From an operational perspective, leadership rests on five foundational functions:
+      </p>
+
+      <ul>
+        <li>
+          <strong>1. Directing:</strong> Setting priority and deciding which problems merit institutional attention. 
+          Every enterprise has finite capital, time, and human energy. While AI can analyze vast alternatives, 
+          it cannot determine what aligns best with an organization’s mission, core values, and long-term societal role.
+        </li>
+        <li>
+          <strong>2. Developing Talent:</strong> Leadership is not merely delegating work; it is cultivating human potential. 
+          Mentoring individuals through setbacks, inspiring confidence, and identifying latent potential cannot be simulated by algorithms.
+        </li>
+        <li>
+          <strong>3. Planning:</strong> Translating lofty aspirations into concrete milestones while coordinating across diverse horizons. 
+          Crucially, planning requires securing deep emotional commitment from employees and external stakeholders.
+        </li>
+        <li>
+          <strong>4. Organizing:</strong> Uniting individuals with disparate talents, dissolving inter-departmental friction, 
+          and fostering genuine trust. Conflict resolution and team coherence remain stubborn, irreplaceable human responsibilities.
+        </li>
+        <li>
+          <strong>5. Envisioning the Future:</strong> Great leaders look beyond existing balance sheets to imagine new possibilities. 
+          While machine learning forecasts from historical precedent, vision originates from human values, courage, and moral ambition.
+        </li>
+      </ul>
+
+      <blockquote>
+        "AI replaces the routine analytical task, not the executive function. When computation becomes ubiquitous, 
+        the premium on human courage, ethical judgment, and authentic empathy rises exponentially."
+      </blockquote>
+
+      <h3>The Mandate for the Next Decade</h3>
+      <p>
+        Before modern AI, leaders spent countless hours compiling summaries, crunching basic spreadsheets, and drafting updates. 
+        As technology automates repetitive cognitive tasks, leaders must step up into higher-order judgment. 
+        The leaders who will shape Africa and global industry in the next decade are not those who hoard answers, 
+        but those who possess the moral clarity to ask the right questions, unite divided teams, and build institutions resilient enough to withstand uncertainty.
+      </p>
+    `
+  },
+
+  'livestock-economy': {
+    title: 'Understanding the Livestock Economy (Part 1): Structure, Inputs & Value Chains',
+    category: 'Agri-Economics',
+    date: 'August 2026',
+    source: 'Herdbase Africa Insights / LinkedIn',
+    content: `
+      <p class="dialog-lead">
+        Across the African continent, livestock represents one of our most ubiquitous forms of store-of-wealth, 
+        rural livelihood, and nutritional sovereignty. Yet, despite an estimated continental value exceeding $1.7 trillion, 
+        the sector remains overwhelmingly informal, under-capitalized, and invisible to traditional financial institutions.
+      </p>
+
+      <h3>The Three Pillars of the Livestock Value Chain</h3>
+      <p>
+        To transform this critical economy, we must dissect its structure into three interconnected operational layers:
+      </p>
+
+      <ul>
+        <li>
+          <strong>1. Upstream Inputs:</strong> The foundations of animal productivity—genetics and breeding lines, 
+          nutritional feedstocks, pasture management, and veterinary therapeutics. In Nigeria alone, seasonal feed scarcity 
+          and preventable diseases cost pastoralists up to 30% of potential herd biomass annually.
+        </li>
+        <li>
+          <strong>2. Midstream Production:</strong> The management of cattle, sheep, goats, and poultry across ranches, 
+          semi-intensive holdings, and pastoral grazing routes. Historically, production records have existed exclusively 
+          in the memories of farmers, rendering operations un-insurable and ineligible for commercial debt.
+        </li>
+        <li>
+          <strong>3. Downstream Processing & Distribution:</strong> The transit, cold-chain logistics, abattoir operations, 
+          and retail distribution channels delivering protein to Africa's rapidly urbanizing megacities (Lagos, Kano, Nairobi, Cairo).
+        </li>
+      </ul>
+
+      <blockquote>
+        "You cannot finance what you cannot measure, and you cannot improve what you do not record. 
+        Systematizing individual animal records is the bridge between informal pastoralism and institutional capital."
+      </blockquote>
+
+      <h3>Why Digital Systems are the Catalyst</h3>
+      <p>
+        By giving farmers digital identity frameworks for each animal—capturing vaccination history, daily weight gains, 
+        and parent lineage—we convert an invisible asset into a bankable, auditable instrument. 
+        This is the core thesis behind Herdbase Africa.
+      </p>
+    `
+  },
+
+  'future-farming': {
+    title: 'The Future of Livestock Farming Is Smarter Systems',
+    category: 'Systems & Infrastructure',
+    date: 'September 2026',
+    source: 'Herdbase Africa Thought Leadership',
+    content: `
+      <p class="dialog-lead">
+        For centuries, animal husbandry in sub-Saharan Africa relied on oral traditions, keen observation, 
+        and informal networks. While these traditions sustained generations, they are facing unprecedented headwinds: 
+        accelerating urban demand, climate variability, rising feed costs, and demographic pressure on land.
+      </p>
+
+      <p>
+        When our team at Herdbase operated commercial livestock cycles in Katsina, we realized firsthand that hard work alone 
+        is insufficient. Without real-time data on average daily gain (ADG), feed conversion ratios (FCR), and scheduled vaccination reminders, 
+        even experienced livestock managers hemorrhage margin.
+      </p>
+
+      <h3>Moving from Intuition to Systematic SaaS</h3>
+      <p>
+        Modern livestock systems do not replace the wisdom of the herdsman; they augment it. 
+        With Herdbase360, we have introduced species-specific parameters:
+      </p>
+
+      <ul>
+        <li><strong>Automated Veterinary Triage:</strong> Timely notifications before endemic diseases spread through closed herds.</li>
+        <li><strong>Feed & Mortality Optimization:</strong> Tracking batch performance across sheep, goats, cattle, and poultry.</li>
+        <li><strong>Capital Visibility:</strong> Enabling external investors to inspect herd inventory, health audits, and balance sheets in real time.</li>
+      </ul>
+
+      <p>
+        The future belongs to agricultural systems that pair the deep intimacy of field operations with modern software engineering. 
+        Africa's livestock producers will no longer be left behind.
+      </p>
+    `
+  },
+
+  'hausa-ner-research': {
+    title: 'Domain-Adapted Hausa Named Entity Recognition for Small Ruminant Production Systems',
+    category: 'Peer Research',
+    date: 'October 2026',
+    source: 'University of Lagos (UNILAG) Faculty of Computer Science',
+    content: `
+      <p class="dialog-lead">
+        Information regarding small-ruminant (sheep and goat) production across West Africa is predominantly 
+        communicated in informal, unstructured Hausa text and audio. This linguistic barrier prevents millions of pastoralists 
+        from integrating with automated digital records and veterinary advisory services.
+      </p>
+
+      <h3>Research Methodology & Supervised Fine-Tuning</h3>
+      <p>
+        Conducted under the academic supervision of Prof. V. T. Odumuyiwa at the University of Lagos, this research 
+        constructed the first domain-adapted Named Entity Recognition (NER) architecture specifically tailored for agricultural Hausa:
+      </p>
+
+      <ul>
+        <li>
+          <strong>Corpus Construction:</strong> Curated and annotated a gold-standard benchmark of 2,000 sentences 
+          (36,082 tokens and 8,568 named entity mentions).
+        </li>
+        <li>
+          <strong>Semantic Schema:</strong> Established 10 essential agricultural entity classes:
+          <code>ANIMAL_TYPE</code>, <code>BREED</code>, <code>QUANTITY</code>, <code>SYMPTOM</code>, <code>DISEASE</code>, 
+          <code>MEDICATION</code>, <code>FEED_TYPE</code>, <code>DATE_TIME</code>, <code>LOCATION</code>, and <code>PERSONNEL</code>.
+        </li>
+        <li>
+          <strong>Architecture:</strong> Fine-tuned the multilingual <strong>Afro-XLM-RoBERTa</strong> transformer 
+          using BIO token classification and weighted cross-entropy loss.
+        </li>
+        <li>
+          <strong>Conversational Deployment:</strong> Integrated entity extractions with a neuro-symbolic diagnostic chatbot, 
+          allowing Hausa-speaking herdsmen to describe symptoms and receive verified veterinary guidance.
+        </li>
+      </ul>
+
+      <blockquote>
+        "Published model checkpoints are publicly hosted on Hugging Face at 
+        <code>mustaphaidris/hausa-agri-ner-candidate</code>, providing a reusable foundation for African language agricultural AI."
+      </blockquote>
+    `
+  }
+};
+
+function initArticleReader() {
+  const modal = document.getElementById('articleModal');
+  const triggers = document.querySelectorAll('.article-modal-trigger');
+  const closeBtn = document.getElementById('closeArticleDialog');
+  const footerCloseBtn = document.getElementById('closeArticleFooterBtn');
+
+  const titleEl = document.getElementById('dialogArticleTitle');
+  const categoryEl = document.getElementById('dialogArticleCategory');
+  const dateEl = document.getElementById('dialogArticleDate');
+  const sourceEl = document.getElementById('dialogArticleSource');
+  const contentEl = document.getElementById('dialogArticleContent');
+
+  if (!modal) return;
+
+  // Open modal on trigger click
+  triggers.forEach(trigger => {
+    trigger.addEventListener('click', (e) => {
       e.preventDefault();
-      const cmd = chip.getAttribute('data-cmd');
-      if (cmd) {
-        executeCommand(cmd);
-      }
-    });
-  });
+      const articleId = trigger.getAttribute('data-article-id');
+      const article = ARTICLES_DATABASE[articleId];
 
-  // Run initial welcome command
-  setTimeout(() => {
-    executeCommand('whoami');
-  }, 400);
+      if (article) {
+        titleEl.textContent = article.title;
+        categoryEl.textContent = article.category;
+        dateEl.textContent = article.date;
+        sourceEl.textContent = article.source;
+        contentEl.innerHTML = article.content;
 
-  // ==========================================
-  // 6. PROJECT DEEP DIVE MODAL
-  // ==========================================
-  const modal = document.getElementById('projectModal');
-  const modalTitle = document.getElementById('modalTitle');
-  const modalCategory = document.getElementById('modalCategory');
-  const modalContent = document.getElementById('modalContent');
-  const modalCloseBtn = document.getElementById('modalCloseBtn');
-
-  const PROJECT_DETAILS = {
-    cropscan: {
-      title: "CropScan — Multimodal AI Agronomist",
-      category: "Computer Vision & Agricultural Health",
-      content: `
-        <p><strong>System Objective:</strong> Empower smallholder farmers across Nigeria to diagnose crop pathology instantly using mobile phone photography, eliminating the barrier of expensive agronomist field visits.</p>
-
-        <div class="modal-diagram-box">
-[Mobile Camera Viewfinder]
-         │
-         ▼
-[Image Preprocessing & Compression]
-         │
-         ▼
-[Google Gemini Multimodal Vision API] ──► [Structured JSON Diagnosis]
-                                                │
-                                                ├─► Disease: Cassava Mosaic Virus (94%)
-                                                ├─► Risk Level: HIGH
-                                                └─► Step-by-Step Pruning & Spray Plan
-         │
-         ▼
-[Leaflet Map Integration] ──► Verified Agrochemical Input Dealers in Oyo State
-        </div>
-
-        <h4>Key Technical Highlights:</h4>
-        <ul style="padding-left: 1.25rem;">
-          <li>Target Crops: Cassava, Maize, Yam, and Tomato.</li>
-          <li>Real-time leaf framing heuristics with adaptive lighting cues.</li>
-          <li>Integrated with OpenStreetMap & Leaflet for input dealer geolocation.</li>
-          <li>Built with React 19, TypeScript, and responsive editorial CSS.</li>
-        </ul>
-      `
-    },
-
-    herdbase360: {
-      title: "Herdbase360 — Livestock Enterprise SaaS",
-      category: "Full-Stack Distributed System",
-      content: `
-        <p><strong>System Objective:</strong> Digitize commercial and pastoral livestock management across Nigeria, tracking herd genetics, vaccination schedules, feed rations, and meat value chains.</p>
-
-        <div class="modal-diagram-box">
-[Vue.js Web Portal]     [Vue Backoffice Admin]     [Mobile Progressive App]
-         │                         │                         │
-         └─────────────────────────┼─────────────────────────┘
-                                   ▼
-                   [Laravel 11 RESTful Microservice]
-                                   │
-              ┌────────────────────┴────────────────────┐
-              ▼                                         ▼
-     [MySQL / SQLite Relational]             [Async Queue Workers]
-     (Animal ID, Lineage, Health)            (Automated Alerts & Sync)
-        </div>
-
-        <h4>Key Technical Highlights:</h4>
-        <ul style="padding-left: 1.25rem;">
-          <li>Multi-species architecture supporting Cattle, Sheep, Goats, Poultry, and Aquaculture.</li>
-          <li>Pedigree lineage and reproduction cycle management.</li>
-          <li>Automated veterinary withdrawal period enforcement before slaughter.</li>
-          <li>Tailored for offline resilience and low-bandwidth environments.</li>
-        </ul>
-      `
-    },
-
-    'hausa-chatbot': {
-      title: "Hausa Small-Ruminant Farming Chatbot",
-      category: "Low-Resource African Language NLP",
-      content: `
-        <p><strong>System Objective:</strong> Provide an intelligent conversational interface for smallholder sheep (*tumaki*) and goat (*awaki*) farmers in their native Hausa dialect, bridging the gap between clinical veterinary standards and indigenous pastoral practices.</p>
-
-        <div class="modal-diagram-box">
-[Hausa User Query] ("Awakiyata ba ta cin abinci kuma tana gudawa")
-         │
-         ▼
-[Dialectal Normalization & Intent Classifier]
-         │
-         ▼
-[Afro-XLM-RoBERTa Token Classification] ──► Entities: SYMPTOM(kin cin abinci), SYMPTOM(gudawa)
-         │
-         ▼
-[FAO Knowledge Base Retrieval] ──► Contextual First-Aid Veterinary Response in Hausa
-        </div>
-
-        <h4>Key Technical Highlights:</h4>
-        <ul style="padding-left: 1.25rem;">
-          <li>Strict ethical boundaries: gracefully triages non-ruminant or human health queries as out of scope.</li>
-          <li>Handles code-switched Hausa-English agricultural terminology.</li>
-          <li>Gradio interactive sandbox with Gradio 6 and Hugging Face Transformers.</li>
-        </ul>
-      `
-    },
-
-    'hausa-ner': {
-      title: "Hausa Agri-NER Candidate Model",
-      category: "Named Entity Recognition & PyTorch",
-      content: `
-        <p><strong>System Objective:</strong> Train and open-source a domain-specific token classification model capable of extracting livestock symptoms, species, medications, and agricultural terms from unformatted text.</p>
-
-        <div class="modal-diagram-box">
-Base Checkpoint: Davlan/afro-xlmr-base (Multilingual African representation)
-                      │
-                      ▼
-Fine-Tuning Data: Annotated Hausa Small-Ruminant & Agricultural Corpus
-                      │
-                      ▼
-Model Checkpoint: mustaphaidris/hausa-agri-ner-candidate
-                      │
-                      ▼
-Subword Boundary Merging & Word-Span Alignment Pipeline
-        </div>
-
-        <h4>Key Technical Highlights:</h4>
-        <ul style="padding-left: 1.25rem;">
-          <li>BIO tagging scheme specifically optimized for animal husbandry entities.</li>
-          <li>Robust handling of Hausa hooked consonants (ɓ, ɗ, ƙ) and apostrophes.</li>
-          <li>Hosted publicly on the Hugging Face Model Hub under <code>mustaphaidris/hausa-agri-ner-candidate</code>.</li>
-        </ul>
-      `
-    },
-
-    'livestock-economy': {
-      title: "Understanding The African Livestock Economy",
-      category: "Macroeconomic Research & Value Chains",
-      content: `
-        <p><strong>System Objective:</strong> Map out the entire economic value chain of Nigeria's 55M cattle, 139M goats, and 65M sheep, transforming abstract statistics into actionable data architecture for tech solutions.</p>
-
-        <div class="modal-diagram-box">
-[Inputs & Genetics] ──► [On-Farm Production] ──► [Collection & Transport]
-                                                        │
-                                                        ▼
-[Retail & Export]  ◄── [Cold-Chain Logistics]  ◄── [Slaughter & Value Add]
-        </div>
-
-        <h4>Key Insights:</h4>
-        <ul style="padding-left: 1.25rem;">
-          <li>Livestock represents over 40% of global agricultural GDP and $1.7T globally.</li>
-          <li>In Nigeria, smallholder pastoralists manage 7 out of 10 animals.</li>
-          <li>Identifying digitization bottlenecks in veterinary care, feed supplies, and transit logistics.</li>
-        </ul>
-      `
-    }
-  };
-
-  document.querySelectorAll('.view-details-btn').forEach(btn => {
-    btn.addEventListener('click', () => {
-      const projectId = btn.getAttribute('data-project');
-      const details = PROJECT_DETAILS[projectId];
-      if (details && modal) {
-        modalTitle.textContent = details.title;
-        modalCategory.textContent = details.category;
-        modalContent.innerHTML = details.content;
-        modal.classList.add('open');
+        modal.showModal();
         document.body.style.overflow = 'hidden';
       }
     });
   });
 
+  // Close handlers
   const closeModal = () => {
-    if (modal) {
-      modal.classList.remove('open');
-      document.body.style.overflow = '';
-    }
+    modal.close();
+    document.body.style.overflow = '';
   };
 
-  if (modalCloseBtn) modalCloseBtn.addEventListener('click', closeModal);
-  if (modal) {
-    modal.addEventListener('click', (e) => {
-      if (e.target === modal) closeModal();
-    });
-  }
+  if (closeBtn) closeBtn.addEventListener('click', closeModal);
+  if (footerCloseBtn) footerCloseBtn.addEventListener('click', closeModal);
 
-  document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape') closeModal();
+  modal.addEventListener('close', () => {
+    document.body.style.overflow = '';
   });
 
-  // ==========================================
-  // 7. REAL-TIME LAGOS CLOCK (WAT / GMT+1)
-  // ==========================================
-  const lagosTimeText = document.getElementById('lagosTimeText');
-  function updateLagosTime() {
-    if (!lagosTimeText) return;
-    const now = new Date();
-    const formatter = new Intl.DateTimeFormat('en-GB', {
-      timeZone: 'Africa/Lagos',
-      hour: '2-digit',
-      minute: '2-digit',
-      second: '2-digit',
-      hour12: true
+  // Modern Web Guidance fallback for light-dismiss on browsers without native closedby="any"
+  if (!('closedBy' in HTMLDialogElement.prototype)) {
+    modal.addEventListener('click', (event) => {
+      if (event.target !== modal) return;
+      const rect = modal.getBoundingClientRect();
+      const isInside = (
+        rect.top <= event.clientY &&
+        event.clientY <= rect.top + rect.height &&
+        rect.left <= event.clientX &&
+        event.clientX <= rect.left + rect.width
+      );
+      if (!isInside) closeModal();
     });
-    lagosTimeText.textContent = `🕒 Lagos Local Time (WAT): ${formatter.format(now)}`;
   }
-  updateLagosTime();
-  setInterval(updateLagosTime, 1000);
+}
 
-  // Set Current Year in Footer
-  const yearEl = document.getElementById('currentYear');
-  if (yearEl) yearEl.textContent = new Date().getFullYear();
+/* ==========================================================================
+   4. Photo Archive & Lightbox System
+   ========================================================================= */
+function initPhotoArchive() {
+  const lightbox = document.getElementById('lightboxModal');
+  const lightboxImg = document.getElementById('lightboxImg');
+  const lightboxCaption = document.getElementById('dialogLightboxCaption');
+  const closeBtn = document.getElementById('closeLightboxDialog');
+  const triggers = document.querySelectorAll('.lightbox-trigger');
 
-  // ==========================================
-  // 8. CONTACT FORM VALIDATION & SUBMISSION
-  // ==========================================
-  const contactForm = document.getElementById('contactForm');
-  const formStatus = document.getElementById('formStatus');
+  // Filter tabs
+  const tabs = document.querySelectorAll('.filter-tab');
+  const items = document.querySelectorAll('.gallery-item');
 
-  if (contactForm) {
-    contactForm.addEventListener('submit', (e) => {
-      e.preventDefault();
+  tabs.forEach(tab => {
+    tab.addEventListener('click', () => {
+      tabs.forEach(t => {
+        t.classList.remove('active');
+        t.setAttribute('aria-selected', 'false');
+      });
+      tab.classList.add('active');
+      tab.setAttribute('aria-selected', 'true');
 
-      const name = document.getElementById('senderName').value.trim();
-      const email = document.getElementById('senderEmail').value.trim();
-      const subject = document.getElementById('senderSubject').value;
-      const message = document.getElementById('senderMessage').value.trim();
+      const filter = tab.getAttribute('data-filter');
+      items.forEach(item => {
+        const category = item.getAttribute('data-category');
+        if (filter === 'all' || category === filter) {
+          item.classList.remove('hidden');
+        } else {
+          item.classList.add('hidden');
+        }
+      });
+    });
+  });
 
-      let hasError = false;
+  if (!lightbox || !lightboxImg) return;
 
-      // Validation
-      if (!name) {
-        document.getElementById('nameError').textContent = 'Please enter your name.';
-        hasError = true;
-      } else {
-        document.getElementById('nameError').textContent = '';
-      }
+  triggers.forEach(trigger => {
+    trigger.addEventListener('click', () => {
+      const src = trigger.getAttribute('data-img-src');
+      const caption = trigger.getAttribute('data-caption') || '';
 
-      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-      if (!email || !emailRegex.test(email)) {
-        document.getElementById('emailError').textContent = 'Please enter a valid email address.';
-        hasError = true;
-      } else {
-        document.getElementById('emailError').textContent = '';
-      }
+      lightboxImg.src = src;
+      lightboxImg.alt = caption;
+      lightboxCaption.textContent = caption;
 
-      if (!subject) {
-        document.getElementById('subjectError').textContent = 'Please select a topic.';
-        hasError = true;
-      } else {
-        document.getElementById('subjectError').textContent = '';
-      }
+      lightbox.showModal();
+      document.body.style.overflow = 'hidden';
+    });
+  });
 
-      if (!message || message.length < 10) {
-        document.getElementById('messageError').textContent = 'Message should be at least 10 characters.';
-        hasError = true;
-      } else {
-        document.getElementById('messageError').textContent = '';
-      }
+  const closeLightbox = () => {
+    lightbox.close();
+    document.body.style.overflow = '';
+  };
 
-      if (hasError) return;
+  if (closeBtn) closeBtn.addEventListener('click', closeLightbox);
 
-      // Prepare mailto link & visual feedback
-      formStatus.className = 'form-status success';
-      formStatus.textContent = 'Preparing your message draft to mustapha5th@gmail.com...';
+  lightbox.addEventListener('close', () => {
+    document.body.style.overflow = '';
+  });
 
-      const mailtoLink = `mailto:mustapha5th@gmail.com?subject=${encodeURIComponent(`[Portfolio Inquiry] ${subject} - from ${name}`)}&body=${encodeURIComponent(`Hi Mustapha,\n\nName: ${name}\nEmail: ${email}\nTopic: ${subject}\n\nMessage:\n${message}\n\nBest regards,\n${name}`)}`;
+  // Modern Web Guidance fallback for light dismiss
+  if (!('closedBy' in HTMLDialogElement.prototype)) {
+    lightbox.addEventListener('click', (event) => {
+      if (event.target !== lightbox) return;
+      const rect = lightbox.getBoundingClientRect();
+      const isInside = (
+        rect.top <= event.clientY &&
+        event.clientY <= rect.top + rect.height &&
+        rect.left <= event.clientX &&
+        event.clientX <= rect.left + rect.width
+      );
+      if (!isInside) closeLightbox();
+    });
+  }
+}
 
+/* ==========================================================================
+   5. Email Copy Helper
+   ========================================================================== */
+function initEmailCopy() {
+  const copyBtn = document.getElementById('copyEmailBtn');
+  const copyText = document.getElementById('copyEmailText');
+  const email = 'mustaphaidrissuleiman@gmail.com';
+
+  if (!copyBtn) return;
+
+  copyBtn.addEventListener('click', async () => {
+    try {
+      await navigator.clipboard.writeText(email);
+      copyText.textContent = 'Copied!';
+      copyBtn.style.color = 'var(--accent-emerald-light)';
       setTimeout(() => {
-        window.location.href = mailtoLink;
-        formStatus.textContent = '✓ Message launched in your email client! Thank you for reaching out.';
-        showToast('Message launched in your email client!');
-        contactForm.reset();
-      }, 700);
-    });
-  }
+        copyText.textContent = 'Copy';
+        copyBtn.style.color = '';
+      }, 2500);
+    } catch {
+      // Fallback
+      copyText.textContent = 'Copied!';
+      setTimeout(() => { copyText.textContent = 'Copy'; }, 2000);
+    }
+  });
+}
 
-});
+/* ==========================================================================
+   6. Mobile Navigation Drawer
+   ========================================================================== */
+function initMobileNav() {
+  const toggleBtn = document.getElementById('mobileMenuToggle');
+  const nav = document.querySelector('.site-nav');
+  const navLinks = document.querySelectorAll('.nav-link');
+
+  if (!toggleBtn || !nav) return;
+
+  toggleBtn.addEventListener('click', () => {
+    const isExpanded = toggleBtn.getAttribute('aria-expanded') === 'true';
+    toggleBtn.setAttribute('aria-expanded', !isExpanded);
+    nav.classList.toggle('mobile-active');
+  });
+
+  navLinks.forEach(link => {
+    link.addEventListener('click', () => {
+      nav.classList.remove('mobile-active');
+      toggleBtn.setAttribute('aria-expanded', 'false');
+    });
+  });
+}
