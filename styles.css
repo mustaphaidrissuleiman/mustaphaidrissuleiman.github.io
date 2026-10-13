@@ -623,13 +623,19 @@ button {
   flex-wrap: wrap;
 }
 
-.founder-signature-img {
-  max-width: 200px;
-  height: auto;
-}
-
-[data-theme="dark"] .founder-signature-img {
-  filter: invert(1) brightness(0.9) contrast(1.2);
+.monogram-seal {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  border-radius: var(--radius-xs);
+  background: var(--bg-card);
+  border: 1px solid var(--accent-brass);
+  font-family: var(--font-serif);
+  font-weight: 700;
+  font-size: 1.15rem;
+  color: var(--accent-brass);
 }
 
 .founder-signoff-meta {
@@ -655,6 +661,11 @@ button {
   grid-template-columns: repeat(3, 1fr);
   gap: 2rem;
   margin-top: 3rem;
+}
+
+.ventures-grid.four-col {
+  grid-template-columns: repeat(2, 1fr);
+  gap: 2rem;
 }
 
 .venture-card {
@@ -690,6 +701,7 @@ button {
 .venture-tag.enterprise { color: var(--accent-brass); }
 .venture-tag.fintech { color: #60a5fa; }
 .venture-tag.research { color: #c084fc; }
+.venture-tag.management { color: #34d399; }
 
 .venture-timeline {
   font-family: var(--font-mono);
@@ -1441,7 +1453,8 @@ dialog::backdrop {
     gap: 2rem;
   }
 
-  .ventures-grid {
+  .ventures-grid,
+  .ventures-grid.four-col {
     grid-template-columns: 1fr;
   }
 

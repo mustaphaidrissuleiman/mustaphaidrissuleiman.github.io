@@ -116,61 +116,61 @@ const ESSAYS = {
   },
 
   'livestock-economy': {
-    title: 'Understanding the Livestock Economy (Part 1): Structure, Inputs & Value Chains',
-    category: 'Agri-Economics',
+    title: 'Understanding Emerging Market Economies: Structure, Inputs & Value Networks',
+    category: 'Macroeconomics',
     date: 'August 2026',
     content: `
       <p>
-        Africa's livestock sector represents an un-mined economic titan valued at over $1.7 trillion. Yet across sub-Saharan Africa, it remains overwhelmingly informal, under-capitalized, and invisible to formal banking institutions.
+        Across emerging markets, informal real-sector trade represents an economic titan exceeding $1.7 trillion. Yet across sub-Saharan Africa, vital value networks remain overwhelmingly informal, under-capitalized, and invisible to formal banking institutions.
       </p>
       <h3>The Three Structural Layers of the Value Chain</h3>
       <ul>
-        <li><strong>1. Upstream Inputs:</strong> Genetics, breeding lines, forage feedstock, and veterinary biologics. In Nigeria, seasonal feed scarcity and preventable disease outbreaks reduce potential herd biomass by upwards of 30% annually.</li>
-        <li><strong>2. Midstream Production:</strong> Herd management across commercial ranches, semi-intensive feedlots, and pastoral routes. Because animal records have historically existed only in personal notebooks or memory, operations remain un-insurable and cut off from debt financing.</li>
-        <li><strong>3. Downstream Processing:</strong> Cold-chain transit, abattoir infrastructure, and retail distribution feeding Africa's rapidly growing megacities.</li>
+        <li><strong>1. Upstream Inputs:</strong> Genetic resources, specialized feedstocks, and biological inputs. In emerging production corridors, seasonal scarcity and preventable disease reduce biomass productivity significantly.</li>
+        <li><strong>2. Midstream Production:</strong> Asset management across semi-intensive holdings and commercial operations. Because records historically existed only in personal notebooks or memory, operations remain un-insurable and cut off from debt financing.</li>
+        <li><strong>3. Downstream Processing:</strong> Cold-chain transit, quality auditing, and retail distribution feeding Africa's rapidly growing urban hubs.</li>
       </ul>
       <blockquote>
-        "You cannot finance what you cannot measure, and you cannot improve what you do not record. Systematic animal records convert invisible pastoral assets into bankable collateral."
+        "You cannot finance what you cannot measure, and you cannot improve what you do not record. Systematic records convert invisible operational assets into bankable collateral."
       </blockquote>
       <p>
-        By equipping producers with digital identity frameworks—recording vaccinations, parentage, and daily weight gains—Herdbase Africa bridges informal livestock husbandry with modern commercial capital.
+        By equipping producers with digital operating systems—recording vital metrics, parentage, and lifecycle data—enterprise platforms bridge informal trade with institutional capital.
       </p>
     `
   },
 
   'future-farming': {
-    title: 'The Future of Livestock Farming Is Smarter Systems',
-    category: 'Infrastructure',
+    title: 'The Future of Industrial Operations Is Smarter Systems',
+    category: 'Systems Architecture',
     date: 'September 2026',
     content: `
       <p>
-        For centuries, pastoral husbandry relied on memory, sharp intuition, and ancestral wisdom. While these traditions sustained communities, they are encountering unprecedented strain from demographic expansion, climate volatility, and escalating feed prices.
+        For generations, traditional operations relied on memory, sharp intuition, and informal networks. While these approaches sustained early growth, they are encountering unprecedented strain from demographic expansion, supply-chain shocks, and market volatility.
       </p>
       <p>
-        Operating commercial livestock production in Katsina proved to our team that hard work alone is not enough. Without structured data on Average Daily Gain (ADG), Feed Conversion Ratios (FCR), and automated veterinary reminders, livestock businesses bleed capital without knowing where it was lost.
+        Executing commercial operations on the ground proved that dedication alone is insufficient. Without real-time telemetry, automated alerting, and auditable metrics, enterprises bleed margin without knowing where capital was lost.
       </p>
       <h3>Systematic Augmentation</h3>
       <p>
-        Software does not replace the intuition of the herdsman—it scales it. Through Herdbase360, we have introduced species-specific digital workflows:
+        Modern software does not replace human domain expertise—it scales it. Through tailored enterprise workflows, we introduce:
       </p>
       <ul>
-        <li><strong>Veterinary Alerting:</strong> Scheduled protocols that prevent disease spread before mortality spikes.</li>
-        <li><strong>Batch Feed Economics:</strong> Real-time margin tracking across cattle, sheep, goats, and poultry.</li>
-        <li><strong>Investor Portals:</strong> Real-time visibility into herd health and inventory for syndicated capital.</li>
+        <li><strong>Automated Telemetry & Alerts:</strong> Scheduled protocols that prevent costly failures before they compound.</li>
+        <li><strong>Batch Unit Economics:</strong> Real-time margin and yield tracking across production units.</li>
+        <li><strong>Investor & Syndicate Visibility:</strong> Auditable, real-time inventory and health reporting for external capital.</li>
       </ul>
       <p>
-        The future belongs to agricultural systems that pair boots-on-the-ground operational empathy with uncompromising software engineering.
+        The future belongs to systems that pair boots-on-the-ground operational empathy with uncompromising software engineering.
       </p>
     `
   },
 
   'hausa-ner-research': {
-    title: 'Domain-Adapted Hausa Named Entity Recognition for Small Ruminant Production',
+    title: 'Domain-Adapted Named Entity Recognition for Indigenous African Dialects',
     category: 'Computer Science',
     date: 'October 2026',
     content: `
       <p>
-        Information regarding small-ruminant (sheep and goat) health across West Africa is overwhelmingly communicated in unstructured Hausa speech and text. This linguistic divide has excluded millions of pastoralists from modern automated disease surveillance and veterinary advisory.
+        Critical domain information across West Africa is overwhelmingly communicated in unstructured indigenous speech and text. This linguistic divide has historically excluded millions from modern automated systems and digital advisory platforms.
       </p>
       <h3>Research Methodology & Transformer Fine-Tuning</h3>
       <p>
@@ -179,8 +179,8 @@ const ESSAYS = {
       <ul>
         <li><strong>Corpus Engineering:</strong> Curated and annotated a gold-standard benchmark of 2,000 sentences (36,082 tokens and 8,568 named entity mentions).</li>
         <li><strong>10 Semantic Classes:</strong> ANIMAL_TYPE, BREED, QUANTITY, SYMPTOM, DISEASE, MEDICATION, FEED_TYPE, DATE_TIME, LOCATION, and PERSONNEL.</li>
-        <li><strong>Model Training:</strong> Fine-tuned the multilingual <strong>Afro-XLM-RoBERTa</strong> transformer using BIO token classification.</li>
-        <li><strong>Diagnostic Chatbot:</strong> Integrated entity extraction with conversational diagnostic assistance to deliver actionable veterinary protocols in Hausa.</li>
+        <li><strong>Model Training:</strong> Fine-tuned the multilingual <strong>Afro-XLM-RoBERTa</strong> transformer using BIO token classification and weighted loss.</li>
+        <li><strong>Conversational AI:</strong> Integrated entity extraction with conversational agents to deliver actionable advisory in indigenous languages.</li>
       </ul>
       <blockquote>
         "Trained model weights are published openly on Hugging Face: <code>mustaphaidris/hausa-agri-ner-candidate</code>."
