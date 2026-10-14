@@ -1,36 +1,26 @@
-# Mustapha Idris Suleiman — Portfolio Website
+# Mustapha Idris Suleiman — Personal CV Website
 
-> **Techno Farmer • CEO @ Herdbase Africa • AI & NLP Researcher • Full-Stack Engineer**
+> **Founder & CEO [Herdbase Africa](https://herdbaseafrica.com) · Farmer · AI Researcher · Entrepreneur**
 
-Welcome to the personal portfolio website of **Mustapha Idris Suleiman**. This website showcases projects, research publications in low-resource African language NLP, and full-stack enterprise platforms transforming agriculture across Africa.
+Single-page CV website built with clean typography, dark/light theme toggle, and an editorial Read.cv aesthetic.
 
----
+## 🚀 Live Website
+- **GitHub Pages**: `https://mustaphaidrissuleiman.github.io/Mustapha5th/`
 
-## 🌟 Featured Highlights
-- **CropScan**: Multimodal AI Agronomist for real-time disease diagnosis on staple crops (Cassava, Maize, Yam, Tomato).
-- **Herdbase360**: Distributed livestock & farm management ecosystem with Laravel API, Vue.js apps, and veterinary workflows.
-- **Hausa Agri-Chatbot & Afro-XLM-NER**: Indigenous agricultural AI using fine-tuned Afro-XLM-RoBERTa models for smallholder sheep and goat farmers.
-- **Understanding The Livestock Economy**: Data-driven insights and infographics detailing the $1.7T global and 55M+ Nigerian livestock value chain.
+## 🛠 Tech Stack
+- Vanilla HTML5 (semantic structure, accessibility)
+- CSS3 (custom CSS variables, dark/light theme, print-ready stylesheet)
+- Vanilla JavaScript (theme switcher, clipboard copy utility, WAT real-time clock)
 
----
-
-## 🚀 Running Locally
-
-No complex dependencies required. You can preview with any static web server:
-
+## 🏃 Running Locally
 ```bash
-# Using Python 3
 python3 -m http.server 3000
-
-# Or with npx serve
-npx serve -l 3000 .
 ```
-
-Then open [http://localhost:3000](http://localhost:3000) in your browser.
-
----
+Open [http://localhost:3000](http://localhost:3000) in your browser.
 
 ## 📬 Contact
-- **Email**: [mustapha5th@gmail.com](mailto:mustapha5th@gmail.com)
-- **GitHub**: [github.com/mustaphaidrissuleiman](https://github.com/mustaphaidrissuleiman)
-- **Location**: Lagos State, Nigeria
+- **Email**: [mustaphaidrissuleiman@gmail.com](mailto:mustaphaidrissuleiman@gmail.com)
+- **Phone**: +234 806 165 1401
+- **LinkedIn**: [linkedin.com/in/mustaphaidrissuleiman](https://www.linkedin.com/in/mustaphaidrissuleiman/)
+- **X (Twitter)**: [@_mustaphaidris](https://x.com/_mustaphaidris)
+- **GitHub**: [@mustaphaidrissuleiman](https://github.com/mustaphaidrissuleiman)
