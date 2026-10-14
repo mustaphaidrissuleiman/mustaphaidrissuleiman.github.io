@@ -5,7 +5,7 @@
 Single-page CV website built with clean typography, dark/light theme toggle, and an editorial Read.cv aesthetic.
 
 ## 🚀 Live Website
-- **GitHub Pages**: `https://mustaphaidrissuleiman.github.io/Mustapha5th/`
+- **GitHub Pages**: `https://mustaphaidrissuleiman.github.io/`
 
 ## 🛠 Tech Stack
 - Vanilla HTML5 (semantic structure, accessibility)
