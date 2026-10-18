@@ -347,7 +347,7 @@ button {
   -webkit-backdrop-filter: blur(20px) saturate(180%);
   border: 1px solid var(--glass-track-border);
   border-radius: 9999px;
-  padding: 3px;
+  padding: 3px 6px;
   box-shadow: var(--glass-track-shadow);
   overflow-x: auto;
   scrollbar-width: none;
@@ -406,6 +406,14 @@ button {
   touch-action: manipulation;
   transition: color 0.2s ease, background-color 0.2s ease, transform 0.12s ease;
   line-height: 1.2;
+}
+
+.cv-tab:first-of-type {
+  padding-left: 12px;
+}
+
+.cv-tab:last-of-type {
+  padding-right: 12px;
 }
 
 .cv-tab:hover {
@@ -822,7 +830,7 @@ a:hover .arrow {
     overflow-x: hidden;
     display: flex;
     justify-content: space-between;
-    padding: 2.5px;
+    padding: 3px 6px;
     gap: 2px;
   }
 
@@ -834,6 +842,14 @@ a:hover .arrow {
     gap: 2.5px;
     justify-content: center;
     letter-spacing: -0.01em;
+  }
+
+  .cv-tab:first-of-type {
+    padding-left: 8px;
+  }
+
+  .cv-tab:last-of-type {
+    padding-right: 8px;
   }
 
   .cv-tab-all {
@@ -870,7 +886,7 @@ a:hover .arrow {
   }
 }
 
-@media (max-width: 440px) {
+@media (max-width: 520px) {
   .cv-wrap {
     padding: 10px 10px 40px;
   }
@@ -884,8 +900,16 @@ a:hover .arrow {
   }
 
   .cv-tab {
-    font-size: 0.7rem;
+    font-size: 0.715rem;
     padding: 5px 1.5px;
+  }
+
+  .cv-tab:first-of-type {
+    padding-left: 8px;
+  }
+
+  .cv-tab:last-of-type {
+    padding-right: 8px;
   }
 
   .tab-badge {
