@@ -19,40 +19,70 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;450;500;600&display=swap" rel="stylesheet">
 
-  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="styles.css?v=15">
   <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>✦</text></svg>">
 </head>
 <body>
 
   <div class="cv-wrap">
-    <!-- Header: Profile Photo + Name + Tagline with link + Place + Theme Toggle -->
+    <!-- Header: Profile Photo + Name + Tagline with link + Place + Theme Toggle + Frozen Tabs -->
     <header class="cv-header">
-      <img src="assets/mustapha-avatar.jpg" alt="Mustapha Idris Suleiman" class="cv-avatar">
+      <div class="cv-header-identity">
+        <img src="assets/mustapha-avatar.jpg" alt="Mustapha Idris Suleiman" class="cv-avatar">
 
-      <div class="cv-header-text">
-        <div class="cv-name-bar">
-          <h1 class="cv-name">Mustapha Idris Suleiman</h1>
-          <button id="themeToggle" class="theme-btn" aria-label="Toggle light or dark theme" title="Toggle theme">
-            <svg class="sun-icon" viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2">
-              <circle cx="12" cy="12" r="5"></circle>
-              <line x1="12" y1="1" x2="12" y2="3"></line>
-              <line x1="12" y1="21" x2="12" y2="23"></line>
-              <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
-              <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
-              <line x1="1" y1="12" x2="3" y2="12"></line>
-              <line x1="21" y1="12" x2="23" y2="12"></line>
-              <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
-              <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
-            </svg>
-            <svg class="moon-icon" viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2">
-              <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
-            </svg>
+        <div class="cv-header-text">
+          <div class="cv-name-bar">
+            <h1 class="cv-name">Mustapha Idris Suleiman</h1>
+            <button id="themeToggle" class="theme-btn" aria-label="Toggle light or dark theme" title="Toggle theme">
+              <svg class="sun-icon" viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="12" cy="12" r="5"></circle>
+                <line x1="12" y1="1" x2="12" y2="3"></line>
+                <line x1="12" y1="21" x2="12" y2="23"></line>
+                <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                <line x1="1" y1="12" x2="3" y2="12"></line>
+                <line x1="21" y1="12" x2="23" y2="12"></line>
+                <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+              </svg>
+              <svg class="moon-icon" viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+              </svg>
+            </button>
+          </div>
+
+          <p class="cv-tagline">Founder & CEO <a href="https://herdbaseafrica.com" target="_blank" rel="noopener" class="inline-link">Herdbase Africa</a>, Farmer, AI Researcher, Entrepreneur</p>
+          <p class="cv-place">Abuja, Nigeria</p>
+        </div>
+      </div>
+
+      <!-- Component Tabs Navigation (Frozen with Header) -->
+      <nav class="cv-tabs-nav" aria-label="Curriculum Vitae Sections">
+        <div class="cv-tabs" role="tablist" id="cvTabsList">
+          <div class="cv-tab-glider" id="cvTabGlider" aria-hidden="true"></div>
+          <button class="cv-tab is-active" id="tab-btn-experience" data-tab="experience" role="tab" aria-selected="true" aria-controls="tab-experience" tabindex="0">
+            Experience <span class="tab-badge">5</span>
+          </button>
+          <button class="cv-tab" id="tab-btn-projects" data-tab="projects" role="tab" aria-selected="false" aria-controls="tab-projects" tabindex="-1">
+            Projects <span class="tab-badge">4</span>
+          </button>
+          <button class="cv-tab" id="tab-btn-articles" data-tab="articles" role="tab" aria-selected="false" aria-controls="tab-articles" tabindex="-1">
+            Articles <span class="tab-badge" id="articlesBadge">4</span>
+          </button>
+          <button class="cv-tab" id="tab-btn-skills" data-tab="skills" role="tab" aria-selected="false" aria-controls="tab-skills" tabindex="-1">
+            Skills
+          </button>
+          <button class="cv-tab" id="tab-btn-education" data-tab="education" role="tab" aria-selected="false" aria-controls="tab-education" tabindex="-1">
+            Education
+          </button>
+          <button class="cv-tab" id="tab-btn-contact" data-tab="contact" role="tab" aria-selected="false" aria-controls="tab-contact" tabindex="-1">
+            Contact
+          </button>
+          <button class="cv-tab cv-tab-all" id="tab-btn-all" data-tab="all" role="tab" aria-selected="false" aria-controls="tab-all" tabindex="-1" title="View all sections at once">
+            All
           </button>
         </div>
-
-        <p class="cv-tagline">Founder & CEO <a href="https://herdbaseafrica.com" target="_blank" rel="noopener" class="inline-link">Herdbase Africa</a>, Farmer, AI Researcher, Entrepreneur</p>
-        <p class="cv-place">Abuja, Nigeria</p>
-      </div>
+      </nav>
     </header>
 
     <main class="cv-main">
@@ -66,284 +96,182 @@
         </div>
       </section>
 
-      <!-- Work Experience Section -->
-      <section class="cv-section" id="experience">
-        <h2 class="cv-section-heading">Professional Experience</h2>
-
-        <div class="cv-list">
-          <!-- Item 1 -->
-          <div class="cv-row">
-            <div class="cv-date">2025 — Present</div>
-            <div class="cv-detail">
-              <div class="cv-item-title">
-                <a href="https://herdbaseafrica.com" target="_blank" rel="noopener">Founder & Lead ICT Strategist at Herdbase Africa <span class="arrow">↗</span></a>
+      <!-- Component Tab Panels -->
+      <div class="cv-tabpanels" id="tabPanelsContainer">
+        <!-- Tab 1: Experience -->
+        <div class="cv-tabpanel is-active" id="tab-experience" role="tabpanel" aria-labelledby="tab-btn-experience">
+  <!-- Work Experience Section -->
+        <section class="cv-section" id="experience">
+          <h2 class="cv-section-heading">Professional Experience</h2>
+  
+          <div class="cv-list">
+            <!-- Item 1 -->
+            <div class="cv-row">
+              <div class="cv-date">2025 — Present</div>
+              <div class="cv-detail">
+                <div class="cv-item-title">
+                  <a href="https://herdbaseafrica.com" target="_blank" rel="noopener">Founder & Lead ICT Strategist at Herdbase Africa <span class="arrow">↗</span></a>
+                </div>
+                <div class="cv-item-place">Abuja / Lagos, Nigeria</div>
+                <ul class="cv-bullets">
+                  <li>Lead the overarching ICT infrastructure and technical strategy for cloud-hosted SaaS platforms, ensuring high availability (99.8%), data integrity, and strict adherence to enterprise operating standards.</li>
+                  <li>Formulate comprehensive multi-year technology work plans, operational expenditure (OpEx), and capital expenditure (CapEx) budget frameworks for nationwide operational rollout.</li>
+                  <li>Recommend, establish, and enforce enterprise ICT policies, access control procedures, and cybersecurity best practices across cloud environments and collaboration workspaces.</li>
+                  <li>Administer enterprise cloud services, collaboration suites, and database systems, monitoring telemetry to detect and resolve performance bottlenecks proactively.</li>
+                  <li>Develop operational dashboards and relational data structures to track ICT key performance indicators (KPIs), system uptime, and incident resolution times for executive reporting.</li>
+                </ul>
               </div>
-              <div class="cv-item-place">Abuja / Lagos, Nigeria</div>
-              <ul class="cv-bullets">
-                <li>Lead the overarching ICT infrastructure and technical strategy for cloud-hosted SaaS platforms, ensuring high availability (99.8%), data integrity, and strict adherence to enterprise operating standards.</li>
-                <li>Formulate comprehensive multi-year technology work plans, operational expenditure (OpEx), and capital expenditure (CapEx) budget frameworks for nationwide operational rollout.</li>
-                <li>Recommend, establish, and enforce enterprise ICT policies, access control procedures, and cybersecurity best practices across cloud environments and collaboration workspaces.</li>
-                <li>Administer enterprise cloud services, collaboration suites, and database systems, monitoring telemetry to detect and resolve performance bottlenecks proactively.</li>
-                <li>Develop operational dashboards and relational data structures to track ICT key performance indicators (KPIs), system uptime, and incident resolution times for executive reporting.</li>
-              </ul>
+            </div>
+  
+            <!-- Item 2 -->
+            <div class="cv-row">
+              <div class="cv-date">2023 — 2025</div>
+              <div class="cv-detail">
+                <div class="cv-item-title">
+                  IT Specialist | Team Lead at Unified Payments Services
+                </div>
+                <div class="cv-item-place">Lagos, Nigeria</div>
+                <ul class="cv-bullets">
+                  <li>Administered enterprise payment application servers, operating systems, and core databases, coordinating software licensing, staging, patch management, and firmware upgrades across production and staging environments.</li>
+                  <li>Conducted routine vulnerability assessments, identity and access management (IAM) reviews, and system access audits to ensure compliance with strict cybersecurity requirements (PCIDSS and ISO 27001).</li>
+                  <li>Maintained comprehensive ICT risk registers and coordinated technical remediation plans for internal and external security compliance audits, successfully transforming audit findings into fortified security controls.</li>
+                  <li>Authored technical specifications and participated in procurement evaluation for external hardware, software, and telecommunications vendors, managing SLA compliance and incident escalation.</li>
+                  <li>Executed scheduled preventive maintenance, continuous system monitoring, and disaster recovery testing, safeguarding transaction availability across mission-critical financial gateways.</li>
+                </ul>
+              </div>
+            </div>
+  
+            <!-- Item 3 -->
+            <div class="cv-row">
+              <div class="cv-date">2022 — 2023</div>
+              <div class="cv-detail">
+                <div class="cv-item-title">
+                  IT Support Officer at Access Bank PLC
+                </div>
+                <div class="cv-item-place">Katsina State, Nigeria</div>
+                <ul class="cv-bullets">
+                  <li>Maintained Local Area Networks (LAN), Wide Area Networks (WAN), wireless networks, site-to-site VPNs, and primary/secondary ISP links, ensuring uninterrupted connectivity across banking branch operations.</li>
+                  <li>Delivered second-level technical support for 150+ staff, diagnosing and resolving complex hardware (desktops, servers, POS, printers), OS, Microsoft 365, and business application failures within strict SLAs.</li>
+                  <li>Coordinated automated daily/weekly data backup routines, verified off-site replication, and conducted disaster recovery (DR) simulations to validate business continuity preparedness.</li>
+                  <li>Conducted quarterly ICT audits, managing an exhaustive ICT asset registry (CMDB) and verifying physical and logical security compliance across all endpoints and network racks.</li>
+                  <li>Delivered ongoing staff awareness sessions on phishing prevention, password hygiene, and corporate cybersecurity policies.</li>
+                </ul>
+              </div>
+            </div>
+  
+            <!-- Item 4 -->
+            <div class="cv-row">
+              <div class="cv-date">2021 — Present</div>
+              <div class="cv-detail">
+                <div class="cv-item-title">
+                  Founder & IT Skills Facilitator at Geeks Arewa
+                </div>
+                <div class="cv-item-place">Kano, Nigeria</div>
+                <p class="cv-item-desc">
+                  Delivered technical mentoring and practical training in computer hardware, networking, troubleshooting, and digital literacy.
+                </p>
+              </div>
+            </div>
+  
+            <!-- Item 5 -->
+            <div class="cv-row">
+              <div class="cv-date">2019 — 2020</div>
+              <div class="cv-detail">
+                <div class="cv-item-title">
+                  Software Developer at Cloudsoft Consulting Ltd.
+                </div>
+                <div class="cv-item-place">Kaduna, Nigeria</div>
+                <p class="cv-item-desc">
+                  Developed custom software modules, translated functional specs into technical documentation, and supported quality assurance.
+                </p>
+              </div>
             </div>
           </div>
-
-          <!-- Item 2 -->
-          <div class="cv-row">
-            <div class="cv-date">2023 — 2025</div>
-            <div class="cv-detail">
-              <div class="cv-item-title">
-                IT Specialist | Team Lead at Unified Payments Services
-              </div>
-              <div class="cv-item-place">Lagos, Nigeria</div>
-              <ul class="cv-bullets">
-                <li>Administered enterprise payment application servers, operating systems, and core databases, coordinating software licensing, staging, patch management, and firmware upgrades across production and staging environments.</li>
-                <li>Conducted routine vulnerability assessments, identity and access management (IAM) reviews, and system access audits to ensure compliance with strict cybersecurity requirements (PCIDSS and ISO 27001).</li>
-                <li>Maintained comprehensive ICT risk registers and coordinated technical remediation plans for internal and external security compliance audits, successfully transforming audit findings into fortified security controls.</li>
-                <li>Authored technical specifications and participated in procurement evaluation for external hardware, software, and telecommunications vendors, managing SLA compliance and incident escalation.</li>
-                <li>Executed scheduled preventive maintenance, continuous system monitoring, and disaster recovery testing, safeguarding transaction availability across mission-critical financial gateways.</li>
-              </ul>
-            </div>
-          </div>
-
-          <!-- Item 3 -->
-          <div class="cv-row">
-            <div class="cv-date">2022 — 2023</div>
-            <div class="cv-detail">
-              <div class="cv-item-title">
-                IT Support Officer at Access Bank PLC
-              </div>
-              <div class="cv-item-place">Katsina State, Nigeria</div>
-              <ul class="cv-bullets">
-                <li>Maintained Local Area Networks (LAN), Wide Area Networks (WAN), wireless networks, site-to-site VPNs, and primary/secondary ISP links, ensuring uninterrupted connectivity across banking branch operations.</li>
-                <li>Delivered second-level technical support for 150+ staff, diagnosing and resolving complex hardware (desktops, servers, POS, printers), OS, Microsoft 365, and business application failures within strict SLAs.</li>
-                <li>Coordinated automated daily/weekly data backup routines, verified off-site replication, and conducted disaster recovery (DR) simulations to validate business continuity preparedness.</li>
-                <li>Conducted quarterly ICT audits, managing an exhaustive ICT asset registry (CMDB) and verifying physical and logical security compliance across all endpoints and network racks.</li>
-                <li>Delivered ongoing staff awareness sessions on phishing prevention, password hygiene, and corporate cybersecurity policies.</li>
-              </ul>
-            </div>
-          </div>
-
-          <!-- Item 4 -->
-          <div class="cv-row">
-            <div class="cv-date">2021 — Present</div>
-            <div class="cv-detail">
-              <div class="cv-item-title">
-                Founder & IT Skills Facilitator at Geeks Arewa
-              </div>
-              <div class="cv-item-place">Kano, Nigeria</div>
-              <p class="cv-item-desc">
-                Delivered technical mentoring and practical training in computer hardware, networking, troubleshooting, and digital literacy.
-              </p>
-            </div>
-          </div>
-
-          <!-- Item 5 -->
-          <div class="cv-row">
-            <div class="cv-date">2019 — 2020</div>
-            <div class="cv-detail">
-              <div class="cv-item-title">
-                Software Developer at Cloudsoft Consulting Ltd.
-              </div>
-              <div class="cv-item-place">Kaduna, Nigeria</div>
-              <p class="cv-item-desc">
-                Developed custom software modules, translated functional specs into technical documentation, and supported quality assurance.
-              </p>
-            </div>
-          </div>
+        </section>
         </div>
-      </section>
 
-      <!-- Technical Skills & Core Competencies Section -->
-      <section class="cv-section" id="skills">
-        <h2 class="cv-section-heading">Technical Skills & Core Competencies</h2>
-
-        <div class="cv-list">
-          <div class="cv-row">
-            <div class="cv-date">Infrastructure</div>
-            <div class="cv-detail">
-              <div class="cv-item-title">IT Infrastructure & Systems</div>
-              <p class="cv-item-desc">Windows Server (2016/2019/2022), Active Directory Domain Services (AD DS), Group Policy (GPO), Microsoft Entra ID (Azure AD), Linux (Ubuntu/RHEL), macOS, Endpoint Configuration.</p>
+        <!-- Tab 2: Projects -->
+        <div class="cv-tabpanel" id="tab-projects" role="tabpanel" aria-labelledby="tab-btn-projects" hidden>
+  <!-- Research & Projects Section (Separated from Articles) -->
+        <section class="cv-section" id="research-projects">
+          <h2 class="cv-section-heading">Research & Projects</h2>
+  
+          <div class="cv-list">
+            <!-- Project 1 -->
+            <div class="cv-row">
+              <div class="cv-date">2024 — 2026</div>
+              <div class="cv-detail">
+                <div class="cv-item-title">
+                  <a href="https://huggingface.co/mustaphaidris/hausa-agri-ner-candidate" target="_blank" rel="noopener">Afro-XLM-RoBERTa Token Classifier <span class="arrow">↗</span></a>
+                </div>
+                <div class="cv-item-place">UNILAG & Hugging Face · Open Source</div>
+                <p class="cv-item-desc">
+                  Annotated a gold-standard 2,000-sentence corpus across 10 semantic entity categories. Fine-tuned Afro-XLM-R to bring African languages into modern conversational AI.
+                </p>
+              </div>
+            </div>
+  
+            <!-- Project 2 -->
+            <div class="cv-row">
+              <div class="cv-date">2023 — Present</div>
+              <div class="cv-detail">
+                <div class="cv-item-title">
+                  <a href="https://herdbaseafrica.com" target="_blank" rel="noopener">Herdbase360 Livestock Enterprise Platform <span class="arrow">↗</span></a>
+                </div>
+                <div class="cv-item-place">Herdbase Africa · Katsina & Lagos, Nigeria</div>
+                <p class="cv-item-desc">
+                  Multi-tenant farm software providing real-time inventory management, batch unit economics, veterinary calendars, and WhatsApp field data capture.
+                </p>
+              </div>
+            </div>
+  
+            <!-- Project 3 -->
+            <div class="cv-row">
+              <div class="cv-date">2023 — 2025</div>
+              <div class="cv-detail">
+                <div class="cv-item-title">
+                  EMV 3DS 2.0 Payment Rail Infrastructure
+                </div>
+                <div class="cv-item-place">Unified Payments Services PLC · Lagos, Nigeria</div>
+                <p class="cv-item-desc">
+                  National payment gateway 3DS server implementation and certification safeguarding card transactions across Nigeria's major fintech unicorns.
+                </p>
+              </div>
+            </div>
+  
+            <!-- Project 4 -->
+            <div class="cv-row">
+              <div class="cv-date">2024</div>
+              <div class="cv-detail">
+                <div class="cv-item-title">
+                  CropScan AI
+                </div>
+                <div class="cv-item-place">Lagos, Nigeria</div>
+                <p class="cv-item-desc">
+                  Offline on-device mobile vision model diagnosing agricultural crop pathologies for smallholder farmers without requiring continuous internet connectivity.
+                </p>
+              </div>
             </div>
           </div>
-
-          <div class="cv-row">
-            <div class="cv-date">Microsoft & Cloud</div>
-            <div class="cv-detail">
-              <div class="cv-item-title">Microsoft & Cloud Technologies</div>
-              <p class="cv-item-desc">Microsoft 365 Administration (Exchange Online, SharePoint, OneDrive, Teams, Intune MDM), Enterprise Cloud Services, License Management, Software Patch Management.</p>
-            </div>
-          </div>
-
-          <div class="cv-row">
-            <div class="cv-date">Networking</div>
-            <div class="cv-detail">
-              <div class="cv-item-title">Enterprise Networking & Comms</div>
-              <p class="cv-item-desc">Cisco Routing & Switching, LAN/WAN, TCP/IP, VLANs, Site-to-Site & Client VPNs, Corporate Wi-Fi, DNS/DHCP, Network Monitoring (PRTG/Zabbix), VoIP & Unified Comms.</p>
-            </div>
-          </div>
-
-          <div class="cv-row">
-            <div class="cv-date">Cybersecurity</div>
-            <div class="cv-detail">
-              <div class="cv-item-title">Cybersecurity & Access Controls</div>
-              <p class="cv-item-desc">Identity & Access Management (IAM), Role-Based Permissions, Multi-Factor Authentication (MFA), Endpoint Detection & Response (EDR), Vulnerability Assessment, IT Risk Registers.</p>
-            </div>
-          </div>
-
-          <div class="cv-row">
-            <div class="cv-date">Operations & DR</div>
-            <div class="cv-detail">
-              <div class="cv-item-title">Operations, DR & Asset Management</div>
-              <p class="cv-item-desc">Data Backup & Disaster Recovery (Veeam, Cloud Backups), Business Continuity Planning (BCP), ICT Asset Management & CMDB, Preventive Maintenance, Technical Documentation.</p>
-            </div>
-          </div>
-
-          <div class="cv-row">
-            <div class="cv-date">Governance</div>
-            <div class="cv-detail">
-              <div class="cv-item-title">Vendor Management & HQ Alignment</div>
-              <p class="cv-item-desc">ICT Procurement Evaluation, Technical Specification Drafting, External Vendor & ISP Oversight, Service Level Agreement (SLA) Enforcement, Corporate HQ Alignment.</p>
-            </div>
-          </div>
+        </section>
         </div>
-      </section>
 
-      <!-- Education Section -->
-      <section class="cv-section" id="education">
-        <h2 class="cv-section-heading">Education</h2>
-
-        <div class="cv-list">
-          <!-- Item 1 -->
+        <!-- Tab 3: Articles -->
+        <div class="cv-tabpanel" id="tab-articles" role="tabpanel" aria-labelledby="tab-btn-articles" hidden>
+  <!-- Articles Section -->
+        <section class="cv-section" id="articles">
+          <h2 class="cv-section-heading">Articles</h2>
+  
+          <div class="cv-list">
+            <!-- ARTICLES_START -->
           <div class="cv-row">
-            <div class="cv-date">2026 — Present</div>
-            <div class="cv-detail">
-              <div class="cv-item-title">Master of Business Administration (MBA)</div>
-              <div class="cv-item-place">Nigerian University of Technology and Management (NUTM) · Lagos, Nigeria</div>
-              <p class="cv-item-desc">Executive technology leadership, corporate governance, operational strategy, and enterprise finance.</p>
-            </div>
-          </div>
-
-          <!-- Item 2 -->
-          <div class="cv-row">
-            <div class="cv-date">2026</div>
-            <div class="cv-detail">
-              <div class="cv-item-title">Master of Information Technology (M.IT)</div>
-              <div class="cv-item-place">University of Lagos (UNILAG) · Lagos, Nigeria</div>
-              <p class="cv-item-desc">Enterprise systems, network architecture, cybersecurity governance, and natural language processing research.</p>
-            </div>
-          </div>
-
-          <!-- Item 3 -->
-          <div class="cv-row">
-            <div class="cv-date">2021</div>
-            <div class="cv-detail">
-              <div class="cv-item-title">Bachelor of Science (B.Sc.) in Computer Science</div>
-              <div class="cv-item-place">Bayero University Kano (BUK) · Kano, Nigeria</div>
-              <p class="cv-item-desc">Operating systems, distributed computing, algorithms, database systems, and enterprise software engineering.</p>
-            </div>
-          </div>
-
-          <!-- Item 4 -->
-          <div class="cv-row">
-            <div class="cv-date">2015</div>
-            <div class="cv-detail">
-              <div class="cv-item-title">National Diploma, Computer Science</div>
-              <div class="cv-item-place">Hassan Usman Polytechnic · Katsina, Nigeria</div>
-              <p class="cv-item-desc">Computer hardware engineering, network infrastructure, systems troubleshooting, and practical computing.</p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- Research & Projects Section (Separated from Articles) -->
-      <section class="cv-section" id="research-projects">
-        <h2 class="cv-section-heading">Research & Projects</h2>
-
-        <div class="cv-list">
-          <!-- Project 1 -->
-          <div class="cv-row">
-            <div class="cv-date">2024 — 2026</div>
+            <div class="cv-date">Oct 2026</div>
             <div class="cv-detail">
               <div class="cv-item-title">
-                <a href="https://huggingface.co/mustaphaidris/hausa-agri-ner-candidate" target="_blank" rel="noopener">Afro-XLM-RoBERTa Token Classifier <span class="arrow">↗</span></a>
+                <a href="https://huggingface.co/mustaphaidris/hausa-agri-ner-candidate" target="_blank" rel="noopener">Domain-Adapted Named Entity Recognition for Indigenous African Dialects <span class="arrow">↗</span></a>
               </div>
-              <div class="cv-item-place">UNILAG & Hugging Face · Open Source</div>
-              <p class="cv-item-desc">
-                Annotated a gold-standard 2,000-sentence corpus across 10 semantic entity categories. Fine-tuned Afro-XLM-R to bring African languages into modern conversational AI.
-              </p>
-            </div>
-          </div>
-
-          <!-- Project 2 -->
-          <div class="cv-row">
-            <div class="cv-date">2023 — Present</div>
-            <div class="cv-detail">
-              <div class="cv-item-title">
-                <a href="https://herdbaseafrica.com" target="_blank" rel="noopener">Herdbase360 Livestock Enterprise Platform <span class="arrow">↗</span></a>
-              </div>
-              <div class="cv-item-place">Herdbase Africa · Katsina & Lagos, Nigeria</div>
-              <p class="cv-item-desc">
-                Multi-tenant farm software providing real-time inventory management, batch unit economics, veterinary calendars, and WhatsApp field data capture.
-              </p>
-            </div>
-          </div>
-
-          <!-- Project 3 -->
-          <div class="cv-row">
-            <div class="cv-date">2023 — 2025</div>
-            <div class="cv-detail">
-              <div class="cv-item-title">
-                EMV 3DS 2.0 Payment Rail Infrastructure
-              </div>
-              <div class="cv-item-place">Unified Payments Services PLC · Lagos, Nigeria</div>
-              <p class="cv-item-desc">
-                National payment gateway 3DS server implementation and certification safeguarding card transactions across Nigeria's major fintech unicorns.
-              </p>
-            </div>
-          </div>
-
-          <!-- Project 4 -->
-          <div class="cv-row">
-            <div class="cv-date">2024</div>
-            <div class="cv-detail">
-              <div class="cv-item-title">
-                CropScan AI
-              </div>
-              <div class="cv-item-place">Lagos, Nigeria</div>
-              <p class="cv-item-desc">
-                Offline on-device mobile vision model diagnosing agricultural crop pathologies for smallholder farmers without requiring continuous internet connectivity.
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- Articles Section -->
-      <section class="cv-section" id="articles">
-        <h2 class="cv-section-heading">Articles</h2>
-
-        <div class="cv-list">
-          <div class="cv-row">
-            <div class="cv-date">Jul 2026</div>
-            <div class="cv-detail">
-              <div class="cv-item-title">
-                <a href="https://www.linkedin.com/in/mustaphaidrissuleiman/" target="_blank" rel="noopener">What Value Leaders Bring to Organizations in the AI Era <span class="arrow">↗</span></a>
-              </div>
-              <div class="cv-item-place">Executive Monograph · LinkedIn</div>
-              <p class="cv-item-desc">Analysis of the five enduring human leadership functions when analytical tasks become automated.</p>
-            </div>
-          </div>
-
-          <div class="cv-row">
-            <div class="cv-date">Aug 2026</div>
-            <div class="cv-detail">
-              <div class="cv-item-title">
-                <a href="https://www.linkedin.com/in/mustaphaidrissuleiman/" target="_blank" rel="noopener">Understanding Emerging Market Economies: Structure, Inputs & Value Networks <span class="arrow">↗</span></a>
-              </div>
-              <div class="cv-item-place">Macroeconomics & Trade · LinkedIn</div>
-              <p class="cv-item-desc">Why informal real-sector trade remains invisible to institutional credit, and how digital records create bankable collateral.</p>
+              <div class="cv-item-place">M.IT Research Thesis · UNILAG &amp; Hugging Face</div>
+              <p class="cv-item-desc">Dataset curation, annotation methodology, and transformer fine-tuning for low-resource languages.</p>
             </div>
           </div>
 
@@ -351,7 +279,7 @@
             <div class="cv-date">Sep 2026</div>
             <div class="cv-detail">
               <div class="cv-item-title">
-                <a href="https://www.linkedin.com/in/mustaphaidrissuleiman/" target="_blank" rel="noopener">The Future of Industrial Operations Is Smarter Systems <span class="arrow">↗</span></a>
+                <a href="https://www.linkedin.com/in/mustaphaidrissuleiman/recent-activity/articles/" target="_blank" rel="noopener">The Future of Industrial Operations Is Smarter Systems <span class="arrow">↗</span></a>
               </div>
               <div class="cv-item-place">Systems Architecture · LinkedIn</div>
               <p class="cv-item-desc">How telemetry, automated alerts, and unit economics tracking unlock capital for real-sector production.</p>
@@ -359,124 +287,249 @@
           </div>
 
           <div class="cv-row">
-            <div class="cv-date">Oct 2026</div>
+            <div class="cv-date">Aug 2026</div>
             <div class="cv-detail">
               <div class="cv-item-title">
-                <a href="https://www.linkedin.com/in/mustaphaidrissuleiman/" target="_blank" rel="noopener">Domain-Adapted Named Entity Recognition for Indigenous African Dialects <span class="arrow">↗</span></a>
+                <a href="https://www.linkedin.com/in/mustaphaidrissuleiman/recent-activity/articles/" target="_blank" rel="noopener">Understanding Emerging Market Economies: Structure, Inputs &amp; Value Networks <span class="arrow">↗</span></a>
               </div>
-              <div class="cv-item-place">M.IT Research Thesis · UNILAG · LinkedIn</div>
-              <p class="cv-item-desc">Dataset curation, annotation methodology, and transformer fine-tuning for low-resource languages.</p>
+              <div class="cv-item-place">Macroeconomics &amp; Trade · LinkedIn</div>
+              <p class="cv-item-desc">Why informal real-sector trade remains invisible to institutional credit, and how digital records create bankable collateral.</p>
             </div>
           </div>
-        </div>
-      </section>
 
-      <!-- Professional Memberships Section -->
-      <section class="cv-section" id="memberships">
-        <h2 class="cv-section-heading">Professional Memberships</h2>
-
-        <div class="cv-list">
           <div class="cv-row">
-            <div class="cv-date">2026 — Present</div>
+            <div class="cv-date">Jul 2026</div>
             <div class="cv-detail">
               <div class="cv-item-title">
-                <a href="https://www.ncs.org.ng" target="_blank" rel="noopener">Nigeria Computer Society (NCS) <span class="arrow">↗</span></a>
+                <a href="https://www.linkedin.com/in/mustaphaidrissuleiman/recent-activity/articles/" target="_blank" rel="noopener">What Value Leaders Bring to Organizations in the AI Era <span class="arrow">↗</span></a>
               </div>
-              <div class="cv-item-place">Associate Member · Membership No: 19985</div>
-              <p class="cv-item-desc">
-                The umbrella organization of Information Technology practitioners, academics, and stakeholders in Nigeria.
-              </p>
+              <div class="cv-item-place">Executive Monograph · LinkedIn</div>
+              <p class="cv-item-desc">Analysis of the five enduring human leadership functions when analytical tasks become automated.</p>
             </div>
           </div>
+          <!-- ARTICLES_END -->
+          </div>
+        </section>
         </div>
-      </section>
 
-      <!-- Credentials & Languages Section -->
-      <section class="cv-section" id="credentials">
-        <h2 class="cv-section-heading">Certifications & Languages</h2>
-        <div class="cv-chips">
-          <span class="cv-chip">Google Cybersecurity Professional Certificate</span>
-          <span class="cv-chip">Google IT Support Professional Certificate</span>
-          <span class="cv-chip">Google Project Management Professional Certificate</span>
-          <span class="cv-chip">AI Foundations for Everyone Specialisation — IBM</span>
-          <span class="cv-chip">Annual Ethics & Compliance — CIBN</span>
+        <!-- Tab 4: Skills -->
+        <div class="cv-tabpanel" id="tab-skills" role="tabpanel" aria-labelledby="tab-btn-skills" hidden>
+  <!-- Technical Skills & Core Competencies Section -->
+        <section class="cv-section" id="skills">
+          <h2 class="cv-section-heading">Technical Skills & Core Competencies</h2>
+  
+          <div class="cv-list">
+            <div class="cv-row">
+              <div class="cv-date">Infrastructure</div>
+              <div class="cv-detail">
+                <div class="cv-item-title">IT Infrastructure & Systems</div>
+                <p class="cv-item-desc">Windows Server (2016/2019/2022), Active Directory Domain Services (AD DS), Group Policy (GPO), Microsoft Entra ID (Azure AD), Linux (Ubuntu/RHEL), macOS, Endpoint Configuration.</p>
+              </div>
+            </div>
+  
+            <div class="cv-row">
+              <div class="cv-date">Microsoft & Cloud</div>
+              <div class="cv-detail">
+                <div class="cv-item-title">Microsoft & Cloud Technologies</div>
+                <p class="cv-item-desc">Microsoft 365 Administration (Exchange Online, SharePoint, OneDrive, Teams, Intune MDM), Enterprise Cloud Services, License Management, Software Patch Management.</p>
+              </div>
+            </div>
+  
+            <div class="cv-row">
+              <div class="cv-date">Networking</div>
+              <div class="cv-detail">
+                <div class="cv-item-title">Enterprise Networking & Comms</div>
+                <p class="cv-item-desc">Cisco Routing & Switching, LAN/WAN, TCP/IP, VLANs, Site-to-Site & Client VPNs, Corporate Wi-Fi, DNS/DHCP, Network Monitoring (PRTG/Zabbix), VoIP & Unified Comms.</p>
+              </div>
+            </div>
+  
+            <div class="cv-row">
+              <div class="cv-date">Cybersecurity</div>
+              <div class="cv-detail">
+                <div class="cv-item-title">Cybersecurity & Access Controls</div>
+                <p class="cv-item-desc">Identity & Access Management (IAM), Role-Based Permissions, Multi-Factor Authentication (MFA), Endpoint Detection & Response (EDR), Vulnerability Assessment, IT Risk Registers.</p>
+              </div>
+            </div>
+  
+            <div class="cv-row">
+              <div class="cv-date">Operations & DR</div>
+              <div class="cv-detail">
+                <div class="cv-item-title">Operations, DR & Asset Management</div>
+                <p class="cv-item-desc">Data Backup & Disaster Recovery (Veeam, Cloud Backups), Business Continuity Planning (BCP), ICT Asset Management & CMDB, Preventive Maintenance, Technical Documentation.</p>
+              </div>
+            </div>
+  
+            <div class="cv-row">
+              <div class="cv-date">Governance</div>
+              <div class="cv-detail">
+                <div class="cv-item-title">Vendor Management & HQ Alignment</div>
+                <p class="cv-item-desc">ICT Procurement Evaluation, Technical Specification Drafting, External Vendor & ISP Oversight, Service Level Agreement (SLA) Enforcement, Corporate HQ Alignment.</p>
+              </div>
+            </div>
+          </div>
+        </section>
         </div>
-        <div class="cv-languages">
-          <p class="cv-item-desc"><strong>Languages:</strong> English (Fluent / Upper-Intermediate Professional Working Proficiency), Hausa (Native / Fluent)</p>
+
+        <!-- Tab 5: Education & Credentials -->
+        <div class="cv-tabpanel" id="tab-education" role="tabpanel" aria-labelledby="tab-btn-education" hidden>
+  <!-- Education Section -->
+        <section class="cv-section" id="education">
+          <h2 class="cv-section-heading">Education</h2>
+  
+          <div class="cv-list">
+            <!-- Item 1 -->
+            <div class="cv-row">
+              <div class="cv-date">2026 — Present</div>
+              <div class="cv-detail">
+                <div class="cv-item-title">Master of Business Administration (MBA)</div>
+                <div class="cv-item-place">Nigerian University of Technology and Management (NUTM) · Lagos, Nigeria</div>
+                <p class="cv-item-desc">Executive technology leadership, corporate governance, operational strategy, and enterprise finance.</p>
+              </div>
+            </div>
+  
+            <!-- Item 2 -->
+            <div class="cv-row">
+              <div class="cv-date">2026</div>
+              <div class="cv-detail">
+                <div class="cv-item-title">Master of Information Technology (M.IT)</div>
+                <div class="cv-item-place">University of Lagos (UNILAG) · Lagos, Nigeria</div>
+                <p class="cv-item-desc">Enterprise systems, network architecture, cybersecurity governance, and natural language processing research.</p>
+              </div>
+            </div>
+  
+            <!-- Item 3 -->
+            <div class="cv-row">
+              <div class="cv-date">2021</div>
+              <div class="cv-detail">
+                <div class="cv-item-title">Bachelor of Science (B.Sc.) in Computer Science</div>
+                <div class="cv-item-place">Bayero University Kano (BUK) · Kano, Nigeria</div>
+                <p class="cv-item-desc">Operating systems, distributed computing, algorithms, database systems, and enterprise software engineering.</p>
+              </div>
+            </div>
+  
+            <!-- Item 4 -->
+            <div class="cv-row">
+              <div class="cv-date">2015</div>
+              <div class="cv-detail">
+                <div class="cv-item-title">National Diploma, Computer Science</div>
+                <div class="cv-item-place">Hassan Usman Polytechnic · Katsina, Nigeria</div>
+                <p class="cv-item-desc">Computer hardware engineering, network infrastructure, systems troubleshooting, and practical computing.</p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+  <!-- Credentials & Languages Section -->
+        <section class="cv-section" id="credentials">
+          <h2 class="cv-section-heading">Certifications & Languages</h2>
+          <div class="cv-chips">
+            <span class="cv-chip">Google Cybersecurity Professional Certificate</span>
+            <span class="cv-chip">Google IT Support Professional Certificate</span>
+            <span class="cv-chip">Google Project Management Professional Certificate</span>
+            <span class="cv-chip">AI Foundations for Everyone Specialisation — IBM</span>
+            <span class="cv-chip">Annual Ethics & Compliance — CIBN</span>
+          </div>
+          <div class="cv-languages">
+            <p class="cv-item-desc"><strong>Languages:</strong> English (Fluent / Upper-Intermediate Professional Working Proficiency), Hausa (Native / Fluent)</p>
+          </div>
+        </section>
+
+  <!-- Professional Memberships Section -->
+        <section class="cv-section" id="memberships">
+          <h2 class="cv-section-heading">Professional Memberships</h2>
+  
+          <div class="cv-list">
+            <div class="cv-row">
+              <div class="cv-date">2026 — Present</div>
+              <div class="cv-detail">
+                <div class="cv-item-title">
+                  <a href="https://www.ncs.org.ng" target="_blank" rel="noopener">Nigeria Computer Society (NCS) <span class="arrow">↗</span></a>
+                </div>
+                <div class="cv-item-place">Associate Member · Membership No: 19985</div>
+                <p class="cv-item-desc">
+                  The umbrella organization of Information Technology practitioners, academics, and stakeholders in Nigeria.
+                </p>
+              </div>
+            </div>
+          </div>
+        </section>
         </div>
-      </section>
 
-      <!-- Contact Section -->
-      <section class="cv-section" id="contact">
-        <h2 class="cv-section-heading">Contact</h2>
-
-        <div class="cv-list">
-          <div class="cv-row contact-row">
-            <div class="cv-date">Phone</div>
-            <div class="cv-detail contact-cell">
-              <a href="tel:+2348061651401" class="contact-link">+234 806 165 1401</a>
-              <button id="copyPhoneBtn" class="copy-pill" title="Copy phone number">
-                <span id="copyPhoneFeedback">Copy</span>
-              </button>
+        <!-- Tab 6: Contact -->
+        <div class="cv-tabpanel" id="tab-contact" role="tabpanel" aria-labelledby="tab-btn-contact" hidden>
+  <!-- Contact Section -->
+        <section class="cv-section" id="contact">
+          <h2 class="cv-section-heading">Contact</h2>
+  
+          <div class="cv-list">
+            <div class="cv-row contact-row">
+              <div class="cv-date">Phone</div>
+              <div class="cv-detail contact-cell">
+                <a href="tel:+2348061651401" class="contact-link">+234 806 165 1401</a>
+                <button id="copyPhoneBtn" class="copy-pill" title="Copy phone number">
+                  <span id="copyPhoneFeedback">Copy</span>
+                </button>
+              </div>
+            </div>
+  
+            <div class="cv-row contact-row">
+              <div class="cv-date">Email</div>
+              <div class="cv-detail contact-cell">
+                <a href="mailto:mustaphaidrissuleiman@gmail.com" class="contact-link">mustaphaidrissuleiman@gmail.com</a>
+                <button id="copyEmailBtn" class="copy-pill" title="Copy email address">
+                  <span id="copyFeedback">Copy</span>
+                </button>
+              </div>
+            </div>
+  
+            <div class="cv-row contact-row">
+              <div class="cv-date">LinkedIn</div>
+              <div class="cv-detail">
+                <a href="https://www.linkedin.com/in/mustaphaidrissuleiman/" target="_blank" rel="noopener" class="contact-link">
+                  in/mustaphaidrissuleiman <span class="arrow">↗</span>
+                </a>
+              </div>
+            </div>
+  
+            <div class="cv-row contact-row">
+              <div class="cv-date">X (Twitter)</div>
+              <div class="cv-detail">
+                <a href="https://x.com/_mustaphaidris" target="_blank" rel="noopener" class="contact-link">
+                  @_mustaphaidris <span class="arrow">↗</span>
+                </a>
+              </div>
+            </div>
+  
+            <div class="cv-row contact-row">
+              <div class="cv-date">GitHub</div>
+              <div class="cv-detail">
+                <a href="https://github.com/mustaphaidrissuleiman/" target="_blank" rel="noopener" class="contact-link">
+                  @mustaphaidrissuleiman <span class="arrow">↗</span>
+                </a>
+              </div>
+            </div>
+  
+            <div class="cv-row contact-row">
+              <div class="cv-date">Hugging Face</div>
+              <div class="cv-detail">
+                <a href="https://huggingface.co/mustaphaidris" target="_blank" rel="noopener" class="contact-link">
+                  mustaphaidris <span class="arrow">↗</span>
+                </a>
+              </div>
+            </div>
+  
+            <div class="cv-row contact-row">
+              <div class="cv-date">Instagram</div>
+              <div class="cv-detail">
+                <a href="https://www.instagram.com/mustaphaidrissuleiman/" target="_blank" rel="noopener" class="contact-link">
+                  @mustaphaidrissuleiman <span class="arrow">↗</span>
+                </a>
+              </div>
             </div>
           </div>
-
-          <div class="cv-row contact-row">
-            <div class="cv-date">Email</div>
-            <div class="cv-detail contact-cell">
-              <a href="mailto:mustaphaidrissuleiman@gmail.com" class="contact-link">mustaphaidrissuleiman@gmail.com</a>
-              <button id="copyEmailBtn" class="copy-pill" title="Copy email address">
-                <span id="copyFeedback">Copy</span>
-              </button>
-            </div>
-          </div>
-
-          <div class="cv-row contact-row">
-            <div class="cv-date">LinkedIn</div>
-            <div class="cv-detail">
-              <a href="https://www.linkedin.com/in/mustaphaidrissuleiman/" target="_blank" rel="noopener" class="contact-link">
-                in/mustaphaidrissuleiman <span class="arrow">↗</span>
-              </a>
-            </div>
-          </div>
-
-          <div class="cv-row contact-row">
-            <div class="cv-date">X (Twitter)</div>
-            <div class="cv-detail">
-              <a href="https://x.com/_mustaphaidris" target="_blank" rel="noopener" class="contact-link">
-                @_mustaphaidris <span class="arrow">↗</span>
-              </a>
-            </div>
-          </div>
-
-          <div class="cv-row contact-row">
-            <div class="cv-date">GitHub</div>
-            <div class="cv-detail">
-              <a href="https://github.com/mustaphaidrissuleiman/" target="_blank" rel="noopener" class="contact-link">
-                @mustaphaidrissuleiman <span class="arrow">↗</span>
-              </a>
-            </div>
-          </div>
-
-          <div class="cv-row contact-row">
-            <div class="cv-date">Hugging Face</div>
-            <div class="cv-detail">
-              <a href="https://huggingface.co/mustaphaidris" target="_blank" rel="noopener" class="contact-link">
-                mustaphaidris <span class="arrow">↗</span>
-              </a>
-            </div>
-          </div>
-
-          <div class="cv-row contact-row">
-            <div class="cv-date">Instagram</div>
-            <div class="cv-detail">
-              <a href="https://www.instagram.com/mustaphaidrissuleiman/" target="_blank" rel="noopener" class="contact-link">
-                @mustaphaidrissuleiman <span class="arrow">↗</span>
-              </a>
-            </div>
-          </div>
+        </section>
         </div>
-      </section>
+      </div>
     </main>
 
     <!-- Footer -->
@@ -486,6 +539,6 @@
     </footer>
   </div>
 
-  <script src="script.js"></script>
+  <script src="script.js?v=10"></script>
 </body>
 </html>

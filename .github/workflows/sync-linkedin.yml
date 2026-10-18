@@ -1,0 +1,58 @@
+name: Sync LinkedIn Articles
+
+on:
+  repository_dispatch:
+    types: [new-linkedin-article, sync-articles]
+  workflow_dispatch:
+  schedule:
+    # Run daily at 06:00 UTC
+    - cron: '0 6 * * *'
+
+permissions:
+  contents: write
+
+concurrency:
+  group: "sync-articles"
+  cancel-in-progress: false
+
+jobs:
+  sync-articles:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Handle real-time webhook payload (Make.com / Zapier)
+        if: github.event_name == 'repository_dispatch' && github.event.action == 'new-linkedin-article'
+        env:
+          CLIENT_PAYLOAD: ${{ toJson(github.event.client_payload) }}
+        run: |
+          node scripts/handle-webhook-article.mjs
+
+      - name: Run scheduled LinkedIn background sync
+        if: github.event_name != 'repository_dispatch' || github.event.action != 'new-linkedin-article'
+        env:
+          LINKEDIN_PROFILE: "mustaphaidrissuleiman"
+          LINKEDIN_COOKIE: ${{ secrets.LINKEDIN_COOKIE }}
+          LINKEDIN_RSS_URL: ${{ secrets.LINKEDIN_RSS_URL }}
+        run: |
+          npm run sync-articles
+
+      - name: Commit and push updated articles
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          git add data/articles.json index.html
+          if git diff --staged --quiet; then
+            echo "Working tree is clean. No new articles found."
+          else
+            git commit -m "chore(articles): auto-publish new article from LinkedIn [skip ci]"
+            git push origin main
+          fi

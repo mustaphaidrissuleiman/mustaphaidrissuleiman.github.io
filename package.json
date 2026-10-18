@@ -3,9 +3,13 @@
   "version": "1.0.0",
   "description": "Portfolio website of Mustapha Idris Suleiman — Techno Farmer, CEO @HerdbaseAfrica, AI & NLP Researcher, and Software Engineer.",
   "main": "index.html",
+  "type": "module",
   "scripts": {
-    "start": "npx serve -l 3000 .",
-    "dev": "python3 -m http.server 3000"
+    "start": "npx serve -l 3005 .",
+    "dev": "python3 -m http.server 3005",
+    "sync-articles": "node scripts/sync-linkedin.mjs",
+    "build-articles": "node scripts/build-html.mjs",
+    "add-article": "node scripts/add-article.mjs"
   },
   "keywords": [
     "portfolio",

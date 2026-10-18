@@ -6,19 +6,48 @@
 :root {
   color-scheme: dark;
 
-  --bg-page: #111111;
-  --text-primary: #f0f0f0;
-  --text-secondary: #8c8c8c;
-  --text-muted: #626262;
+  --bg-page: #0b0c10;
+  --bg-page-gradient: radial-gradient(120% 70% at 50% 0%, rgba(130, 160, 220, 0.07) 0%, transparent 60%),
+                      radial-gradient(80% 50% at 85% 30%, rgba(99, 102, 241, 0.035) 0%, transparent 50%),
+                      #0b0c10;
+  --bg-blur: rgba(11, 12, 16, 0.88);
+  --card-bg: rgba(255, 255, 255, 0.032);
+  --text-primary: #f5f5f7;
+  --text-secondary: #94949b;
+  --text-muted: #64646c;
 
   --border: rgba(255, 255, 255, 0.08);
-  --border-hover: rgba(255, 255, 255, 0.2);
+  --border-hover: rgba(255, 255, 255, 0.22);
 
-  --pill-bg: rgba(255, 255, 255, 0.05);
-  --pill-hover: rgba(255, 255, 255, 0.1);
+  --pill-bg: rgba(255, 255, 255, 0.06);
+  --pill-hover: rgba(255, 255, 255, 0.12);
 
-  --modal-bg: #181818;
-  --modal-backdrop: rgba(0, 0, 0, 0.7);
+  --modal-bg: #14151b;
+  --modal-backdrop: rgba(0, 0, 0, 0.72);
+
+  /* iOS Glass Navigation & Glider (The Highlight) Tokens (Dark) */
+  --glass-track: rgba(18, 19, 26, 0.86);
+  --glass-track-border: rgba(255, 255, 255, 0.12);
+  --glass-track-shadow: 0 10px 30px -4px rgba(0, 0, 0, 0.45), 0 2px 8px rgba(0, 0, 0, 0.3), inset 0 1px 0.5px rgba(255, 255, 255, 0.14);
+
+  /* Apple Luminous Frosted Glass Glider (Tactile iOS Highlight) */
+  --glass-glider: linear-gradient(180deg, rgba(255, 255, 255, 0.98) 0%, rgba(235, 238, 244, 0.92) 100%);
+  --glass-glider-border: rgba(255, 255, 255, 0.96);
+  --glass-glider-shadow: 0 4px 18px -1px rgba(0, 0, 0, 0.45), 0 2px 6px rgba(0, 0, 0, 0.25), inset 0 1px 0.5px #ffffff, 0 0 14px rgba(255, 255, 255, 0.2);
+  --glass-glider-text: #090a0d;
+
+  --glass-hover: rgba(255, 255, 255, 0.08);
+  --glass-badge-bg: rgba(255, 255, 255, 0.08);
+  --glass-badge-text: #8c8c96;
+  --glass-badge-active: rgba(0, 0, 0, 0.14);
+  --glass-badge-active-text: #090a0d;
+
+  /* iOS Inset Grouped Glass Cards */
+  --glass-card-bg: rgba(255, 255, 255, 0.03);
+  --glass-card-border: rgba(255, 255, 255, 0.075);
+  --glass-card-shadow: 0 8px 32px -4px rgba(0, 0, 0, 0.35), inset 0 1px 0.5px rgba(255, 255, 255, 0.08);
+  --glass-card-divider: rgba(255, 255, 255, 0.05);
+  --glass-item-hover: rgba(255, 255, 255, 0.045);
 
   --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
   --radius-xs: 4px;
@@ -31,19 +60,46 @@
 [data-theme="light"] {
   color-scheme: light;
 
-  --bg-page: #ffffff;
-  --text-primary: #111111;
-  --text-secondary: #505050;
-  --text-muted: #848484;
+  --bg-page: #f6f7fb;
+  --bg-page-gradient: radial-gradient(120% 70% at 50% 0%, rgba(0, 102, 204, 0.04) 0%, transparent 60%),
+                      #f6f7fb;
+  --bg-blur: rgba(246, 247, 251, 0.84);
+  --card-bg: rgba(255, 255, 255, 0.85);
+  --text-primary: #111216;
+  --text-secondary: #565860;
+  --text-muted: #848690;
 
-  --border: rgba(0, 0, 0, 0.08);
-  --border-hover: rgba(0, 0, 0, 0.22);
+  --border: rgba(0, 0, 0, 0.07);
+  --border-hover: rgba(0, 0, 0, 0.2);
 
-  --pill-bg: #f4f4f4;
-  --pill-hover: #eaeaea;
+  --pill-bg: rgba(0, 0, 0, 0.04);
+  --pill-hover: rgba(0, 0, 0, 0.08);
 
   --modal-bg: #ffffff;
-  --modal-backdrop: rgba(0, 0, 0, 0.4);
+  --modal-backdrop: rgba(0, 0, 0, 0.35);
+
+  /* iOS Glass Navigation & Glider Tokens (Light) */
+  --glass-track: rgba(255, 255, 255, 0.88);
+  --glass-track-border: rgba(0, 0, 0, 0.08);
+  --glass-track-shadow: 0 8px 24px -2px rgba(0, 0, 0, 0.08), 0 2px 6px -1px rgba(0, 0, 0, 0.04), inset 0 1px 1px #ffffff;
+
+  --glass-glider: linear-gradient(180deg, #ffffff 0%, #f4f5f8 100%);
+  --glass-glider-border: rgba(0, 0, 0, 0.05);
+  --glass-glider-shadow: 0 3px 12px -1px rgba(0, 0, 0, 0.12), 0 1px 3px rgba(0, 0, 0, 0.06), inset 0 1px 0.5px #ffffff;
+  --glass-glider-text: #000000;
+
+  --glass-hover: rgba(0, 0, 0, 0.035);
+  --glass-badge-bg: rgba(0, 0, 0, 0.055);
+  --glass-badge-text: #70727c;
+  --glass-badge-active: rgba(0, 0, 0, 0.08);
+  --glass-badge-active-text: #000000;
+
+  /* iOS Inset Grouped Glass Cards (Light) */
+  --glass-card-bg: rgba(255, 255, 255, 0.82);
+  --glass-card-border: rgba(0, 0, 0, 0.06);
+  --glass-card-shadow: 0 8px 30px -4px rgba(0, 0, 0, 0.05), inset 0 1px 0.5px #ffffff;
+  --glass-card-divider: rgba(0, 0, 0, 0.045);
+  --glass-item-hover: rgba(0, 0, 0, 0.025);
 }
 
 *, *::before, *::after {
@@ -60,6 +116,10 @@ html {
 
 body {
   background-color: var(--bg-page);
+  background-image: var(--bg-page-gradient);
+  background-repeat: no-repeat;
+  background-position: top center;
+  background-size: 100% 900px;
   color: var(--text-primary);
   font-family: var(--font-sans);
   line-height: 1.6;
@@ -74,8 +134,8 @@ body {
 }
 
 ::selection {
-  background: var(--text-primary);
-  color: var(--bg-page);
+  background: rgba(0, 122, 255, 0.28);
+  color: var(--text-primary);
 }
 
 a {
@@ -96,28 +156,64 @@ button {
    Container
    -------------------------------------------------------------------------- */
 .cv-wrap {
-  max-width: 580px;
+  max-width: 630px;
   margin: 0 auto;
-  padding: 68px 22px 88px;
+  padding: 0 20px 56px;
 }
 
 /* --------------------------------------------------------------------------
-   Header
+   Header (Frozen / Sticky on Scroll)
    -------------------------------------------------------------------------- */
 .cv-header {
+  position: sticky;
+  top: 8px;
+  z-index: 50;
   display: flex;
-  gap: 20px;
-  align-items: flex-start;
-  margin-bottom: 48px;
+  flex-direction: column;
+  gap: 8px;
+  align-items: center;
+  padding: 0;
+  margin: 0 0 16px;
+  background: transparent;
+  border: none;
+  box-shadow: none;
+  pointer-events: none;
+}
+
+.cv-header-identity {
+  pointer-events: auto;
+  display: flex;
+  gap: 16px;
+  align-items: center;
+  width: 100%;
+  padding: 12px 18px;
+  border-radius: 20px;
+  background: var(--bg-blur);
+  backdrop-filter: blur(20px) saturate(180%);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
+  border: 1px solid var(--glass-card-border);
+  box-shadow: var(--glass-card-shadow);
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.cv-header.is-scrolled .cv-header-identity {
+  border-color: var(--border-hover);
+  box-shadow: 0 10px 30px -4px rgba(0, 0, 0, 0.22);
 }
 
 .cv-avatar {
-  width: 76px;
-  height: 76px;
+  width: 58px;
+  height: 58px;
   border-radius: 50%;
   object-fit: cover;
   flex-shrink: 0;
-  border: 1px solid var(--border);
+  border: 2px solid rgba(255, 255, 255, 0.16);
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.25);
+}
+
+[data-theme="light"] .cv-avatar {
+  border: 2px solid rgba(0, 0, 0, 0.08);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
 }
 
 .cv-header-text {
@@ -130,11 +226,11 @@ button {
   align-items: center;
   justify-content: space-between;
   gap: 12px;
-  margin-bottom: 4px;
+  margin-bottom: 2px;
 }
 
 .cv-name {
-  font-size: 1.25rem;
+  font-size: 1.15rem;
   font-weight: 600;
   letter-spacing: -0.02em;
   color: var(--text-primary);
@@ -144,16 +240,22 @@ button {
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 28px;
-  height: 28px;
-  border-radius: var(--radius-xs);
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: var(--glass-card-bg);
+  border: 1px solid var(--glass-card-border);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  box-shadow: var(--glass-card-shadow);
   color: var(--text-muted);
-  transition: var(--transition);
+  transition: transform 0.2s ease, color 0.2s ease, background 0.2s ease;
 }
 
 .theme-btn:hover {
   color: var(--text-primary);
-  background: var(--pill-bg);
+  background: var(--glass-hover);
+  transform: scale(1.08);
 }
 
 [data-theme="dark"] .sun-icon { display: block; }
@@ -162,10 +264,10 @@ button {
 [data-theme="light"] .moon-icon { display: block; }
 
 .cv-tagline {
-  font-size: 0.88rem;
+  font-size: 0.85rem;
   color: var(--text-secondary);
-  line-height: 1.45;
-  margin-bottom: 4px;
+  line-height: 1.4;
+  margin-bottom: 2px;
 }
 
 .inline-link {
@@ -181,7 +283,7 @@ button {
 }
 
 .cv-place {
-  font-size: 0.8rem;
+  font-size: 0.785rem;
   color: var(--text-muted);
 }
 
@@ -191,29 +293,232 @@ button {
 .cv-main {
   display: flex;
   flex-direction: column;
-  gap: 42px;
+  gap: 14px;
 }
 
 .cv-section {
   position: relative;
 }
 
+/* iOS Glass Card for About Section */
+.cv-section#about {
+  background: var(--glass-card-bg);
+  border: 1px solid var(--glass-card-border);
+  border-radius: 18px;
+  padding: 16px 20px;
+  box-shadow: var(--glass-card-shadow);
+  margin-bottom: 0;
+}
+
 .cv-section-heading {
-  font-size: 0.825rem;
+  font-size: 0.725rem;
   font-weight: 600;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  margin-bottom: 10px;
+}
+
+/* --------------------------------------------------------------------------
+   Component Tabs Navigation (Frozen iOS Frosted Glass Capsule Dock)
+   -------------------------------------------------------------------------- */
+.cv-tabs-nav {
+  pointer-events: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  padding: 0;
+  background: transparent;
+  border-bottom: none;
+  margin: 0;
+}
+
+.cv-tabs {
+  pointer-events: auto !important;
+  position: relative;
+  z-index: 10;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 3px;
+  background: var(--glass-track);
+  backdrop-filter: blur(20px) saturate(180%);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
+  border: 1px solid var(--glass-track-border);
+  border-radius: 9999px;
+  padding: 3px;
+  box-shadow: var(--glass-track-shadow);
+  overflow-x: auto;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  max-width: 100%;
+}
+
+.cv-tabs::-webkit-scrollbar {
+  display: none;
+}
+
+/* iOS Glider Pill (The Highlight: Dynamic Liquid Glass Pill) */
+.cv-tab-glider {
+  position: absolute;
+  top: 0;
+  left: 0;
+  border-radius: 9999px;
+  background: var(--glass-glider);
+  border: 1px solid var(--glass-glider-border);
+  box-shadow: var(--glass-glider-shadow);
+  pointer-events: none !important;
+  z-index: 1;
+  opacity: 0;
+  transition: transform 0.32s cubic-bezier(0.16, 1, 0.3, 1),
+              width 0.32s cubic-bezier(0.16, 1, 0.3, 1),
+              height 0.32s cubic-bezier(0.16, 1, 0.3, 1),
+              opacity 0.18s ease;
+  will-change: transform, width, height;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cv-tab-glider {
+    transition: none !important;
+  }
+}
+
+.cv-tab {
+  pointer-events: auto !important;
+  position: relative;
+  z-index: 2;
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 5px 9.5px;
+  border-radius: 9999px;
+  font-family: inherit;
+  font-size: 0.795rem;
+  font-weight: 500;
+  color: var(--text-secondary);
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  white-space: nowrap;
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
+  transition: color 0.2s ease, background-color 0.2s ease, transform 0.12s ease;
+  line-height: 1.2;
+}
+
+.cv-tab:hover {
   color: var(--text-primary);
-  letter-spacing: -0.01em;
-  margin-bottom: 16px;
+}
+
+.cv-tab:not(.is-active):hover {
+  background: var(--glass-hover);
+}
+
+.cv-tab:active {
+  transform: scale(0.96);
+}
+
+.cv-tab:focus-visible {
+  outline: 2px solid var(--text-primary);
+  outline-offset: 2px;
+}
+
+.cv-tab.is-active {
+  color: var(--glass-glider-text) !important;
+  font-weight: 600;
+}
+
+/* Fallback styling when JS hasn't initialized the glider */
+.cv-tabs:not(.has-glider) .cv-tab.is-active {
+  background: var(--glass-glider);
+  border-color: var(--glass-glider-border);
+  box-shadow: var(--glass-glider-shadow);
+}
+
+.tab-badge {
+  pointer-events: none !important;
+  font-size: 0.65rem;
+  font-weight: 600;
+  padding: 1px 5.5px;
+  border-radius: 9999px;
+  background: var(--glass-badge-bg);
+  color: var(--glass-badge-text);
+  line-height: 1.2;
+  transition: background 0.2s ease, color 0.2s ease;
+}
+
+.cv-tab.is-active .tab-badge {
+  background: var(--glass-badge-active);
+  color: var(--glass-badge-active-text);
+}
+
+.cv-tab-all {
+  font-size: 0.775rem;
+  opacity: 0.85;
+}
+
+/* --------------------------------------------------------------------------
+   Tab Panels
+   -------------------------------------------------------------------------- */
+.cv-tabpanels {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  isolation: isolate;
+}
+
+.cv-tabpanel {
+  display: none;
+  flex-direction: column;
+  gap: 14px;
+  outline: none;
+}
+
+.cv-tabpanel.is-active {
+  display: flex;
+  animation: tabFadeIn 0.2s ease forwards;
+}
+
+/* When 'All' mode is active, reveal all panels in sequence */
+.cv-tabpanels.show-all .cv-tabpanel {
+  display: flex !important;
+  animation: none !important;
+}
+
+@keyframes tabFadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cv-tabpanel.is-active {
+    animation: none;
+  }
+}
+
+/* iOS Inset Grouped Glass Card for Each Panel Section */
+.cv-tabpanel .cv-section {
+  background: var(--glass-card-bg);
+  border: 1px solid var(--glass-card-border);
+  border-radius: 18px;
+  padding: 16px 20px;
+  box-shadow: var(--glass-card-shadow);
 }
 
 /* About Prose */
 .cv-prose {
   font-size: 0.9rem;
   color: var(--text-secondary);
-  line-height: 1.65;
+  line-height: 1.6;
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: 10px;
   text-align: justify;
   text-justify: inter-word;
   -webkit-hyphens: none;
@@ -226,17 +531,33 @@ button {
   font-weight: 500;
 }
 
-/* Two-Column List */
+/* Two-Column List inside iOS Glass Cards */
 .cv-list {
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  gap: 2px;
 }
 
 .cv-row {
   display: flex;
-  gap: 20px;
+  gap: 18px;
   align-items: flex-start;
+  padding: 10px 14px;
+  margin: 0 -14px;
+  border-radius: 12px;
+  border: 1px solid transparent;
+  transition: background 0.15s ease, border-color 0.15s ease;
+}
+
+.cv-row:hover {
+  background: var(--glass-item-hover);
+  border-color: var(--glass-card-border);
+}
+
+.cv-list > .cv-row:not(:last-child) {
+  border-bottom: 1px solid var(--glass-card-divider);
+  padding-bottom: 12px;
+  margin-bottom: 2px;
 }
 
 .cv-date {
@@ -345,20 +666,27 @@ a:hover .arrow {
   transform: translateX(3px);
 }
 
-/* Credentials Chips */
+/* Credentials Chips (iOS Frosted Glass Pills) */
 .cv-chips {
   display: flex;
   flex-wrap: wrap;
-  gap: 7px;
+  gap: 8px;
 }
 
 .cv-chip {
   font-size: 0.785rem;
-  padding: 4px 9px;
-  background: var(--pill-bg);
+  padding: 5px 12px;
+  background: var(--glass-badge-bg);
   color: var(--text-secondary);
-  border: 1px solid var(--border);
-  border-radius: var(--radius-xs);
+  border: 1px solid var(--glass-card-border);
+  border-radius: 9999px;
+  transition: all 0.2s ease;
+}
+
+.cv-chip:hover {
+  color: var(--text-primary);
+  border-color: var(--border-hover);
+  background: var(--glass-hover);
 }
 
 /* Contact Rows */
@@ -387,25 +715,26 @@ a:hover .arrow {
 
 .copy-pill {
   font-size: 0.725rem;
-  padding: 2px 7px;
-  border-radius: var(--radius-xs);
-  background: var(--pill-bg);
+  padding: 3px 9px;
+  border-radius: 9999px;
+  background: var(--glass-card-bg);
   color: var(--text-muted);
-  border: 1px solid var(--border);
+  border: 1px solid var(--glass-card-border);
   transition: var(--transition);
 }
 
 .copy-pill:hover {
   color: var(--text-primary);
   border-color: var(--border-hover);
+  background: var(--glass-hover);
 }
 
 /* --------------------------------------------------------------------------
    Footer
    -------------------------------------------------------------------------- */
 .cv-footer {
-  margin-top: 50px;
-  padding-top: 22px;
+  margin-top: 32px;
+  padding-top: 18px;
   border-top: 1px solid var(--border);
   display: flex;
   align-items: center;
@@ -418,40 +747,73 @@ a:hover .arrow {
 
 .print-btn {
   font-size: 0.75rem;
-  padding: 3px 8px;
-  border-radius: var(--radius-xs);
-  border: 1px solid var(--border);
+  padding: 4px 11px;
+  border-radius: 9999px;
+  background: var(--glass-card-bg);
   color: var(--text-secondary);
-  transition: var(--transition);
+  border: 1px solid var(--glass-card-border);
+  transition: all 0.2s ease;
 }
 
 .print-btn:hover {
   color: var(--text-primary);
+  background: var(--glass-hover);
   border-color: var(--border-hover);
 }
-
 
 /* --------------------------------------------------------------------------
    Responsive & Print
    -------------------------------------------------------------------------- */
 @media (max-width: 580px) {
   .cv-wrap {
-    padding: 44px 16px 60px;
+    padding: 24px 16px 44px;
   }
 
   .cv-header {
-    gap: 16px;
-    margin-bottom: 36px;
+    top: 6px;
+    gap: 6px;
+    padding: 0;
+    margin-bottom: 12px;
+  }
+
+  .cv-header-identity {
+    gap: 12px;
+    padding: 10px 14px;
+    border-radius: 16px;
   }
 
   .cv-avatar {
-    width: 64px;
-    height: 64px;
+    width: 52px;
+    height: 52px;
+  }
+
+  .cv-tabs-nav {
+    margin: 0;
+    padding: 0;
+    justify-content: flex-start;
+  }
+
+  .cv-tab {
+    padding: 5px 10px;
+    font-size: 0.775rem;
+    gap: 5px;
+  }
+
+  .cv-tabpanel .cv-section {
+    padding: 20px 18px;
+    border-radius: 18px;
+  }
+
+  .cv-section#about {
+    padding: 18px 20px;
+    border-radius: 18px;
   }
 
   .cv-row {
     flex-direction: column;
     gap: 2px;
+    padding: 10px 12px;
+    margin: 0 -12px;
   }
 
   .cv-date {
@@ -464,14 +826,44 @@ a:hover .arrow {
 @media print {
   body {
     background: #ffffff !important;
+    background-image: none !important;
     color: #000000 !important;
   }
 
   .theme-btn,
   .print-btn,
   .copy-pill,
+  .cv-tabs-nav,
   dialog {
     display: none !important;
+  }
+
+  .cv-section#about,
+  .cv-tabpanel .cv-section {
+    background: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+    padding: 0 !important;
+    backdrop-filter: none !important;
+  }
+
+  .cv-row {
+    padding: 6px 0 !important;
+    margin: 0 !important;
+    border: none !important;
+    transform: none !important;
+  }
+
+  .cv-tabpanels {
+    gap: 32px !important;
+  }
+
+  .cv-tabpanel {
+    display: flex !important;
+    opacity: 1 !important;
+    transform: none !important;
+    gap: 28px !important;
+    page-break-inside: avoid;
   }
 
   .cv-wrap {
