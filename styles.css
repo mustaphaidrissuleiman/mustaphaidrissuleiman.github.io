@@ -459,6 +459,14 @@ button {
   opacity: 0.85;
 }
 
+.tab-label-short {
+  display: none;
+}
+
+.tab-label-full {
+  display: inline;
+}
+
 /* --------------------------------------------------------------------------
    Tab Panels
    -------------------------------------------------------------------------- */
@@ -764,9 +772,15 @@ a:hover .arrow {
 /* --------------------------------------------------------------------------
    Responsive & Print
    -------------------------------------------------------------------------- */
+@media (max-width: 768px) {
+  .cv-wrap {
+    padding: 18px 20px 48px;
+  }
+}
+
 @media (max-width: 580px) {
   .cv-wrap {
-    padding: 24px 16px 44px;
+    padding: 12px 14px 44px;
   }
 
   .cv-header {
@@ -783,43 +797,100 @@ a:hover .arrow {
   }
 
   .cv-avatar {
-    width: 52px;
-    height: 52px;
+    width: 48px;
+    height: 48px;
+  }
+
+  .cv-name {
+    font-size: 1.05rem;
+  }
+
+  .cv-tagline {
+    font-size: 0.8rem;
   }
 
   .cv-tabs-nav {
     margin: 0;
     padding: 0;
-    justify-content: flex-start;
+    justify-content: center;
+    width: 100%;
+  }
+
+  .cv-tabs {
+    width: 100%;
+    max-width: 100%;
+    overflow-x: hidden;
+    display: flex;
+    justify-content: space-between;
+    padding: 2.5px;
+    gap: 2px;
   }
 
   .cv-tab {
-    padding: 5px 10px;
-    font-size: 0.775rem;
-    gap: 5px;
+    flex: 1 1 0;
+    min-width: 0;
+    padding: 5px 2px;
+    font-size: clamp(0.66rem, 2.3vw, 0.75rem);
+    gap: 2.5px;
+    justify-content: center;
+    letter-spacing: -0.01em;
+  }
+
+  .cv-tab-all {
+    flex: 0.65 1 0;
+  }
+
+  .tab-badge {
+    font-size: 0.58rem;
+    padding: 0.5px 3.5px;
+    margin-left: 1px;
   }
 
   .cv-tabpanel .cv-section {
-    padding: 20px 18px;
-    border-radius: 18px;
+    padding: 16px 14px;
+    border-radius: 16px;
   }
 
   .cv-section#about {
-    padding: 18px 20px;
-    border-radius: 18px;
+    padding: 16px 14px;
+    border-radius: 16px;
   }
 
   .cv-row {
     flex-direction: column;
     gap: 2px;
-    padding: 10px 12px;
-    margin: 0 -12px;
+    padding: 10px 10px;
+    margin: 0 -10px;
   }
 
   .cv-date {
     width: auto;
-    font-size: 0.775rem;
+    font-size: 0.75rem;
     margin-bottom: 2px;
+  }
+}
+
+@media (max-width: 440px) {
+  .cv-wrap {
+    padding: 10px 10px 40px;
+  }
+
+  .tab-label-full {
+    display: none;
+  }
+
+  .tab-label-short {
+    display: inline;
+  }
+
+  .cv-tab {
+    font-size: 0.7rem;
+    padding: 5px 1.5px;
+  }
+
+  .tab-badge {
+    font-size: 0.56rem;
+    padding: 0.5px 3px;
   }
 }
 
