@@ -37,7 +37,7 @@ function initThemeSwitch() {
   function setTheme(t) {
     htmlEl.setAttribute('data-theme', t);
     if (metaTheme) {
-      metaTheme.setAttribute('content', t === 'dark' ? '#111111' : '#ffffff');
+      metaTheme.setAttribute('content', t === 'dark' ? '#0a0c10' : '#ebedf2');
     }
   }
 
@@ -110,10 +110,12 @@ function initEmailCopy() {
       try {
         await navigator.clipboard.writeText(text);
         feedback.textContent = 'Copied!';
-        btn.style.borderColor = 'var(--text-primary)';
+        btn.style.borderColor = 'var(--accent)';
+        btn.style.color = 'var(--accent)';
         setTimeout(() => {
           feedback.textContent = 'Copy';
           btn.style.borderColor = '';
+          btn.style.color = '';
         }, 2000);
       } catch {
         feedback.textContent = 'Copied!';
@@ -185,6 +187,11 @@ function initComponentTabs() {
 
     if (tabPanelsContainer) {
       tabPanelsContainer.classList.toggle('show-all', isAll);
+    }
+
+    const aboutSection = document.getElementById('about');
+    if (aboutSection) {
+      aboutSection.hidden = !isAll;
     }
 
     tabPanels.forEach((panel) => {
@@ -263,12 +270,12 @@ function initComponentTabs() {
       'memberships': 'education'
     };
     const target = aliasMap[rawHash] || rawHash;
-    const validTabs = ['experience', 'projects', 'articles', 'skills', 'education', 'contact', 'all'];
+    const validTabs = ['all', 'experience', 'projects', 'articles', 'skills', 'education', 'contact'];
 
     if (validTabs.includes(target)) {
       activateTab(target, false, false);
     } else {
-      activateTab('experience', false, false);
+      activateTab('all', false, false);
     }
   }
 

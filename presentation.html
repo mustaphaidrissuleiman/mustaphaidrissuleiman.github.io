@@ -1,0 +1,1181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Academic Presentation — Real-Time Fraud Detection Framework</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-dark: #090c15;
+      --bg-card: rgba(18, 23, 38, 0.85);
+      --border-card: rgba(255, 255, 255, 0.1);
+      --accent-blue: #3b82f6;
+      --accent-cyan: #06b6d4;
+      --accent-emerald: #10b981;
+      --accent-amber: #f59e0b;
+      --accent-rose: #f43f5e;
+      --text-main: #f8fafc;
+      --text-muted: #94a3b8;
+      --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      --font-mono: 'JetBrains Mono', monospace;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background-color: var(--bg-dark);
+      color: var(--text-main);
+      font-family: var(--font-sans);
+      height: 100vh;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      user-select: none;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* Ambient Background Glow */
+    .bg-glow {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 0;
+      overflow: hidden;
+    }
+
+    .glow-orb {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(100px);
+      opacity: 0.25;
+      pointer-events: none;
+    }
+
+    .glow-1 {
+      width: 600px;
+      height: 600px;
+      background: radial-gradient(circle, #2563eb, transparent 70%);
+      top: -150px;
+      right: -100px;
+    }
+
+    .glow-2 {
+      width: 500px;
+      height: 500px;
+      background: radial-gradient(circle, #059669, transparent 70%);
+      bottom: -150px;
+      left: -100px;
+    }
+
+    /* Top Presentation Bar */
+    header.deck-bar {
+      position: relative;
+      z-index: 10;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 14px 28px;
+      border-bottom: 1px solid var(--border-card);
+      background: rgba(9, 12, 21, 0.7);
+      backdrop-filter: blur(12px);
+    }
+
+    .deck-title {
+      font-size: 0.88rem;
+      font-weight: 600;
+      color: var(--text-muted);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .badge-tag {
+      background: rgba(59, 130, 246, 0.15);
+      color: var(--accent-blue);
+      border: 1px solid rgba(59, 130, 246, 0.3);
+      padding: 2px 8px;
+      border-radius: 999px;
+      font-size: 0.75rem;
+      font-weight: 500;
+    }
+
+    .deck-controls {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .deck-btn {
+      background: var(--bg-card);
+      border: 1px solid var(--border-card);
+      color: var(--text-main);
+      padding: 6px 14px;
+      border-radius: 8px;
+      font-size: 0.82rem;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      transition: all 0.2s ease;
+    }
+
+    .deck-btn:hover {
+      border-color: var(--accent-blue);
+      color: var(--accent-blue);
+      transform: translateY(-1px);
+    }
+
+    /* Main Slide Stage */
+    main.deck-stage {
+      position: relative;
+      z-index: 5;
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 24px 36px;
+      overflow: hidden;
+    }
+
+    .slide {
+      position: absolute;
+      width: min(1160px, 94vw);
+      height: min(680px, 86vh);
+      background: var(--bg-card);
+      border: 1px solid var(--border-card);
+      border-radius: 20px;
+      padding: 40px 48px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      box-shadow: 0 20px 50px -10px rgba(0, 0, 0, 0.6), inset 0 1px 1px rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(20px);
+      opacity: 0;
+      pointer-events: none;
+      transform: scale(0.96) translateY(12px);
+      transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .slide.is-active {
+      opacity: 1;
+      pointer-events: auto;
+      transform: scale(1) translateY(0);
+    }
+
+    /* Slide Header */
+    .slide-header {
+      margin-bottom: 24px;
+    }
+
+    .slide-subtitle {
+      font-size: 0.82rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--accent-blue);
+      margin-bottom: 6px;
+    }
+
+    .slide-heading {
+      font-size: 1.85rem;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      line-height: 1.25;
+      color: #ffffff;
+    }
+
+    /* Slide Body Content */
+    .slide-body {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 20px;
+      overflow-y: auto;
+    }
+
+    /* Title Slide Specific */
+    .title-hero {
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 18px;
+    }
+
+    .title-super {
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: var(--accent-cyan);
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
+
+    .title-main {
+      font-size: 2.35rem;
+      font-weight: 700;
+      line-height: 1.2;
+      max-width: 900px;
+      background: linear-gradient(135deg, #ffffff 30%, #94a3b8 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .title-sub {
+      font-size: 1.15rem;
+      color: var(--text-muted);
+      max-width: 750px;
+      line-height: 1.5;
+    }
+
+    .title-meta {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      margin-top: 18px;
+      padding: 12px 24px;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      font-size: 0.9rem;
+    }
+
+    .title-meta span {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      color: var(--text-muted);
+    }
+
+    .title-meta strong {
+      color: #ffffff;
+    }
+
+    /* Grid Layouts */
+    .grid-2 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+    }
+
+    .grid-3 {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+
+    .grid-4 {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 16px;
+    }
+
+    .card-panel {
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 14px;
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      transition: border-color 0.2s ease, transform 0.2s ease;
+    }
+
+    .card-panel:hover {
+      border-color: rgba(59, 130, 246, 0.35);
+      transform: translateY(-2px);
+    }
+
+    .card-panel h4 {
+      font-size: 1.05rem;
+      font-weight: 600;
+      color: #ffffff;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .card-panel p {
+      font-size: 0.88rem;
+      color: var(--text-muted);
+      line-height: 1.55;
+    }
+
+    /* Number Stat Callout */
+    .stat-box {
+      background: rgba(37, 99, 235, 0.08);
+      border: 1px solid rgba(37, 99, 235, 0.2);
+      border-radius: 14px;
+      padding: 18px;
+      text-align: center;
+    }
+
+    .stat-number {
+      font-size: 2.1rem;
+      font-weight: 700;
+      color: var(--accent-cyan);
+      font-family: var(--font-mono);
+      line-height: 1;
+      margin-bottom: 6px;
+    }
+
+    .stat-label {
+      font-size: 0.82rem;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    /* Architecture Layer Stack */
+    .layer-stack {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .layer-row {
+      display: flex;
+      align-items: center;
+      gap: 18px;
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid rgba(255, 255, 255, 0.07);
+      padding: 12px 18px;
+      border-radius: 12px;
+      transition: all 0.2s ease;
+    }
+
+    .layer-row:hover {
+      background: rgba(59, 130, 246, 0.08);
+      border-color: rgba(59, 130, 246, 0.3);
+      transform: translateX(4px);
+    }
+
+    .layer-badge {
+      width: 32px;
+      height: 32px;
+      border-radius: 8px;
+      background: rgba(59, 130, 246, 0.2);
+      color: var(--accent-blue);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      font-size: 0.85rem;
+      flex-shrink: 0;
+    }
+
+    .layer-info {
+      flex: 1;
+    }
+
+    .layer-info strong {
+      font-size: 0.95rem;
+      color: #ffffff;
+      display: block;
+      margin-bottom: 2px;
+    }
+
+    .layer-info span {
+      font-size: 0.82rem;
+      color: var(--text-muted);
+    }
+
+    /* Audit / XAI Code Card */
+    .audit-terminal {
+      background: #060810;
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      border-radius: 12px;
+      padding: 16px 20px;
+      font-family: var(--font-mono);
+      font-size: 0.8rem;
+      line-height: 1.55;
+      color: #cbd5e1;
+      overflow-x: auto;
+    }
+
+    .audit-terminal .hi-green { color: #34d399; }
+    .audit-terminal .hi-amber { color: #fbbf24; }
+    .audit-terminal .hi-blue { color: #60a5fa; }
+    .audit-terminal .hi-rose { color: #f87171; }
+
+    /* Bottom Slide Footer */
+    .slide-footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-top: 16px;
+      border-top: 1px solid rgba(255, 255, 255, 0.07);
+      font-size: 0.8rem;
+      color: var(--text-muted);
+    }
+
+    /* Speaker Notes Drawer */
+    .notes-drawer {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: rgba(13, 17, 28, 0.95);
+      border-top: 2px solid var(--accent-blue);
+      padding: 18px 32px;
+      backdrop-filter: blur(20px);
+      z-index: 50;
+      transform: translateY(100%);
+      transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+      box-shadow: 0 -10px 40px rgba(0, 0, 0, 0.5);
+    }
+
+    .notes-drawer.is-open {
+      transform: translateY(0);
+    }
+
+    .notes-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 8px;
+    }
+
+    .notes-title {
+      font-size: 0.82rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--accent-cyan);
+      font-weight: 600;
+    }
+
+    .notes-content {
+      font-size: 0.94rem;
+      line-height: 1.6;
+      color: #e2e8f0;
+      max-width: 1000px;
+    }
+
+    /* Bottom Navigation Bar */
+    footer.nav-bar {
+      position: relative;
+      z-index: 10;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 12px 28px;
+      background: rgba(9, 12, 21, 0.85);
+      border-top: 1px solid var(--border-card);
+      backdrop-filter: blur(12px);
+    }
+
+    .progress-bar-wrap {
+      flex: 1;
+      max-width: 380px;
+      height: 6px;
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 999px;
+      overflow: hidden;
+      margin: 0 20px;
+    }
+
+    .progress-bar-fill {
+      height: 100%;
+      background: linear-gradient(90deg, var(--accent-blue), var(--accent-cyan));
+      border-radius: 999px;
+      width: 8.33%;
+      transition: width 0.3s ease;
+    }
+
+    .pill-btn {
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      color: var(--text-main);
+      padding: 6px 16px;
+      border-radius: 999px;
+      font-size: 0.82rem;
+      font-weight: 500;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      transition: all 0.2s ease;
+    }
+
+    .pill-btn:hover {
+      background: var(--accent-blue);
+      border-color: var(--accent-blue);
+      color: #ffffff;
+    }
+
+    /* Tags / Chips */
+    .chip {
+      display: inline-flex;
+      align-items: center;
+      padding: 3px 10px;
+      border-radius: 999px;
+      font-size: 0.76rem;
+      font-weight: 500;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      color: var(--text-muted);
+    }
+
+    .chip-green { background: rgba(16, 185, 129, 0.1); border-color: rgba(16, 185, 129, 0.25); color: #34d399; }
+    .chip-blue  { background: rgba(59, 130, 246, 0.1); border-color: rgba(59, 130, 246, 0.25); color: #60a5fa; }
+    .chip-amber { background: rgba(245, 158, 11, 0.1); border-color: rgba(245, 158, 11, 0.25); color: #fbbf24; }
+    .chip-rose  { background: rgba(244, 63, 94, 0.1); border-color: rgba(244, 63, 94, 0.25); color: #fb7185; }
+
+    @media (max-width: 768px) {
+      .grid-2, .grid-3, .grid-4 {
+        grid-template-columns: 1fr;
+      }
+      .slide {
+        padding: 24px 20px;
+      }
+      .slide-heading {
+        font-size: 1.35rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Ambient Glow Background -->
+  <div class="bg-glow" aria-hidden="true">
+    <div class="glow-orb glow-1"></div>
+    <div class="glow-orb glow-2"></div>
+  </div>
+
+  <!-- Top Bar -->
+  <header class="deck-bar">
+    <div class="deck-title">
+      <span class="badge-tag">M.Sc. Dissertation Defense</span>
+      <span>A Framework for Real-Time Fraud Detection in Nigeria’s Digital Payment Systems</span>
+    </div>
+    <div class="deck-controls">
+      <button class="deck-btn" id="toggleNotesBtn" title="Toggle Speaker Notes (Key: N)">
+        <span>🎤</span> Speaker Notes
+      </button>
+      <button class="deck-btn" id="fullscreenBtn" title="Toggle Fullscreen (Key: F)">
+        <span>⛶</span> Fullscreen
+      </button>
+    </div>
+  </header>
+
+  <!-- Slide Stage -->
+  <main class="deck-stage">
+
+    <!-- SLIDE 1: Title -->
+    <article class="slide is-active" data-slide="1">
+      <div class="slide-header"></div>
+      <div class="slide-body title-hero">
+        <span class="title-super">Academic Research Seminar & Dissertation Defense</span>
+        <h1 class="title-main">A Framework for Real-Time Fraud Detection in Nigeria’s Digital Payment Systems</h1>
+        <p class="title-sub">A Socio-Technical, Adaptive & Governance-Centric Conceptual Model Connecting Machine Intelligence, Auditability, and Ecosystem-Wide Fraud Prevention</p>
+        
+        <div class="title-meta">
+          <span>Author: <strong>Mustapha Idris Suleiman</strong></span>
+          <span>•</span>
+          <span>Affiliation: <strong>Technology & Computing</strong></span>
+          <span>•</span>
+          <span>Focus: <strong>AI, Financial Security & XAI</strong></span>
+        </div>
+      </div>
+      <div class="slide-footer">
+        <span>Slide 1 / 12</span>
+        <span>Theoretical & Conceptual Model</span>
+      </div>
+      <div class="slide-notes-text" hidden>
+        Good day, esteemed members of the academic committee and chair. Today, I present my research titled "A Framework for Real-Time Fraud Detection in Nigeria's Digital Payment Systems". This study proposes an integrated, five-layer conceptual framework designed to bridge the gap between algorithmic classification, real-time operational execution, explainable governance, and institutional coordination in Nigeria's rapidly evolving payment ecosystem.
+      </div>
+    </article>
+
+    <!-- SLIDE 2: Context -->
+    <article class="slide" data-slide="2">
+      <div class="slide-header">
+        <div class="slide-subtitle">Empirical Background & Context</div>
+        <h2 class="slide-heading">The Nigerian Digital Payment Revolution</h2>
+      </div>
+      <div class="slide-body">
+        <div class="grid-3">
+          <div class="stat-box">
+            <div class="stat-number">₦1.56Q</div>
+            <div class="stat-label">Total E-Payment Value (H1 2024)</div>
+          </div>
+          <div class="stat-box">
+            <div class="stat-number">22.42B</div>
+            <div class="stat-label">Electronic Transactions (6 Months)</div>
+          </div>
+          <div class="stat-box">
+            <div class="stat-number">5.63B</div>
+            <div class="stat-label">NIP Instant Payment Volume</div>
+          </div>
+        </div>
+
+        <div class="grid-2" style="margin-top: 10px;">
+          <div class="card-panel">
+            <h4>📊 Channel Distribution (CBN, 2024)</h4>
+            <p><strong>Internet Transfers:</strong> 51.91% — Core vehicle of business & retail money movement.</p>
+            <p><strong>POS & Agency Banking:</strong> 28.53% — Backbone of financial inclusion in unbanked rural nodes.</p>
+            <p><strong>Mobile App & USSD:</strong> 15.58% — High consumer frequency, prone to social engineering.</p>
+          </div>
+          <div class="card-panel">
+            <h4>⚡ The Critical Velocity Dilemma</h4>
+            <p>Transactions settle in <strong>sub-second intervals</strong> via NIBSS Instant Payments (NIP).</p>
+            <p>Because finality occurs in milliseconds, post-settlement investigation cannot prevent losses. Fraud detection must assess risk and intervene <em>within the authorization window</em>.</p>
+          </div>
+        </div>
+      </div>
+      <div class="slide-footer">
+        <span>Slide 2 / 12</span>
+        <span>CBN 2024 E-Payment Statistics</span>
+      </div>
+      <div class="slide-notes-text" hidden>
+        Nigeria represents one of the fastest-growing and most sophisticated instant payment ecosystems globally, driven by NIBSS Instant Payments (NIP) and rapid fintech adoption. However, this velocity introduces significant systemic risk: because funds settle in milliseconds, traditional post-settlement fraud investigation provides little room for loss prevention. Effective intervention must happen before or during authorization.
+      </div>
+    </article>
+
+    <!-- SLIDE 3: Problem Statement -->
+    <article class="slide" data-slide="3">
+      <div class="slide-header">
+        <div class="slide-subtitle">Research Problem</div>
+        <h2 class="slide-heading">The Operational vs. Classification Disconnect</h2>
+      </div>
+      <div class="slide-body">
+        <div class="grid-2">
+          <div class="card-panel" style="border-left: 3px solid var(--accent-rose);">
+            <h4>🚨 The Core Dilemma in Prior Literature</h4>
+            <p>Academic research predominantly treats fraud as a <strong>pure classification problem</strong> (optimizing F1-score or accuracy on static datasets).</p>
+            <p>In operational reality, a high-scoring prediction is useless if:
+              <br>• It takes too long to infer (> 500ms settlement window).
+              <br>• It cannot be audited or explained to regulators (NDPA 2023).
+              <br>• The model suffers concept drift as fraudsters adapt.
+            </p>
+          </div>
+
+          <div class="card-panel" style="border-left: 3px solid var(--accent-blue);">
+            <h4>🧱 Key Operational Bottlenecks</h4>
+            <p><strong>Extreme Class Imbalance:</strong> Legitimate transactions outnumber fraud 10,000 to 1; high false positives hurt legitimate customers.</p>
+            <p><strong>Institutional Silos:</strong> Fraudsters attack multiple banks in sequence; institutions cannot freely share intelligence due to privacy boundaries.</p>
+            <p><strong>Regulatory Demands:</strong> CBN's 2026 AML/CFT Guidelines mandate explainability and automated monitoring.</p>
+          </div>
+        </div>
+      </div>
+      <div class="slide-footer">
+        <span>Slide 3 / 12</span>
+        <span>Research Gaps & Objectives</span>
+      </div>
+      <div class="slide-notes-text" hidden>
+        Most academic research focuses almost exclusively on maximizing precision, recall, or F1-scores on isolated, static datasets. In production, however, a model that generates an alert without operational escalation paths, without an auditable explanation, or without inter-bank coordination is an incomplete solution. This study addresses that exact architectural void.
+      </div>
+    </article>
+
+    <!-- SLIDE 4: Theoretical Foundations -->
+    <article class="slide" data-slide="4">
+      <div class="slide-header">
+        <div class="slide-subtitle">Theoretical Framework (Figure 2.3)</div>
+        <h2 class="slide-heading">Complementary Theoretical Triad</h2>
+      </div>
+      <div class="slide-body">
+        <div class="grid-3">
+          <div class="card-panel">
+            <span class="chip chip-amber">Criminology</span>
+            <h4>Fraud Triangle Theory</h4>
+            <p><strong>Cressey (1953)</strong></p>
+            <p>Identifies <em>Pressure</em>, <em>Opportunity</em>, and <em>Rationalisation</em>. In digital payments, weak authentication and unmonitored endpoints create the systemic opportunity.</p>
+          </div>
+
+          <div class="card-panel">
+            <span class="chip chip-blue">Environmental Criminology</span>
+            <h4>Routine Activity Theory</h4>
+            <p><strong>Cohen & Felson (1979)</strong></p>
+            <p>Crime occurs when a <em>Motivated Offender</em> meets a <em>Suitable Target</em> in the <em>Absence of Capable Guardianship</em>. Establishes the role of real-time monitoring as automated guardianship.</p>
+          </div>
+
+          <div class="card-panel">
+            <span class="chip chip-green">Organizational Systems</span>
+            <h4>Socio-Technical Theory</h4>
+            <p><strong>Bostrom & Heinen (1977)</strong></p>
+            <p>A detection model alone cannot prevent fraud. Value depends on the interaction between algorithms, human investigators, policies, and regulatory mandates.</p>
+          </div>
+        </div>
+
+        <div class="card-panel" style="background: rgba(6, 182, 212, 0.05); border-color: rgba(6, 182, 212, 0.2);">
+          <h4>⚡ Analytical Lens: Anomaly Detection & Concept Drift (Lu et al., 2022)</h4>
+          <p>Statistical distribution shifts over time require dynamic pattern learning rather than static decision boundaries.</p>
+        </div>
+      </div>
+      <div class="slide-footer">
+        <span>Slide 4 / 12</span>
+        <span>Theoretical Foundations of Fraud Detection</span>
+      </div>
+      <div class="slide-notes-text" hidden>
+        Rather than relying on a single theoretical lens, we combine three established criminological and organizational theories with the mathematical realities of anomaly detection and concept drift. This grounds our technical architecture in proven behavioral and systemic science.
+      </div>
+    </article>
+
+    <!-- SLIDE 5: Five-Layer Architecture -->
+    <article class="slide" data-slide="5">
+      <div class="slide-header">
+        <div class="slide-subtitle">The Proposed Architecture (Figure 3.2 / A1)</div>
+        <h2 class="slide-heading">The Five-Layer Conceptual Framework</h2>
+      </div>
+      <div class="slide-body">
+        <div class="layer-stack">
+          <div class="layer-row">
+            <div class="layer-badge">1</div>
+            <div class="layer-info">
+              <strong>Transactional Input Layer</strong>
+              <span>Ingestion, data validation, and contextual enrichment (device fingerprint, geolocation, behavioral baseline).</span>
+            </div>
+            <span class="chip chip-blue">Context Enrichment</span>
+          </div>
+
+          <div class="layer-row">
+            <div class="layer-badge">2</div>
+            <div class="layer-info">
+              <strong>Real-Time Analytics Layer</strong>
+              <span>Multi-signal scoring engine: Rules + Unsupervised Anomaly Detection + Machine Learning. R = f(T, B, C, A, G).</span>
+            </div>
+            <span class="chip chip-green">&lt; 200ms Decision</span>
+          </div>
+
+          <div class="layer-row">
+            <div class="layer-badge">3</div>
+            <div class="layer-info">
+              <strong>Adaptive Intelligence Layer</strong>
+              <span>Concept drift detection, investigation feedback ingestion, and governed shadow-model updates.</span>
+            </div>
+            <span class="chip chip-amber">Continuous Learning</span>
+          </div>
+
+          <div class="layer-row">
+            <div class="layer-badge">4</div>
+            <div class="layer-info">
+              <strong>Governance & Compliance Layer</strong>
+              <span>Explainable AI (XAI) feature attribution, immutable audit trails, and NDPA 2023 / CBN 2026 alignment.</span>
+            </div>
+            <span class="chip chip-rose">Explainability & Audit</span>
+          </div>
+
+          <div class="layer-row">
+            <div class="layer-badge">5</div>
+            <div class="layer-info">
+              <strong>Institutional Coordination Layer</strong>
+              <span>Controlled, privacy-preserving sharing of validated Indicators of Compromise (IoCs) via NeFF & NIBSS.</span>
+            </div>
+            <span class="chip chip-blue">Ecosystem Defense</span>
+          </div>
+        </div>
+      </div>
+      <div class="slide-footer">
+        <span>Slide 5 / 12</span>
+        <span>Five-Layer Functional Model</span>
+      </div>
+      <div class="slide-notes-text" hidden>
+        Here is the core contribution of the study. Notice that this is not a one-way conveyor belt. The layers form a closed-loop socio-technical system. Layer 4 governs all operations, while Layer 5 brings external intelligence back into Layer 2 to continuously strengthen the system against emerging fraud syndicates.
+      </div>
+    </article>
+
+    <!-- SLIDE 6: Layer 2 Multi-Signal Engine -->
+    <article class="slide" data-slide="6">
+      <div class="slide-header">
+        <div class="slide-subtitle">Layer 2 Deep Dive</div>
+        <h2 class="slide-heading">Multi-Signal Risk Formulation: R = f(T, B, C, A, G)</h2>
+      </div>
+      <div class="slide-body">
+        <div class="grid-2">
+          <div class="card-panel">
+            <h4>📐 The Five Component Signals</h4>
+            <p><strong>T (Transaction):</strong> Amount, channel, velocity, counterparty type.</p>
+            <p><strong>B (Behavioral):</strong> Historical spending deviations, uncharacteristic hours.</p>
+            <p><strong>C (Contextual Telemetry):</strong> Device ID, IP reputation, cell tower location.</p>
+            <p><strong>A (Analytical Scoring):</strong> Supervised ML probability + unsupervised anomaly scores.</p>
+            <p><strong>G (Global Intelligence):</strong> Cross-bank threat indicators received from Layer 5.</p>
+          </div>
+
+          <div class="card-panel">
+            <h4>🎯 Calibrated Decision Policy (Table 3.3)</h4>
+            <div style="display: flex; flex-direction: column; gap: 8px; margin-top: 6px;">
+              <div style="display: flex; justify-content: space-between; align-items: center; padding: 6px 12px; background: rgba(16, 185, 129, 0.1); border-radius: 8px;">
+                <span>🟢 <strong>Low Risk:</strong> No suspicious telemetry</span>
+                <span class="chip chip-green">Approve (&lt;200ms)</span>
+              </div>
+              <div style="display: flex; justify-content: space-between; align-items: center; padding: 6px 12px; background: rgba(245, 158, 11, 0.1); border-radius: 8px;">
+                <span>🟡 <strong>Moderate Risk:</strong> Minor uncharacteristic shift</span>
+                <span class="chip chip-amber">Step-up 2FA / Verify</span>
+              </div>
+              <div style="display: flex; justify-content: space-between; align-items: center; padding: 6px 12px; background: rgba(239, 68, 68, 0.1); border-radius: 8px;">
+                <span>🔴 <strong>High Risk:</strong> Multiple strong signals</span>
+                <span class="chip chip-rose">Hold & Expedited Review</span>
+              </div>
+              <div style="display: flex; justify-content: space-between; align-items: center; padding: 6px 12px; background: rgba(127, 29, 29, 0.2); border-radius: 8px;">
+                <span>⛔ <strong>Critical Risk:</strong> Confirmed compromised credentials</span>
+                <span class="chip chip-rose">Immediate Block</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="slide-footer">
+        <span>Slide 6 / 12</span>
+        <span>Algorithm-Agnostic Mathematical Model</span>
+      </div>
+      <div class="slide-notes-text" hidden>
+        The risk relationship R = f(T, B, C, A, G) formally demonstrates that fraud risk is multidimensional. An isolated transaction of 100,000 Naira might look completely normal on its own, but becomes immediately suspicious when combined with a novel device ID, an uncharacteristic 3 AM timestamp, and a destination account newly flagged by another institution.
+      </div>
+    </article>
+
+    <!-- SLIDE 7: Decision Flow & Dual Path -->
+    <article class="slide" data-slide="7">
+      <div class="slide-header">
+        <div class="slide-subtitle">Operational Architecture (Figure 3.4 / 3.5)</div>
+        <h2 class="slide-heading">The Dual-Track Architecture: Real-Time vs. Governance</h2>
+      </div>
+      <div class="slide-body">
+        <div class="grid-2">
+          <div class="card-panel" style="border-top: 3px solid var(--accent-cyan);">
+            <h4>⚡ Track 1: The Synchronous Fast Path</h4>
+            <p><strong>Target Latency:</strong> 150 – 300 milliseconds</p>
+            <p>• Ingests transaction and cached metadata.</p>
+            <p>• Evaluates composite risk score R.</p>
+            <p>• Executes decision (Approve, Step-up 2FA, Hold, Block).</p>
+            <p>• Emits asynchronous audit payload to Track 2.</p>
+          </div>
+
+          <div class="card-panel" style="border-top: 3px solid var(--accent-emerald);">
+            <h4>🔄 Track 2: The Asynchronous Governance & Feedback Path</h4>
+            <p><strong>Execution Budget:</strong> Minutes to Days (Offline)</p>
+            <p>• Stores immutable decision logs & model versions.</p>
+            <p>• Generates human-readable XAI feature attribution cards.</p>
+            <p>• Curates confirmed analyst outcomes for retrain validation.</p>
+            <p>• Exports sanitized IoCs to Layer 5 Institutional Exchange.</p>
+          </div>
+        </div>
+      </div>
+      <div class="slide-footer">
+        <span>Slide 7 / 12</span>
+        <span>Latency Preservation & Operational Resilience</span>
+      </div>
+      <div class="slide-notes-text" hidden>
+        Walk the committee through this flow: The top branch represents the sub-second decision path, executing within milliseconds to ensure legitimate payment velocity is never compromised. The bottom branch represents the asynchronous governance and feedback path, ensuring accountability and long-term learning without adding latency to the live payment rail.
+      </div>
+    </article>
+
+    <!-- SLIDE 8: XAI & Auditability -->
+    <article class="slide" data-slide="8">
+      <div class="slide-header">
+        <div class="slide-subtitle">Layer 4 Deep Dive (Figure 3.6)</div>
+        <h2 class="slide-heading">Explainable AI (XAI) & Audit Record Mockup</h2>
+      </div>
+      <div class="slide-body">
+        <div class="audit-terminal">
+<span class="hi-blue">AUDIT RECORD #NIP-2026-88492</span> | STATUS: <span class="hi-rose">FLAGGED (High Risk: 0.89)</span>
+TRANSACTION: ₦450,000.00 | CHANNEL: Mobile Transfer | TIMESTAMP: 2026-11-10 02:14:18 WAT
+-----------------------------------------------------------------------------------------
+<span class="hi-amber">EXPLAINABILITY ATTRIBUTION (SHAP Factor Decomposition):</span>
+ [+] Unrecognized Device Fingerprint (First seen)      ───> <span class="hi-rose">+34% Risk Weight</span>
+ [+] High Transaction Velocity (3rd transfer in 10m)    ───> <span class="hi-rose">+28% Risk Weight</span>
+ [+] Destination Account Flagged (Dormant 180+ days)    ───> <span class="hi-rose">+21% Risk Weight</span>
+ [-] Geolocation consistent with regular cell tower     ───> <span class="hi-green">-08% Risk Weight</span>
+-----------------------------------------------------------------------------------------
+<span class="hi-green">GOVERNANCE & COMPLIANCE VERIFICATION:</span>
+• Model Version: Ensemble-BiLSTM-XAI-v4.2 | Rule Package: 2026-Q4-B
+• Action Taken: Payment Held for Tier-2 Analyst Verification
+• Legal Compliance: Full Auditability under NDPA 2023 §24 & CBN AML/CFT 2026
+        </div>
+        <p style="font-size: 0.86rem; color: var(--text-muted);">Explainability satisfies human review needs; Auditability satisfies regulatory reconstruction needs (Bussmann et al., 2023).</p>
+      </div>
+      <div class="slide-footer">
+        <span>Slide 8 / 12</span>
+        <span>Human-in-the-Loop Governance</span>
+      </div>
+      <div class="slide-notes-text" hidden>
+        In high-stakes financial operations, a black-box probability score of 0.89 is useless to a human investigator or a court of law. Layer 4 generates intuitive feature attribution (inspired by SHAP values and user-centered XAI principles) alongside an immutable audit trail. This satisfies the strict accountability standards of the Nigeria Data Protection Act 2023 and CBN's 2026 AML/CFT guidelines.
+      </div>
+    </article>
+
+    <!-- SLIDE 9: Institutional Sharing -->
+    <article class="slide" data-slide="9">
+      <div class="slide-header">
+        <div class="slide-subtitle">Layer 5 Deep Dive (Figure 3.3 / 3.7)</div>
+        <h2 class="slide-heading">Ecosystem-Wide Institutional Coordination</h2>
+      </div>
+      <div class="slide-body">
+        <div class="grid-2">
+          <div class="card-panel">
+            <h4>🌐 Institutional Participants</h4>
+            <p>• <strong>Commercial & Merchant Banks:</strong> Ingest and emit terminal transaction threats.</p>
+            <p>• <strong>Fintechs & Neobanks:</strong> Protect high-velocity mobile money endpoints.</p>
+            <p>• <strong>NIBSS:</strong> Central instant clearing switch providing network-level correlation.</p>
+            <p>• <strong>NeFF & Regulators:</strong> Policy oversight and national crime typology tracking.</p>
+          </div>
+
+          <div class="card-panel">
+            <h4>🔒 Privacy by Design (NDPA 2023 Compliant)</h4>
+            <p><strong>Strict Prohibition:</strong> Zero raw consumer transaction records or PII are shared.</p>
+            <p><strong>Shared Artifacts:</strong>
+              <br>• Cryptographic hashes of confirmed fraudulent device IDs.
+              <br>• Account mule network topologies.
+              <br>• Malicious IP subnets and phishing campaign vectors.
+            </p>
+          </div>
+        </div>
+      </div>
+      <div class="slide-footer">
+        <span>Slide 9 / 12</span>
+        <span>Multi-Stakeholder Fraud Immunity</span>
+      </div>
+      <div class="slide-notes-text" hidden>
+        A fraudster who successfully exploits a vulnerability at Bank A will frequently move immediately to Fintech B and PSP C. By implementing privacy-preserving threat intelligence exchange, an attack detected at one node can inoculate every participating institution within minutes, without violating consumer data privacy laws.
+      </div>
+    </article>
+
+    <!-- SLIDE 10: Scenario Walkthrough -->
+    <article class="slide" data-slide="10">
+      <div class="slide-header">
+        <div class="slide-subtitle">Scenario Evaluation (Table 4.2 / Figure 4.2)</div>
+        <h2 class="slide-heading">Scenario-Based Operational Walkthrough</h2>
+      </div>
+      <div class="slide-body">
+        <div class="grid-2">
+          <div class="card-panel">
+            <span class="chip chip-green">Scenario A: Routine Supermarket Spend</span>
+            <h4>Low Risk → Immediate Approval</h4>
+            <p>₦15,000 spend at regular supermarket on known device. Transaction validated, scored R &lt; 0.2, approved in 140ms, logged to audit repository.</p>
+          </div>
+
+          <div class="card-panel">
+            <span class="chip chip-amber">Scenario B: Domestic Traveling Customer</span>
+            <h4>Moderate Risk → Step-Up Biometric 2FA</h4>
+            <p>Lagos customer transacting in Abuja on known phone. Instead of blocking the card, system prompts instant in-app fingerprint confirmation.</p>
+          </div>
+
+          <div class="card-panel">
+            <span class="chip chip-rose">Scenario C: Midnight Account Takeover</span>
+            <h4>Critical Risk → Instant Intercept & Block</h4>
+            <p>3:00 AM full balance transfer to foreign wallet via new browser ID. Critical threshold triggered, transfer blocked, push alert sent to victim.</p>
+          </div>
+
+          <div class="card-panel">
+            <span class="chip chip-blue">Scenario D: Multi-Bank Mule Ring</span>
+            <h4>Emerging Pattern → Layer 5 Ecosystem Inoculation</h4>
+            <p>Syndicate routes stolen funds across 4 fintech wallets. Layer 5 correlates graph topology and disseminates sanitized IoCs across all rails.</p>
+          </div>
+        </div>
+      </div>
+      <div class="slide-footer">
+        <span>Slide 10 / 12</span>
+        <span>Scenario-Based Operational Analysis</span>
+      </div>
+      <div class="slide-notes-text" hidden>
+        These four scenarios demonstrate how the five layers function in practice. The framework avoids the blunt instrument of binary approve/deny by introducing contextual verification for moderate risks, while coordinating multi-institutional defenses when systemic attacks are detected.
+      </div>
+    </article>
+
+    <!-- SLIDE 11: Strategic Recommendations -->
+    <article class="slide" data-slide="11">
+      <div class="slide-header">
+        <div class="slide-subtitle">Policy & Practice (Section 5.10)</div>
+        <h2 class="slide-heading">Strategic Recommendations for Nigeria</h2>
+      </div>
+      <div class="slide-body">
+        <div class="grid-4">
+          <div class="card-panel">
+            <span class="chip chip-blue">Regulator</span>
+            <h4>Central Bank of Nigeria (CBN)</h4>
+            <p>Mandate standardized explainability and decision auditability guidelines for all automated fraud solutions.</p>
+          </div>
+
+          <div class="card-panel">
+            <span class="chip chip-green">Institutions</span>
+            <h4>Commercial Banks</h4>
+            <p>Shift from legacy static rule silos to multi-signal hybrid scoring architectures with human-in-the-loop review.</p>
+          </div>
+
+          <div class="card-panel">
+            <span class="chip chip-amber">Innovators</span>
+            <h4>Fintechs & Neobanks</h4>
+            <p>Embed fraud risk controls by design, monitoring concept drift and distributional shifts on mobile apps.</p>
+          </div>
+
+          <div class="card-panel">
+            <span class="chip chip-rose">Switch</span>
+            <h4>NIBSS & NeFF</h4>
+            <p>Deploy low-latency, privacy-preserving threat sharing APIs to inoculate institutions against syndicated mule attacks.</p>
+          </div>
+        </div>
+      </div>
+      <div class="slide-footer">
+        <span>Slide 11 / 12</span>
+        <span>Actionable Stakeholder Framework</span>
+      </div>
+      <div class="slide-notes-text" hidden>
+        Our recommendations translate theoretical findings into concrete policy and operational roadmaps for Nigeria's financial regulators, commercial lenders, fintech neobanks, and central switching operators.
+      </div>
+    </article>
+
+    <!-- SLIDE 12: Conclusion & Future Roadmap -->
+    <article class="slide" data-slide="12">
+      <div class="slide-header">
+        <div class="slide-subtitle">Synthesis & Next Steps (Appendix C)</div>
+        <h2 class="slide-heading">Conclusion & Future Empirical Roadmap</h2>
+      </div>
+      <div class="slide-body">
+        <div class="grid-2">
+          <div class="card-panel">
+            <h4>🎓 Key Thesis Conclusion</h4>
+            <p>Digital payment fraud in Nigeria is a <strong>socio-technical and institutional challenge</strong>, not merely an algorithmic classification problem.</p>
+            <p>Sustainable security demands uniting real-time multi-signal scoring, controlled adaptation, explainable governance, and cross-institutional intelligence.</p>
+          </div>
+
+          <div class="card-panel">
+            <h4>🗺️ 6-Phase Future Empirical Roadmap</h4>
+            <p><strong>Phase 1:</strong> Requirements & Legal Data Sharing Frameworks.</p>
+            <p><strong>Phase 2:</strong> Technical Microservice Specifications.</p>
+            <p><strong>Phase 3:</strong> Controlled Prototype Development.</p>
+            <p><strong>Phase 4:</strong> Performance Benchmarking (Precision, Recall, Latency).</p>
+            <p><strong>Phase 5:</strong> Governance & NDPA 2023 Compliance Audits.</p>
+            <p><strong>Phase 6:</strong> Operational Pilot with Nigerian Payment Operators.</p>
+          </div>
+        </div>
+      </div>
+      <div class="slide-footer">
+        <span>Slide 12 / 12</span>
+        <span>Thank You! Questions & Discussion</span>
+      </div>
+      <div class="slide-notes-text" hidden>
+        In conclusion, this research provides an algorithm-agnostic, Nigerian-contextualized framework designed for longevity and empirical testability. Thank you very much for your time and guidance. I now welcome the questions and comments of the committee.
+      </div>
+    </article>
+
+  </main>
+
+  <!-- Speaker Notes Drawer -->
+  <div class="notes-drawer" id="notesDrawer">
+    <div class="notes-header">
+      <div class="notes-title">🎤 Speaker Defense Talking Points</div>
+      <button class="deck-btn" id="closeNotesBtn" style="padding: 2px 10px; font-size: 0.75rem;">Close</button>
+    </div>
+    <div class="notes-content" id="notesContent">
+      Loading speaker notes...
+    </div>
+  </div>
+
+  <!-- Bottom Navigation Bar -->
+  <footer class="nav-bar">
+    <button class="pill-btn" id="prevBtn">
+      <span>←</span> Previous
+    </button>
+
+    <div style="display: flex; align-items: center; gap: 8px;">
+      <span id="slideCounter" style="font-size: 0.85rem; font-family: var(--font-mono); color: var(--text-muted);">01 / 12</span>
+      <div class="progress-bar-wrap">
+        <div class="progress-bar-fill" id="progressFill"></div>
+      </div>
+    </div>
+
+    <button class="pill-btn" id="nextBtn">
+      Next <span>→</span>
+    </button>
+  </footer>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const slides = document.querySelectorAll('.slide');
+      const prevBtn = document.getElementById('prevBtn');
+      const nextBtn = document.getElementById('nextBtn');
+      const slideCounter = document.getElementById('slideCounter');
+      const progressFill = document.getElementById('progressFill');
+      const toggleNotesBtn = document.getElementById('toggleNotesBtn');
+      const closeNotesBtn = document.getElementById('closeNotesBtn');
+      const notesDrawer = document.getElementById('notesDrawer');
+      const notesContent = document.getElementById('notesContent');
+      const fullscreenBtn = document.getElementById('fullscreenBtn');
+
+      let currentSlide = 1;
+      const totalSlides = slides.length;
+
+      function updateSlide(target) {
+        if (target < 1) target = 1;
+        if (target > totalSlides) target = totalSlides;
+        currentSlide = target;
+
+        slides.forEach(slide => {
+          const slideNum = parseInt(slide.getAttribute('data-slide'), 10);
+          slide.classList.toggle('is-active', slideNum === currentSlide);
+          if (slideNum === currentSlide) {
+            const noteEl = slide.querySelector('.slide-notes-text');
+            if (noteEl && notesContent) {
+              notesContent.textContent = noteEl.textContent.trim();
+            }
+          }
+        });
+
+        // Update progress & counter
+        slideCounter.textContent = `${String(currentSlide).padStart(2, '0')} / ${String(totalSlides).padStart(2, '0')}`;
+        progressFill.style.width = `${(currentSlide / totalSlides) * 100}%`;
+
+        // Update hash
+        history.replaceState(null, '', `#slide-${currentSlide}`);
+      }
+
+      prevBtn.addEventListener('click', () => updateSlide(currentSlide - 1));
+      nextBtn.addEventListener('click', () => updateSlide(currentSlide + 1));
+
+      // Keyboard Navigation
+      window.addEventListener('keydown', (e) => {
+        if (e.key === 'ArrowRight' || e.key === 'PageDown' || e.key === ' ') {
+          e.preventDefault();
+          updateSlide(currentSlide + 1);
+        } else if (e.key === 'ArrowLeft' || e.key === 'PageUp') {
+          e.preventDefault();
+          updateSlide(currentSlide - 1);
+        } else if (e.key === 'Home') {
+          e.preventDefault();
+          updateSlide(1);
+        } else if (e.key === 'End') {
+          e.preventDefault();
+          updateSlide(totalSlides);
+        } else if (e.key === 'n' || e.key === 'N') {
+          toggleNotes();
+        } else if (e.key === 'f' || e.key === 'F') {
+          toggleFullScreen();
+        }
+      });
+
+      // Speaker Notes
+      function toggleNotes() {
+        notesDrawer.classList.toggle('is-open');
+      }
+
+      if (toggleNotesBtn) toggleNotesBtn.addEventListener('click', toggleNotes);
+      if (closeNotesBtn) closeNotesBtn.addEventListener('click', () => notesDrawer.classList.remove('is-open'));
+
+      // Fullscreen
+      function toggleFullScreen() {
+        if (!document.fullscreenElement) {
+          document.documentElement.requestFullscreen().catch(() => {});
+        } else {
+          if (document.exitFullscreen) {
+            document.exitFullscreen();
+          }
+        }
+      }
+
+      if (fullscreenBtn) fullscreenBtn.addEventListener('click', toggleFullScreen);
+
+      // Handle Initial Hash
+      const initialHash = window.location.hash.match(/slide-(\d+)/);
+      if (initialHash && initialHash[1]) {
+        updateSlide(parseInt(initialHash[1], 10));
+      } else {
+        updateSlide(1);
+      }
+    });
+  </script>
+</body>
+</html>

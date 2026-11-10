@@ -6,48 +6,63 @@
 :root {
   color-scheme: dark;
 
-  --bg-page: #0b0c10;
-  --bg-page-gradient: radial-gradient(120% 70% at 50% 0%, rgba(130, 160, 220, 0.07) 0%, transparent 60%),
-                      radial-gradient(80% 50% at 85% 30%, rgba(99, 102, 241, 0.035) 0%, transparent 50%),
-                      #0b0c10;
-  --bg-blur: rgba(11, 12, 16, 0.88);
+  /* Blue Accent System (Dark Mode) */
+  --accent: #3b82f6;
+  --accent-hover: #60a5fa;
+  --accent-rgb: 59, 130, 246;
+  --accent-subtle: rgba(59, 130, 246, 0.12);
+  --accent-subtle-hover: rgba(59, 130, 246, 0.22);
+  --accent-border: rgba(59, 130, 246, 0.35);
+  --accent-glow: 0 0 24px rgba(59, 130, 246, 0.32);
+
+  --bg-page: #0a0c12;
+  --bg-page-gradient: radial-gradient(120% 70% at 50% 0%, rgba(37, 99, 235, 0.08) 0%, transparent 60%),
+                      radial-gradient(80% 50% at 85% 30%, rgba(59, 130, 246, 0.04) 0%, transparent 50%),
+                      #0a0c12;
+  --bg-blur: rgba(11, 13, 19, 0.88);
   --card-bg: rgba(255, 255, 255, 0.032);
   --text-primary: #f5f5f7;
   --text-secondary: #94949b;
   --text-muted: #64646c;
 
   --border: rgba(255, 255, 255, 0.08);
-  --border-hover: rgba(255, 255, 255, 0.22);
+  --border-hover: rgba(59, 130, 246, 0.35);
 
   --pill-bg: rgba(255, 255, 255, 0.06);
-  --pill-hover: rgba(255, 255, 255, 0.12);
+  --pill-hover: rgba(59, 130, 246, 0.15);
 
   --modal-bg: #14151b;
   --modal-backdrop: rgba(0, 0, 0, 0.72);
 
   /* iOS Glass Navigation & Glider (The Highlight) Tokens (Dark) */
-  --glass-track: rgba(18, 19, 26, 0.86);
+  --glass-track: rgba(18, 20, 28, 0.86);
   --glass-track-border: rgba(255, 255, 255, 0.12);
   --glass-track-shadow: 0 10px 30px -4px rgba(0, 0, 0, 0.45), 0 2px 8px rgba(0, 0, 0, 0.3), inset 0 1px 0.5px rgba(255, 255, 255, 0.14);
 
-  /* Apple Luminous Frosted Glass Glider (Tactile iOS Highlight) */
-  --glass-glider: linear-gradient(180deg, rgba(255, 255, 255, 0.98) 0%, rgba(235, 238, 244, 0.92) 100%);
-  --glass-glider-border: rgba(255, 255, 255, 0.96);
-  --glass-glider-shadow: 0 4px 18px -1px rgba(0, 0, 0, 0.45), 0 2px 6px rgba(0, 0, 0, 0.25), inset 0 1px 0.5px #ffffff, 0 0 14px rgba(255, 255, 255, 0.2);
-  --glass-glider-text: #090a0d;
+  /* Apple Luminous Frosted Glass Glider with Blue Ambient Edge */
+  --glass-glider: linear-gradient(180deg, rgba(255, 255, 255, 0.16) 0%, rgba(255, 255, 255, 0.07) 100%);
+  --glass-glider-border: rgba(255, 255, 255, 0.24);
+  --glass-glider-shadow: 0 4px 18px -1px rgba(0, 0, 0, 0.45), 0 2px 6px rgba(0, 0, 0, 0.25), inset 0 1px 0.5px rgba(255, 255, 255, 0.3), 0 0 18px rgba(59, 130, 246, 0.35);
+  --glass-glider-text: #ffffff;
 
-  --glass-hover: rgba(255, 255, 255, 0.08);
+  --glass-hover: rgba(255, 255, 255, 0.06);
   --glass-badge-bg: rgba(255, 255, 255, 0.08);
   --glass-badge-text: #8c8c96;
-  --glass-badge-active: rgba(0, 0, 0, 0.14);
-  --glass-badge-active-text: #090a0d;
+  --glass-badge-active: rgba(59, 130, 246, 0.22);
+  --glass-badge-active-text: #60a5fa;
 
   /* iOS Inset Grouped Glass Cards */
   --glass-card-bg: rgba(255, 255, 255, 0.03);
   --glass-card-border: rgba(255, 255, 255, 0.075);
   --glass-card-shadow: 0 8px 32px -4px rgba(0, 0, 0, 0.35), inset 0 1px 0.5px rgba(255, 255, 255, 0.08);
   --glass-card-divider: rgba(255, 255, 255, 0.05);
-  --glass-item-hover: rgba(255, 255, 255, 0.045);
+  --glass-item-hover: rgba(59, 130, 246, 0.04);
+
+  /* Executive Ambient Daylight Fields (Dark Mode) */
+  --ambient-light-1: radial-gradient(circle at 45% 45%, rgba(37, 99, 235, 0.26) 0%, rgba(29, 78, 216, 0.12) 45%, transparent 70%);
+  --ambient-light-2: radial-gradient(circle at 50% 50%, rgba(14, 165, 233, 0.16) 0%, rgba(56, 189, 248, 0.07) 50%, transparent 72%);
+  --ambient-light-3: radial-gradient(circle at 55% 55%, rgba(99, 102, 241, 0.14) 0%, rgba(67, 56, 202, 0.05) 55%, transparent 75%);
+  --grid-dot-color: rgba(255, 255, 255, 0.032);
 
   --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
   --radius-xs: 4px;
@@ -60,46 +75,62 @@
 [data-theme="light"] {
   color-scheme: light;
 
-  --bg-page: #f6f7fb;
-  --bg-page-gradient: radial-gradient(120% 70% at 50% 0%, rgba(0, 102, 204, 0.04) 0%, transparent 60%),
-                      #f6f7fb;
-  --bg-blur: rgba(246, 247, 251, 0.84);
-  --card-bg: rgba(255, 255, 255, 0.85);
-  --text-primary: #111216;
-  --text-secondary: #565860;
-  --text-muted: #848690;
+  /* Blue Accent System (Light Mode) */
+  --accent: #1d4ed8;
+  --accent-hover: #1e40af;
+  --accent-rgb: 29, 78, 216;
+  --accent-subtle: rgba(29, 78, 216, 0.08);
+  --accent-subtle-hover: rgba(29, 78, 216, 0.15);
+  --accent-border: rgba(29, 78, 216, 0.28);
+  --accent-glow: 0 0 20px rgba(29, 78, 216, 0.2);
 
-  --border: rgba(0, 0, 0, 0.07);
-  --border-hover: rgba(0, 0, 0, 0.2);
+  /* Architectural Studio Stone / Non-White Canvas */
+  --bg-page: #ebedf2;
+  --bg-page-gradient: radial-gradient(120% 70% at 50% 0%, rgba(29, 78, 216, 0.04) 0%, transparent 60%),
+                      #ebedf2;
+  --bg-blur: rgba(235, 237, 242, 0.90);
+  --card-bg: rgba(242, 244, 249, 0.78);
+  --text-primary: #12141a;
+  --text-secondary: #525662;
+  --text-muted: #7b808e;
 
-  --pill-bg: rgba(0, 0, 0, 0.04);
-  --pill-hover: rgba(0, 0, 0, 0.08);
+  --border: rgba(0, 0, 0, 0.08);
+  --border-hover: rgba(29, 78, 216, 0.28);
 
-  --modal-bg: #ffffff;
-  --modal-backdrop: rgba(0, 0, 0, 0.35);
+  --pill-bg: rgba(0, 0, 0, 0.05);
+  --pill-hover: rgba(29, 78, 216, 0.1);
 
-  /* iOS Glass Navigation & Glider Tokens (Light) */
-  --glass-track: rgba(255, 255, 255, 0.88);
+  --modal-bg: #e5e8ef;
+  --modal-backdrop: rgba(18, 20, 26, 0.4);
+
+  /* iOS Glass Navigation & Glider Tokens (Light - Non-white tactile glass) */
+  --glass-track: rgba(240, 242, 247, 0.88);
   --glass-track-border: rgba(0, 0, 0, 0.08);
-  --glass-track-shadow: 0 8px 24px -2px rgba(0, 0, 0, 0.08), 0 2px 6px -1px rgba(0, 0, 0, 0.04), inset 0 1px 1px #ffffff;
+  --glass-track-shadow: 0 8px 24px -2px rgba(0, 0, 0, 0.07), 0 2px 6px -1px rgba(0, 0, 0, 0.04), inset 0 1px 1px rgba(255, 255, 255, 0.6);
 
-  --glass-glider: linear-gradient(180deg, #ffffff 0%, #f4f5f8 100%);
-  --glass-glider-border: rgba(0, 0, 0, 0.05);
-  --glass-glider-shadow: 0 3px 12px -1px rgba(0, 0, 0, 0.12), 0 1px 3px rgba(0, 0, 0, 0.06), inset 0 1px 0.5px #ffffff;
-  --glass-glider-text: #000000;
+  --glass-glider: linear-gradient(180deg, #f2f4f8 0%, #e2e6ee 100%);
+  --glass-glider-border: rgba(29, 78, 216, 0.15);
+  --glass-glider-shadow: 0 3px 12px -1px rgba(0, 0, 0, 0.11), 0 1px 3px rgba(0, 0, 0, 0.05), inset 0 1px 0.5px rgba(255, 255, 255, 0.7), 0 0 14px rgba(29, 78, 216, 0.14);
+  --glass-glider-text: #12141a;
 
-  --glass-hover: rgba(0, 0, 0, 0.035);
-  --glass-badge-bg: rgba(0, 0, 0, 0.055);
-  --glass-badge-text: #70727c;
-  --glass-badge-active: rgba(0, 0, 0, 0.08);
-  --glass-badge-active-text: #000000;
+  --glass-hover: rgba(29, 78, 216, 0.05);
+  --glass-badge-bg: rgba(0, 0, 0, 0.06);
+  --glass-badge-text: #666a76;
+  --glass-badge-active: rgba(29, 78, 216, 0.12);
+  --glass-badge-active-text: #1d4ed8;
 
   /* iOS Inset Grouped Glass Cards (Light) */
-  --glass-card-bg: rgba(255, 255, 255, 0.82);
-  --glass-card-border: rgba(0, 0, 0, 0.06);
-  --glass-card-shadow: 0 8px 30px -4px rgba(0, 0, 0, 0.05), inset 0 1px 0.5px #ffffff;
-  --glass-card-divider: rgba(0, 0, 0, 0.045);
-  --glass-item-hover: rgba(0, 0, 0, 0.025);
+  --glass-card-bg: rgba(242, 244, 249, 0.75);
+  --glass-card-border: rgba(0, 0, 0, 0.065);
+  --glass-card-shadow: 0 8px 30px -4px rgba(0, 0, 0, 0.05), inset 0 1px 0.5px rgba(255, 255, 255, 0.7);
+  --glass-card-divider: rgba(0, 0, 0, 0.05);
+  --glass-item-hover: rgba(29, 78, 216, 0.03);
+
+  /* Executive Ambient Daylight Fields (Light Mode - Pure Daylight Luminance & Sky Mist, Zero Yellow) */
+  --ambient-light-1: radial-gradient(circle at 45% 45%, rgba(255, 255, 255, 0.65) 0%, rgba(220, 230, 246, 0.42) 35%, rgba(37, 99, 235, 0.07) 60%, transparent 75%);
+  --ambient-light-2: radial-gradient(circle at 50% 50%, rgba(214, 226, 244, 0.48) 0%, rgba(59, 130, 246, 0.06) 45%, transparent 70%);
+  --ambient-light-3: radial-gradient(circle at 55% 55%, rgba(226, 232, 240, 0.55) 0%, rgba(147, 197, 253, 0.06) 50%, transparent 75%);
+  --grid-dot-color: rgba(0, 0, 0, 0.03);
 }
 
 *, *::before, *::after {
@@ -112,9 +143,12 @@ html {
   font-size: 16px;
   scroll-behavior: smooth;
   -webkit-text-size-adjust: 100%;
+  background-color: var(--bg-page);
 }
 
 body {
+  position: relative;
+  min-height: 100vh;
   background-color: var(--bg-page);
   background-image: var(--bg-page-gradient);
   background-repeat: no-repeat;
@@ -133,8 +167,140 @@ body {
   transition: background-color var(--transition), color var(--transition);
 }
 
+/* --------------------------------------------------------------------------
+   Executive Architectural Ambient Lighting
+   -------------------------------------------------------------------------- */
+.bg-scene {
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 0;
+  overflow: hidden;
+}
+
+/* Base Daylight Luminous Fields */
+.ambient-light {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(100px);
+  will-change: transform;
+  pointer-events: none;
+}
+
+/* Primary Ambient Field: Wide daylight sweep across upper canvas */
+.ambient-light-primary {
+  width: min(900px, 115vw);
+  height: min(750px, 95vw);
+  top: -15%;
+  left: 5%;
+  background: var(--ambient-light-1);
+  transform: translate3d(0, 0, 0);
+}
+
+/* Secondary Ambient Field: Deep balancing azure wash */
+.ambient-light-secondary {
+  width: min(780px, 100vw);
+  height: min(680px, 85vw);
+  top: 28%;
+  right: -10%;
+  background: var(--ambient-light-2);
+  transform: translate3d(0, 0, 0);
+}
+
+/* Tertiary Ambient Field: Horizon grounding glow */
+.ambient-light-tertiary {
+  width: min(850px, 110vw);
+  height: min(650px, 85vw);
+  bottom: -15%;
+  left: 10%;
+  background: var(--ambient-light-3);
+  transform: translate3d(0, 0, 0);
+}
+
+/* Subtle Architectural Grid Texture with Radial Vignette */
+.bg-mesh-grid {
+  position: absolute;
+  inset: 0;
+  background-image: radial-gradient(var(--grid-dot-color) 1px, transparent 1px);
+  background-size: 28px 28px;
+  mask-image: radial-gradient(ellipse 85% 75% at 50% 25%, black 35%, transparent 85%);
+  -webkit-mask-image: radial-gradient(ellipse 85% 75% at 50% 25%, black 35%, transparent 85%);
+  pointer-events: none;
+}
+
+/* Smooth, Diurnal Ambient Light Drift (Silky 60fps GPU compositor motion) */
+@media (prefers-reduced-motion: no-preference) {
+  .ambient-light-primary {
+    animation: daylightDrift 30s cubic-bezier(0.42, 0, 0.58, 1) infinite alternate;
+  }
+
+  .ambient-light-secondary {
+    animation: ambientCounterDrift 34s cubic-bezier(0.42, 0, 0.58, 1) infinite alternate;
+  }
+
+  .ambient-light-tertiary {
+    animation: horizonBreathe 28s cubic-bezier(0.42, 0, 0.58, 1) infinite alternate;
+  }
+}
+
+/* Primary Daylight Shift (Like natural daylight sweeping across a gallery space) */
+@keyframes daylightDrift {
+  0% {
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+  35% {
+    transform: translate3d(60px, 45px, 0) scale(1.06);
+  }
+  70% {
+    transform: translate3d(120px, 20px, 0) scale(0.98);
+  }
+  100% {
+    transform: translate3d(40px, 80px, 0) scale(1.04);
+  }
+}
+
+/* Complementary Ambient Balancing Drift */
+@keyframes ambientCounterDrift {
+  0% {
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+  40% {
+    transform: translate3d(-70px, -40px, 0) scale(1.08);
+  }
+  80% {
+    transform: translate3d(-40px, 50px, 0) scale(0.95);
+  }
+  100% {
+    transform: translate3d(-90px, 15px, 0) scale(1.02);
+  }
+}
+
+/* Horizon Ambient Breathing */
+@keyframes horizonBreathe {
+  0% {
+    transform: translate3d(0, 0, 0) scale(1);
+    opacity: 0.8;
+  }
+  50% {
+    transform: translate3d(50px, -30px, 0) scale(1.05);
+    opacity: 1;
+  }
+  100% {
+    transform: translate3d(-40px, -15px, 0) scale(0.96);
+    opacity: 0.85;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ambient-light {
+    animation: none !important;
+  }
+}
+
 ::selection {
-  background: rgba(0, 122, 255, 0.28);
+  background: var(--accent-subtle-hover);
   color: var(--text-primary);
 }
 
@@ -142,6 +308,10 @@ a {
   color: inherit;
   text-decoration: none;
   transition: color var(--transition);
+}
+
+a:hover {
+  color: var(--accent);
 }
 
 button {
@@ -156,9 +326,11 @@ button {
    Container
    -------------------------------------------------------------------------- */
 .cv-wrap {
-  max-width: 630px;
+  position: relative;
+  z-index: 1;
+  max-width: 700px;
   margin: 0 auto;
-  padding: 0 20px 56px;
+  padding: 0 24px 64px;
 }
 
 /* --------------------------------------------------------------------------
@@ -166,14 +338,14 @@ button {
    -------------------------------------------------------------------------- */
 .cv-header {
   position: sticky;
-  top: 8px;
+  top: 10px;
   z-index: 50;
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: 10px;
   align-items: center;
   padding: 0;
-  margin: 0 0 16px;
+  margin: 0 0 20px;
   background: transparent;
   border: none;
   box-shadow: none;
@@ -183,11 +355,11 @@ button {
 .cv-header-identity {
   pointer-events: auto;
   display: flex;
-  gap: 16px;
+  gap: 18px;
   align-items: center;
   width: 100%;
-  padding: 12px 18px;
-  border-radius: 20px;
+  padding: 16px 22px;
+  border-radius: 22px;
   background: var(--bg-blur);
   backdrop-filter: blur(20px) saturate(180%);
   -webkit-backdrop-filter: blur(20px) saturate(180%);
@@ -202,13 +374,13 @@ button {
 }
 
 .cv-avatar {
-  width: 58px;
-  height: 58px;
+  width: 64px;
+  height: 64px;
   border-radius: 50%;
   object-fit: cover;
   flex-shrink: 0;
-  border: 2px solid rgba(255, 255, 255, 0.16);
-  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.25);
+  border: 2px solid rgba(255, 255, 255, 0.18);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.25);
 }
 
 [data-theme="light"] .cv-avatar {
@@ -226,13 +398,13 @@ button {
   align-items: center;
   justify-content: space-between;
   gap: 12px;
-  margin-bottom: 2px;
+  margin-bottom: 3px;
 }
 
 .cv-name {
-  font-size: 1.15rem;
-  font-weight: 600;
-  letter-spacing: -0.02em;
+  font-size: 1.25rem;
+  font-weight: 650;
+  letter-spacing: -0.025em;
   color: var(--text-primary);
 }
 
@@ -253,8 +425,9 @@ button {
 }
 
 .theme-btn:hover {
-  color: var(--text-primary);
-  background: var(--glass-hover);
+  color: var(--accent);
+  background: var(--accent-subtle);
+  border-color: var(--accent-border);
   transform: scale(1.08);
 }
 
@@ -264,22 +437,25 @@ button {
 [data-theme="light"] .moon-icon { display: block; }
 
 .cv-tagline {
-  font-size: 0.85rem;
+  font-size: 0.885rem;
   color: var(--text-secondary);
-  line-height: 1.4;
-  margin-bottom: 2px;
+  line-height: 1.45;
+  margin-bottom: 3px;
 }
 
 .inline-link {
-  color: var(--text-primary);
+  color: var(--accent);
   text-decoration: underline;
   text-underline-offset: 3px;
-  text-decoration-color: var(--border-hover);
-  transition: opacity var(--transition);
+  text-decoration-color: var(--accent-border);
+  font-weight: 500;
+  transition: color var(--transition), text-decoration-color var(--transition), opacity var(--transition);
 }
 
 .inline-link:hover {
-  opacity: 0.8;
+  color: var(--accent-hover);
+  text-decoration-color: var(--accent-hover);
+  opacity: 1;
 }
 
 .cv-place {
@@ -288,26 +464,41 @@ button {
 }
 
 /* --------------------------------------------------------------------------
-   Main Sections & Layout
+   Main Sections & Layout (Unified Executive Glass Dossier)
    -------------------------------------------------------------------------- */
 .cv-main {
   display: flex;
   flex-direction: column;
-  gap: 14px;
+}
+
+.cv-dossier {
+  background: var(--glass-card-bg);
+  border: 1px solid var(--glass-card-border);
+  border-radius: 22px;
+  padding: 26px 30px;
+  box-shadow: var(--glass-card-shadow);
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  transition: border-color var(--transition);
 }
 
 .cv-section {
   position: relative;
 }
 
-/* iOS Glass Card for About Section */
-.cv-section#about {
-  background: var(--glass-card-bg);
-  border: 1px solid var(--glass-card-border);
-  border-radius: 18px;
-  padding: 16px 20px;
-  box-shadow: var(--glass-card-shadow);
-  margin-bottom: 0;
+.cv-section#about,
+.cv-tabpanel .cv-section {
+  background: transparent;
+  border: none;
+  border-radius: 0;
+  padding: 0;
+  box-shadow: none;
+}
+
+.cv-section#about:not([hidden]) {
+  padding-bottom: 24px;
+  border-bottom: 1px solid var(--glass-card-divider);
 }
 
 .cv-section-heading {
@@ -429,7 +620,7 @@ button {
 }
 
 .cv-tab:focus-visible {
-  outline: 2px solid var(--text-primary);
+  outline: 2px solid var(--accent);
   outline-offset: 2px;
 }
 
@@ -463,25 +654,23 @@ button {
 }
 
 .cv-tab-all {
-  font-size: 0.775rem;
-  opacity: 0.85;
+  font-size: 0.795rem;
 }
 
 
 /* --------------------------------------------------------------------------
-   Tab Panels
+   Tab Panels & Dossier Sections
    -------------------------------------------------------------------------- */
 .cv-tabpanels {
   display: flex;
   flex-direction: column;
-  gap: 14px;
+  gap: 0;
   isolation: isolate;
 }
 
 .cv-tabpanel {
   display: none;
   flex-direction: column;
-  gap: 14px;
   outline: none;
 }
 
@@ -490,10 +679,16 @@ button {
   animation: tabFadeIn 0.2s ease forwards;
 }
 
-/* When 'All' mode is active, reveal all panels in sequence */
+/* When 'All' mode is active, reveal all panels in unified dossier flow */
 .cv-tabpanels.show-all .cv-tabpanel {
   display: flex !important;
   animation: none !important;
+}
+
+.cv-tabpanels.show-all .cv-tabpanel:not(:first-child) {
+  border-top: 1px solid var(--glass-card-divider);
+  padding-top: 26px;
+  margin-top: 26px;
 }
 
 @keyframes tabFadeIn {
@@ -511,33 +706,19 @@ button {
   }
 }
 
-/* iOS Inset Grouped Glass Card for Each Panel Section */
-.cv-tabpanel .cv-section {
-  background: var(--glass-card-bg);
-  border: 1px solid var(--glass-card-border);
-  border-radius: 18px;
-  padding: 16px 20px;
-  box-shadow: var(--glass-card-shadow);
-}
-
 /* About Prose */
 .cv-prose {
-  font-size: 0.9rem;
+  font-size: 0.925rem;
   color: var(--text-secondary);
-  line-height: 1.6;
+  line-height: 1.65;
   display: flex;
   flex-direction: column;
   gap: 10px;
-  text-align: justify;
-  text-justify: inter-word;
-  -webkit-hyphens: none;
-  hyphens: none;
-  word-break: normal;
 }
 
 .cv-prose strong {
   color: var(--text-primary);
-  font-weight: 500;
+  font-weight: 550;
 }
 
 /* Two-Column List inside iOS Glass Cards */
@@ -549,9 +730,9 @@ button {
 
 .cv-row {
   display: flex;
-  gap: 18px;
+  gap: 20px;
   align-items: flex-start;
-  padding: 10px 14px;
+  padding: 12px 14px;
   margin: 0 -14px;
   border-radius: 12px;
   border: 1px solid transparent;
@@ -560,22 +741,22 @@ button {
 
 .cv-row:hover {
   background: var(--glass-item-hover);
-  border-color: var(--glass-card-border);
+  border-color: rgba(var(--accent-rgb), 0.16);
 }
 
 .cv-list > .cv-row:not(:last-child) {
   border-bottom: 1px solid var(--glass-card-divider);
-  padding-bottom: 12px;
-  margin-bottom: 2px;
+  padding-bottom: 14px;
+  margin-bottom: 4px;
 }
 
 .cv-date {
-  width: 110px;
+  width: 120px;
   flex-shrink: 0;
-  font-size: 0.825rem;
+  font-size: 0.835rem;
   color: var(--text-muted);
   font-variant-numeric: tabular-nums;
-  padding-top: 1px;
+  padding-top: 2px;
 }
 
 .cv-detail {
@@ -584,11 +765,11 @@ button {
 }
 
 .cv-item-title {
-  font-size: 0.885rem;
-  font-weight: 500;
+  font-size: 0.92rem;
+  font-weight: 550;
   color: var(--text-primary);
   line-height: 1.4;
-  margin-bottom: 2px;
+  margin-bottom: 3px;
 }
 
 .cv-item-place {
@@ -648,7 +829,7 @@ button {
 }
 
 a:hover .arrow {
-  color: var(--text-primary);
+  color: var(--accent);
   transform: translate(2px, -2px);
 }
 
@@ -666,12 +847,14 @@ a:hover .arrow {
 }
 
 .essay-btn:hover {
+  color: var(--accent-hover);
   text-decoration: underline;
   text-underline-offset: 3px;
+  text-decoration-color: var(--accent-border);
 }
 
 .essay-btn:hover .arrow {
-  color: var(--text-primary);
+  color: var(--accent);
   transform: translateX(3px);
 }
 
@@ -693,9 +876,9 @@ a:hover .arrow {
 }
 
 .cv-chip:hover {
-  color: var(--text-primary);
-  border-color: var(--border-hover);
-  background: var(--glass-hover);
+  color: var(--accent);
+  border-color: var(--accent-border);
+  background: var(--accent-subtle);
 }
 
 /* Contact Rows */
@@ -718,8 +901,10 @@ a:hover .arrow {
 }
 
 .contact-link:hover {
+  color: var(--accent-hover);
   text-decoration: underline;
   text-underline-offset: 3px;
+  text-decoration-color: var(--accent-border);
 }
 
 .copy-pill {
@@ -733,9 +918,9 @@ a:hover .arrow {
 }
 
 .copy-pill:hover {
-  color: var(--text-primary);
-  border-color: var(--border-hover);
-  background: var(--glass-hover);
+  color: var(--accent);
+  border-color: var(--accent-border);
+  background: var(--accent-subtle);
 }
 
 /* --------------------------------------------------------------------------
@@ -765,9 +950,9 @@ a:hover .arrow {
 }
 
 .print-btn:hover {
-  color: var(--text-primary);
-  background: var(--glass-hover);
-  border-color: var(--border-hover);
+  color: var(--accent);
+  background: var(--accent-subtle);
+  border-color: var(--accent-border);
 }
 
 /* --------------------------------------------------------------------------
@@ -855,14 +1040,10 @@ a:hover .arrow {
     margin-left: 1px;
   }
 
-  .cv-tabpanel .cv-section {
-    padding: 16px 14px;
-    border-radius: 16px;
-  }
-
-  .cv-section#about {
-    padding: 16px 14px;
-    border-radius: 16px;
+  .cv-dossier {
+    padding: 20px 18px;
+    border-radius: 18px;
+    gap: 20px;
   }
 
   .cv-row {
@@ -960,10 +1141,12 @@ a:hover .arrow {
   .print-btn,
   .copy-pill,
   .cv-tabs-nav,
+  .bg-scene,
   dialog {
     display: none !important;
   }
 
+  .cv-dossier,
   .cv-section#about,
   .cv-tabpanel .cv-section {
     background: transparent !important;

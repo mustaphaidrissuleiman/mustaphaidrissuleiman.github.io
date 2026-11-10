@@ -4,14 +4,14 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Mustapha Idris Suleiman</title>
-  <meta name="description" content="Mustapha Idris Suleiman — Founder & CEO Herdbase Africa, Farmer, AI Researcher, Entrepreneur.">
+  <meta name="description" content="Mustapha Idris Suleiman — Founder &amp; CEO at Herdbase Africa (Katsina, Abuja, &amp; Lagos), Farmer, AI Researcher. Based in Lagos, Nigeria.">
   <meta name="author" content="Mustapha Idris Suleiman">
   <meta name="theme-color" content="#111111">
 
   <!-- Open Graph -->
   <meta property="og:type" content="profile">
   <meta property="og:title" content="Mustapha Idris Suleiman">
-  <meta property="og:description" content="Founder & CEO Herdbase Africa, Farmer, AI Researcher, Entrepreneur.">
+  <meta property="og:description" content="Founder &amp; CEO at Herdbase Africa (Katsina, Abuja, &amp; Lagos) · Bridging Artificial Intelligence &amp; Livestock Agriculture across Africa. Based in Lagos, Nigeria.">
   <meta property="og:image" content="assets/mustapha-avatar.jpg">
 
   <!-- Typography: Inter -->
@@ -19,10 +19,18 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;450;500;600&display=swap" rel="stylesheet">
 
-  <link rel="stylesheet" href="styles.css?v=20">
+  <link rel="stylesheet" href="styles.css?v=27">
   <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>✦</text></svg>">
 </head>
 <body>
+
+  <!-- Architectural Ambient Lighting Field -->
+  <div class="bg-scene" aria-hidden="true">
+    <div class="ambient-light ambient-light-primary"></div>
+    <div class="ambient-light ambient-light-secondary"></div>
+    <div class="ambient-light ambient-light-tertiary"></div>
+    <div class="bg-mesh-grid"></div>
+  </div>
 
   <div class="cv-wrap">
     <!-- Header: Profile Photo + Name + Tagline with link + Place + Theme Toggle + Frozen Tabs -->
@@ -51,8 +59,8 @@
             </button>
           </div>
 
-          <p class="cv-tagline">Founder & CEO <a href="https://herdbaseafrica.com" target="_blank" rel="noopener" class="inline-link">Herdbase Africa</a>, Farmer, AI Researcher, Entrepreneur</p>
-          <p class="cv-place">Abuja, Nigeria</p>
+          <p class="cv-tagline">Founder &amp; CEO at <a href="https://herdbaseafrica.com" target="_blank" rel="noopener" class="inline-link">Herdbase Africa</a> · Bridging Artificial Intelligence &amp; Livestock Agriculture across Africa</p>
+          <p class="cv-place">Lagos, Nigeria</p>
         </div>
       </div>
 
@@ -60,7 +68,10 @@
       <nav class="cv-tabs-nav" aria-label="Curriculum Vitae Sections">
         <div class="cv-tabs" role="tablist" id="cvTabsList">
           <div class="cv-tab-glider" id="cvTabGlider" aria-hidden="true"></div>
-          <button class="cv-tab is-active" id="tab-btn-experience" data-tab="experience" role="tab" aria-selected="true" aria-controls="tab-experience" tabindex="0">
+          <button class="cv-tab cv-tab-all is-active" id="tab-btn-all" data-tab="all" role="tab" aria-selected="true" aria-controls="tab-all" tabindex="0" title="View all sections at once">
+            All
+          </button>
+          <button class="cv-tab" id="tab-btn-experience" data-tab="experience" role="tab" aria-selected="false" aria-controls="tab-experience" tabindex="-1">
             Experience <span class="tab-badge">5</span>
           </button>
           <button class="cv-tab" id="tab-btn-projects" data-tab="projects" role="tab" aria-selected="false" aria-controls="tab-projects" tabindex="-1">
@@ -78,86 +89,80 @@
           <button class="cv-tab" id="tab-btn-contact" data-tab="contact" role="tab" aria-selected="false" aria-controls="tab-contact" tabindex="-1">
             Contact
           </button>
-          <button class="cv-tab cv-tab-all" id="tab-btn-all" data-tab="all" role="tab" aria-selected="false" aria-controls="tab-all" tabindex="-1" title="View all sections at once">
-            All
-          </button>
         </div>
       </nav>
     </header>
 
     <main class="cv-main">
-      <!-- About Section -->
-      <section class="cv-section" id="about">
-        <h2 class="cv-section-heading">About</h2>
-        <div class="cv-prose">
-          <p>
-            I’m a livestock farmer with a background in technology. I’m building technology and practical solutions to help livestock farmers improve productivity, manage operations, make more profit, and grow into competitive enterprises.
-          </p>
-        </div>
-      </section>
+      <div class="cv-dossier" id="cvDossier">
+        <!-- About Section (Introductory Dossier Lead) -->
+        <section class="cv-section cv-section-about" id="about">
+          <h2 class="cv-section-heading">About</h2>
+          <div class="cv-prose">
+            <p>
+              I build intelligent systems for Africa’s agricultural frontier. At <strong>Herdbase Africa</strong>, we combine machine learning, data infrastructure, and practical livestock husbandry to give producers institutional-grade operational clarity, improve herd productivity, and scale traditional farms into competitive enterprises.
+            </p>
+          </div>
+        </section>
 
-      <!-- Component Tab Panels -->
-      <div class="cv-tabpanels" id="tabPanelsContainer">
-        <!-- Tab 1: Experience -->
-        <div class="cv-tabpanel is-active" id="tab-experience" role="tabpanel" aria-labelledby="tab-btn-experience">
-  <!-- Work Experience Section -->
-        <section class="cv-section" id="experience">
-          <h2 class="cv-section-heading">Professional Experience</h2>
-  
-          <div class="cv-list">
-            <!-- Item 1 -->
-            <div class="cv-row">
-              <div class="cv-date">2025 — Present</div>
-              <div class="cv-detail">
-                <div class="cv-item-title">
-                  <a href="https://herdbaseafrica.com" target="_blank" rel="noopener">Founder & Lead ICT Strategist at Herdbase Africa <span class="arrow">↗</span></a>
+        <!-- Component Tab Panels -->
+        <div class="cv-tabpanels show-all" id="tabPanelsContainer">
+          <!-- Tab 1: Experience -->
+          <div class="cv-tabpanel is-active" id="tab-experience" role="tabpanel" aria-labelledby="tab-btn-experience">
+    <!-- Work Experience Section -->
+          <section class="cv-section" id="experience">
+            <h2 class="cv-section-heading">Professional Experience</h2>
+    
+            <div class="cv-list">
+              <!-- Item 1 -->
+              <div class="cv-row">
+                <div class="cv-date">2025 — Present</div>
+                <div class="cv-detail">
+                  <div class="cv-item-title">
+                    <a href="https://herdbaseafrica.com" target="_blank" rel="noopener">Founder &amp; CEO at Herdbase Africa <span class="arrow">↗</span></a>
+                  </div>
+                  <div class="cv-item-place">Herdbase Africa · Katsina, Abuja, &amp; Lagos, Nigeria · Enterprise Agritech &amp; AI</div>
+                  <ul class="cv-bullets">
+                    <li>Architected and launched Herdbase Africa’s cloud management platform, digitizing livestock records, disease surveillance telemetry, and yield operations for enterprise farmers across Nigeria.</li>
+                    <li>Spearhead research and deployment of applied machine learning and language models tailored for agricultural telemetry, livestock health risk forecasting, and rural data collection.</li>
+                    <li>Direct cross-functional product engineering, field operations, and strategic commercial partnerships, scaling operational presence across Katsina, Abuja, and Lagos.</li>
+                    <li>Establish enterprise data governance, capital allocation frameworks, and resilient cloud architecture (99.8% uptime) ensuring data sovereignty and integrity for rural livestock producers.</li>
+                  </ul>
                 </div>
-                <div class="cv-item-place">Abuja / Lagos, Nigeria</div>
-                <ul class="cv-bullets">
-                  <li>Lead the overarching ICT infrastructure and technical strategy for cloud-hosted SaaS platforms, ensuring high availability (99.8%), data integrity, and strict adherence to enterprise operating standards.</li>
-                  <li>Formulate comprehensive multi-year technology work plans, operational expenditure (OpEx), and capital expenditure (CapEx) budget frameworks for nationwide operational rollout.</li>
-                  <li>Recommend, establish, and enforce enterprise ICT policies, access control procedures, and cybersecurity best practices across cloud environments and collaboration workspaces.</li>
-                  <li>Administer enterprise cloud services, collaboration suites, and database systems, monitoring telemetry to detect and resolve performance bottlenecks proactively.</li>
-                  <li>Develop operational dashboards and relational data structures to track ICT key performance indicators (KPIs), system uptime, and incident resolution times for executive reporting.</li>
-                </ul>
               </div>
-            </div>
-  
-            <!-- Item 2 -->
-            <div class="cv-row">
-              <div class="cv-date">2023 — 2025</div>
-              <div class="cv-detail">
-                <div class="cv-item-title">
-                  IT Specialist | Team Lead at Unified Payments Services
+    
+              <!-- Item 2 -->
+              <div class="cv-row">
+                <div class="cv-date">2023 — 2025</div>
+                <div class="cv-detail">
+                  <div class="cv-item-title">
+                    IT Specialist &amp; Team Lead at Unified Payments Services
+                  </div>
+                  <div class="cv-item-place">Lagos, Nigeria · Core Financial Infrastructure</div>
+                  <ul class="cv-bullets">
+                    <li>Led infrastructure engineering and system administration for mission-critical payment application clusters, maintaining uninterrupted availability across national financial gateways.</li>
+                    <li>Enforced rigorous enterprise cybersecurity standards, orchestrating PCIDSS and ISO 27001 audit remediation, vulnerability assessments, and identity governance controls.</li>
+                    <li>Formulated ICT risk registries and steered vendor evaluations, managing high-throughput service-level agreements (SLAs) with core financial and telecom partners.</li>
+                    <li>Directed scheduled preventative maintenance, automated disaster recovery failover drills, and zero-downtime deployment pipelines for payment processing nodes.</li>
+                  </ul>
                 </div>
-                <div class="cv-item-place">Lagos, Nigeria</div>
-                <ul class="cv-bullets">
-                  <li>Administered enterprise payment application servers, operating systems, and core databases, coordinating software licensing, staging, patch management, and firmware upgrades across production and staging environments.</li>
-                  <li>Conducted routine vulnerability assessments, identity and access management (IAM) reviews, and system access audits to ensure compliance with strict cybersecurity requirements (PCIDSS and ISO 27001).</li>
-                  <li>Maintained comprehensive ICT risk registers and coordinated technical remediation plans for internal and external security compliance audits, successfully transforming audit findings into fortified security controls.</li>
-                  <li>Authored technical specifications and participated in procurement evaluation for external hardware, software, and telecommunications vendors, managing SLA compliance and incident escalation.</li>
-                  <li>Executed scheduled preventive maintenance, continuous system monitoring, and disaster recovery testing, safeguarding transaction availability across mission-critical financial gateways.</li>
-                </ul>
               </div>
-            </div>
-  
-            <!-- Item 3 -->
-            <div class="cv-row">
-              <div class="cv-date">2022 — 2023</div>
-              <div class="cv-detail">
-                <div class="cv-item-title">
-                  IT Support Officer at Access Bank PLC
+    
+              <!-- Item 3 -->
+              <div class="cv-row">
+                <div class="cv-date">2022 — 2023</div>
+                <div class="cv-detail">
+                  <div class="cv-item-title">
+                    IT Systems Support Officer at Access Bank PLC
+                  </div>
+                  <div class="cv-item-place">Katsina, Nigeria · Enterprise Banking Systems</div>
+                  <ul class="cv-bullets">
+                    <li>Administered regional branch network infrastructure, core banking workstations, and peripheral payment terminals, resolving Tier-2 system escalations under strict enterprise SLAs.</li>
+                    <li>Maintained Local Area Networks (LAN), Wide Area Networks (WAN), site-to-site VPNs, and primary/secondary ISP links, ensuring uninterrupted connectivity across banking operations.</li>
+                    <li>Coordinated automated data backup routines, off-site replication, and disaster recovery (DR) simulations to validate business continuity preparedness.</li>
+                  </ul>
                 </div>
-                <div class="cv-item-place">Katsina State, Nigeria</div>
-                <ul class="cv-bullets">
-                  <li>Maintained Local Area Networks (LAN), Wide Area Networks (WAN), wireless networks, site-to-site VPNs, and primary/secondary ISP links, ensuring uninterrupted connectivity across banking branch operations.</li>
-                  <li>Delivered second-level technical support for 150+ staff, diagnosing and resolving complex hardware (desktops, servers, POS, printers), OS, Microsoft 365, and business application failures within strict SLAs.</li>
-                  <li>Coordinated automated daily/weekly data backup routines, verified off-site replication, and conducted disaster recovery (DR) simulations to validate business continuity preparedness.</li>
-                  <li>Conducted quarterly ICT audits, managing an exhaustive ICT asset registry (CMDB) and verifying physical and logical security compliance across all endpoints and network racks.</li>
-                  <li>Delivered ongoing staff awareness sessions on phishing prevention, password hygiene, and corporate cybersecurity policies.</li>
-                </ul>
               </div>
-            </div>
   
             <!-- Item 4 -->
             <div class="cv-row">
@@ -218,7 +223,7 @@
                 <div class="cv-item-title">
                   <a href="https://herdbaseafrica.com" target="_blank" rel="noopener">Herdbase360 Livestock Enterprise Platform <span class="arrow">↗</span></a>
                 </div>
-                <div class="cv-item-place">Herdbase Africa · Katsina & Lagos, Nigeria</div>
+                <div class="cv-item-place">Herdbase Africa · Katsina, Abuja, &amp; Lagos, Nigeria</div>
                 <p class="cv-item-desc">
                   Multi-tenant farm software providing real-time inventory management, batch unit economics, veterinary calendars, and WhatsApp field data capture.
                 </p>
@@ -552,15 +557,16 @@
         </section>
         </div>
       </div>
+      </div>
     </main>
 
     <!-- Footer -->
     <footer class="cv-footer">
-      <p>Mustapha Idris Suleiman · Abuja, Lagos & Katsina, Nigeria</p>
+      <p>Mustapha Idris Suleiman · Lagos, Nigeria</p>
       <button class="print-btn" onclick="window.print()">Print / PDF</button>
     </footer>
   </div>
 
-  <script src="script.js?v=13"></script>
+  <script src="script.js?v=20"></script>
 </body>
 </html>
