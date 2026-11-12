@@ -1,12 +1,12 @@
 [
   {
     "id": "an-ado-about-the-nigerias-dairy-business",
-    "title": "An Ado About the Nigeria’s Dairy Business",
+    "title": "An Ado About Nigeria’s Dairy Business",
     "url": "https://www.linkedin.com/pulse/ado-nigerias-dairy-business-mustapha-idris-suleiman-qppbe/",
     "date": "Oct 2026",
     "isoDate": "2026-10-06",
-    "category": "Agribusiness & Dairy · LinkedIn",
-    "summary": "Nigeria’s dairy industry presents an unusual contradiction: one of Africa’s largest cattle populations and consumer markets, yet heavily import-dependent. An analysis of structural bottlenecks and market opportunity.",
+    "category": "Dairy & Agribusiness · Essay",
+    "summary": "Nigeria has millions of cows and millions of milk drinkers, but we still buy most of our milk and butter from other countries. Here is why that makes no sense, and how we can fix it.",
     "source": "linkedin"
   },
   {
@@ -15,8 +15,8 @@
     "url": "https://www.linkedin.com/pulse/livestock-nigerian-context-mustapha-idris-suleiman-vsxve/",
     "date": "Sep 2026",
     "isoDate": "2026-09-23",
-    "category": "Macroeconomics & Agriculture · LinkedIn",
-    "summary": "Headcounts, money, and geography: breaking down food security, farmer productivity, livestock financing, meat prices, and disease management across Nigeria.",
+    "category": "Farming & Economics · Essay",
+    "summary": "Breaking down the big picture: how many animals we have, what meat actually costs, where diseases strike, and why banks are afraid to lend money to farmers.",
     "source": "linkedin"
   },
   {
@@ -25,18 +25,18 @@
     "url": "https://www.linkedin.com/pulse/why-farmers-should-adopt-technology-day-to-day-record-idris-suleiman-xpuze/",
     "date": "Sep 2026",
     "isoDate": "2026-09-08",
-    "category": "Farm Management & Technology · LinkedIn",
-    "summary": "A farmer can tell you what an animal sold for, but still struggle to identify profit. Why digital records transform informal livestock farming into bankable enterprises.",
+    "category": "Farm Tools & Tech · Essay",
+    "summary": "If you don't track what you spend on feed and medicine, you can sell a cow for a lot of cash and still lose money. Simple records turn guessing games into real profits.",
     "source": "linkedin"
   },
   {
     "id": "another-outlook-on-farmer-herder-conflict",
-    "title": "Another outlook on Farmer - Herder conflict",
+    "title": "Another Outlook on the Farmer–Herder Conflict",
     "url": "https://www.linkedin.com/pulse/another-outlook-farmer-herder-conflict-mustapha-idris-suleiman-zzvme/",
     "date": "Aug 2026",
     "isoDate": "2026-08-17",
-    "category": "Policy & Conflict Resolution · LinkedIn",
-    "summary": "Moving beyond separation narratives toward economic integration, resource security, and sustainable coexistence in agricultural value chains.",
+    "category": "Policy & Peace · Essay",
+    "summary": "Building walls between farmers and herders will never work. The real fix is trade: when both sides do business together, share resources, and make money, peace follows.",
     "source": "linkedin"
   },
   {
@@ -45,18 +45,18 @@
     "url": "https://www.linkedin.com/pulse/future-livestock-farming-smarter-systems-mustapha-idris-suleiman-skowe/",
     "date": "Jul 2026",
     "isoDate": "2026-07-23",
-    "category": "Systems Architecture · LinkedIn",
-    "summary": "Moving beyond herd size and intuition toward real-time telemetry, automated tracking, and data-driven unit economics in livestock production.",
+    "category": "Systems & Tech · Essay",
+    "summary": "Farming by gut feeling only gets you so far. Simple tracking tools and honest math are how modern farms stay afloat and actually grow.",
     "source": "linkedin"
   },
   {
     "id": "what-value-leaders-bring-to-organizations-in-the-ai-era",
-    "title": "What Value Leaders Bring To Organizations In The AI Era?",
+    "title": "What Value Do Leaders Bring to Organizations in the AI Era?",
     "url": "https://www.linkedin.com/pulse/what-value-leaders-bring-organizations-ai-era-mustapha-idris-suleiman-cqpse/",
     "date": "Jul 2026",
     "isoDate": "2026-07-21",
-    "category": "Executive Monograph · LinkedIn",
-    "summary": "As AI automates reports, data analysis, and software development, this monograph outlines the enduring human leadership functions machines cannot replace.",
+    "category": "Leadership & AI · Essay",
+    "summary": "AI can write code, crunch spreadsheets, and draft reports in seconds. So what are human leaders actually here for? The answers that machines can't copy.",
     "source": "linkedin"
   }
 ]

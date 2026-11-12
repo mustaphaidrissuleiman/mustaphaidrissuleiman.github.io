@@ -1,101 +1,25 @@
 /**
- * Mustapha Idris Suleiman — One-Page CV
- * Clean, minimal, zero-bloat script.
+ * Mustapha Idris Suleiman — Editorial Personal Site
+ * Motion & Animation: Smooth Horizontal & Vertical Reveals
  */
 
 document.addEventListener('DOMContentLoaded', () => {
-  initThemeSwitch();
-  initStickyHeader();
-  initLagosClock();
+  // Pure editorial light theme
+  document.documentElement.removeAttribute('data-theme');
+  try { localStorage.removeItem('mis_editorial_theme'); } catch (_) {}
+  
   initEmailCopy();
-  initComponentTabs();
+  initActiveNav();
+  initStickyHeader();
+  const yearEl = document.getElementById('year');
+  if (yearEl) yearEl.textContent = new Date().getFullYear();
+  initPreloader(() => {
+    initMotion();
+  });
 });
 
 /* --------------------------------------------------------------------------
-   1. Theme Switch (Dark / Light)
-   -------------------------------------------------------------------------- */
-function initThemeSwitch() {
-  const toggleBtn = document.getElementById('themeToggle');
-  const htmlEl = document.documentElement;
-  const metaTheme = document.querySelector('meta[name="theme-color"]');
-
-  const savedTheme = localStorage.getItem('mis_cv_theme');
-  const systemDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-  const initialTheme = savedTheme || (systemDark ? 'dark' : 'light');
-
-  setTheme(initialTheme);
-
-  if (toggleBtn) {
-    toggleBtn.addEventListener('click', () => {
-      const active = htmlEl.getAttribute('data-theme') || 'dark';
-      const next = active === 'dark' ? 'light' : 'dark';
-      setTheme(next);
-      localStorage.setItem('mis_cv_theme', next);
-    });
-  }
-
-  function setTheme(t) {
-    htmlEl.setAttribute('data-theme', t);
-    if (metaTheme) {
-      metaTheme.setAttribute('content', t === 'dark' ? '#0a0c10' : '#ebedf2');
-    }
-  }
-
-  window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', (e) => {
-    if (!localStorage.getItem('mis_cv_theme')) {
-      setTheme(e.matches ? 'dark' : 'light');
-    }
-  });
-}
-
-/* --------------------------------------------------------------------------
-   Sticky Header on Scroll (Frozen Identity Bar)
-   -------------------------------------------------------------------------- */
-function initStickyHeader() {
-  const header = document.querySelector('.cv-header');
-  if (!header) return;
-
-  function onScroll() {
-    const isScrolled = window.scrollY > 8;
-    header.classList.toggle('is-scrolled', isScrolled);
-  }
-
-  window.addEventListener('scroll', onScroll, { passive: true });
-  onScroll();
-}
-
-/* --------------------------------------------------------------------------
-   2. Real-Time Lagos Time (WAT)
-   -------------------------------------------------------------------------- */
-function initLagosClock() {
-  const clockEl = document.getElementById('lagosClock');
-  if (!clockEl) return;
-
-  function tick() {
-    try {
-      const timeStr = new Intl.DateTimeFormat('en-GB', {
-        timeZone: 'Africa/Lagos',
-        hour: '2-digit',
-        minute: '2-digit',
-        hour12: false
-      }).format(new Date());
-      clockEl.textContent = `${timeStr} WAT`;
-    } catch {
-      const now = new Date();
-      const utc = now.getTime() + (now.getTimezoneOffset() * 60000);
-      const wat = new Date(utc + 3600000);
-      const h = String(wat.getHours()).padStart(2, '0');
-      const m = String(wat.getMinutes()).padStart(2, '0');
-      clockEl.textContent = `${h}:${m} WAT`;
-    }
-  }
-
-  tick();
-  setInterval(tick, 1000);
-}
-
-/* --------------------------------------------------------------------------
-   3. Contact Copy Actions (Email & Phone)
+   1. Contact Copy Actions (Email & Phone)
    -------------------------------------------------------------------------- */
 function initEmailCopy() {
   setupCopy('copyEmailBtn', 'copyFeedback', 'mustaphaidrissuleiman@gmail.com');
@@ -110,8 +34,8 @@ function initEmailCopy() {
       try {
         await navigator.clipboard.writeText(text);
         feedback.textContent = 'Copied!';
-        btn.style.borderColor = 'var(--accent)';
-        btn.style.color = 'var(--accent)';
+        btn.style.borderColor = 'var(--ink)';
+        btn.style.color = 'var(--ink)';
         setTimeout(() => {
           feedback.textContent = 'Copy';
           btn.style.borderColor = '';
@@ -119,175 +43,308 @@ function initEmailCopy() {
         }, 2000);
       } catch {
         feedback.textContent = 'Copied!';
-        setTimeout(() => { feedback.textContent = 'Copy'; }, 2000);
+        setTimeout(() => {
+          feedback.textContent = 'Copy';
+        }, 2000);
       }
     });
   }
 }
 
 /* --------------------------------------------------------------------------
-   4. Component Tabs Navigation
+   3. Active Nav Highlighting on Scroll
    -------------------------------------------------------------------------- */
-function initComponentTabs() {
-  const tabsNav = document.querySelector('.cv-tabs-nav');
-  const tabsList = document.getElementById('cvTabsList');
-  const glider = document.getElementById('cvTabGlider');
-  const tabButtons = document.querySelectorAll('.cv-tab');
-  const tabPanelsContainer = document.getElementById('tabPanelsContainer');
-  const tabPanels = document.querySelectorAll('.cv-tabpanel');
+function initActiveNav() {
+  const sections = document.querySelectorAll('main > section, .hero');
+  const navLinks = document.querySelectorAll('header.top nav a');
 
-  if (!tabButtons.length || !tabPanels.length) return;
+  if (!sections.length || !navLinks.length) return;
 
-  // Sync articles count badge if needed
-  const articlesCount = document.querySelectorAll('#articles .cv-row').length;
-  const articlesBadge = document.getElementById('articlesBadge');
-  if (articlesBadge && articlesCount > 0) {
-    articlesBadge.textContent = articlesCount;
-  }
+  function onScroll() {
+    const scrollPos = window.scrollY + 120;
 
-  function updateGlider(targetBtn, animate = true) {
-    if (!glider || !targetBtn || !tabsList) return;
+    sections.forEach((sec) => {
+      const top = sec.offsetTop;
+      const height = sec.offsetHeight;
+      const id = sec.getAttribute('id');
 
-    if (!animate) {
-      glider.style.transition = 'none';
-    } else {
-      glider.style.transition = '';
-    }
-
-    const left = targetBtn.offsetLeft;
-    const top = targetBtn.offsetTop;
-    const width = targetBtn.offsetWidth;
-    const height = targetBtn.offsetHeight;
-
-    glider.style.transform = `translate3d(${left}px, ${top}px, 0)`;
-    glider.style.width = `${width}px`;
-    glider.style.height = `${height}px`;
-    glider.style.opacity = '1';
-
-    if (!tabsList.classList.contains('has-glider')) {
-      tabsList.classList.add('has-glider');
-    }
-  }
-
-  function activateTab(tabId, updateHash = true, scrollIntoView = false) {
-    const isAll = tabId === 'all';
-    let targetBtn = null;
-
-    tabButtons.forEach((btn) => {
-      const match = btn.getAttribute('data-tab') === tabId;
-      btn.classList.toggle('is-active', match);
-      btn.setAttribute('aria-selected', match ? 'true' : 'false');
-      btn.setAttribute('tabindex', match ? '0' : '-1');
-      if (match) targetBtn = btn;
-    });
-
-    if (targetBtn) {
-      updateGlider(targetBtn, true);
-    }
-
-    if (tabPanelsContainer) {
-      tabPanelsContainer.classList.toggle('show-all', isAll);
-    }
-
-    const aboutSection = document.getElementById('about');
-    if (aboutSection) {
-      aboutSection.hidden = !isAll;
-    }
-
-    tabPanels.forEach((panel) => {
-      if (isAll) {
-        panel.hidden = false;
-        panel.classList.add('is-active');
-      } else {
-        const match = panel.id === `tab-${tabId}`;
-        panel.hidden = !match;
-        panel.classList.toggle('is-active', match);
-      }
-    });
-
-    if (updateHash) {
-      if (isAll) {
-        history.replaceState(null, '', window.location.pathname + window.location.search);
-      } else {
-        history.replaceState(null, '', `#${tabId}`);
-      }
-    }
-
-    if (scrollIntoView) {
-      const header = document.querySelector('.cv-header');
-      const headerHeight = header ? header.offsetHeight : 130;
-      const panelsTop = tabPanelsContainer ? tabPanelsContainer.offsetTop : 200;
-      if (window.scrollY > panelsTop - headerHeight) {
-        window.scrollTo({
-          top: Math.max(0, panelsTop - headerHeight - 8),
-          behavior: 'smooth'
+      if (scrollPos >= top && scrollPos < top + height) {
+        navLinks.forEach((link) => {
+          const href = link.getAttribute('href');
+          link.classList.toggle('is-active', href === `#${id}`);
         });
       }
-    }
+    });
   }
 
-  tabButtons.forEach((btn) => {
-    btn.addEventListener('click', () => {
-      const tabId = btn.getAttribute('data-tab');
-      activateTab(tabId, true, true);
-    });
-
-    btn.addEventListener('keydown', (e) => {
-      const tabsArray = Array.from(tabButtons);
-      const currentIndex = tabsArray.indexOf(btn);
-      let nextIndex = null;
-
-      if (e.key === 'ArrowRight' || e.key === 'ArrowDown') {
-        nextIndex = (currentIndex + 1) % tabsArray.length;
-      } else if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') {
-        nextIndex = (currentIndex - 1 + tabsArray.length) % tabsArray.length;
-      } else if (e.key === 'Home') {
-        nextIndex = 0;
-      } else if (e.key === 'End') {
-        nextIndex = tabsArray.length - 1;
-      }
-
-      if (nextIndex !== null) {
-        e.preventDefault();
-        const nextBtn = tabsArray[nextIndex];
-        nextBtn.focus();
-        activateTab(nextBtn.getAttribute('data-tab'), true, false);
-      }
-    });
-  });
-
-  window.addEventListener('resize', () => {
-    const activeBtn = document.querySelector('.cv-tab.is-active');
-    if (activeBtn) updateGlider(activeBtn, false);
-  });
-
-  // Handle URL hash changes or initial hash
-  function handleHash() {
-    const rawHash = (window.location.hash || '').replace('#', '').toLowerCase();
-    const aliasMap = {
-      'research-projects': 'projects',
-      'credentials': 'education',
-      'memberships': 'education'
-    };
-    const target = aliasMap[rawHash] || rawHash;
-    const validTabs = ['all', 'experience', 'projects', 'articles', 'skills', 'education', 'contact'];
-
-    if (validTabs.includes(target)) {
-      activateTab(target, false, false);
-    } else {
-      activateTab('all', false, false);
-    }
-  }
-
-  window.addEventListener('hashchange', handleHash);
-  handleHash();
-
-  // Initial glider placement without transition
-  requestAnimationFrame(() => {
-    const initialBtn = document.querySelector('.cv-tab.is-active') || tabButtons[0];
-    if (initialBtn) {
-      updateGlider(initialBtn, false);
-    }
-  });
+  window.addEventListener('scroll', onScroll, { passive: true });
+  onScroll();
 }
 
+/* --------------------------------------------------------------------------
+   4. Sticky Header Border on Scroll
+   -------------------------------------------------------------------------- */
+function initStickyHeader() {
+  const header = document.querySelector('header.top');
+  if (!header) return;
+
+  function onScroll() {
+    const isScrolled = window.scrollY > 12;
+    header.classList.toggle('is-scrolled', isScrolled);
+  }
+
+  window.addEventListener('scroll', onScroll, { passive: true });
+  onScroll();
+}
+
+/* --------------------------------------------------------------------------
+   5. Kinetic Text Preloader (Static Name + Upward Clock Timer Ticker)
+   -------------------------------------------------------------------------- */
+function initPreloader(onComplete) {
+  const preloader = document.getElementById('preloader');
+  const ticker = document.getElementById('preloaderTicker');
+  const logo = document.querySelector('.preloader-logo-wrap, .preloader-static-name');
+
+  if (!preloader || !ticker) {
+    if (onComplete) onComplete();
+    return;
+  }
+
+  // Skip if user prefers reduced motion
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    preloader.style.display = 'none';
+    if (onComplete) onComplete();
+    return;
+  }
+
+  document.body.style.overflow = 'hidden';
+
+  if (!window.gsap) {
+    setTimeout(() => {
+      preloader.style.display = 'none';
+      document.body.style.overflow = '';
+      if (onComplete) onComplete();
+    }, 2000);
+    return;
+  }
+
+  const items = ticker.querySelectorAll('.ticker-item');
+  const itemHeight = items.length > 0 ? items[0].offsetHeight : 30;
+  const numSteps = items.length - 1; // 4 rolling transitions
+
+  const tl = gsap.timeline({
+    onComplete: () => {
+      // Smooth curtain reveal upward
+      gsap.to(preloader, {
+        yPercent: -100,
+        duration: 0.8,
+        ease: 'power4.inOut',
+        onComplete: () => {
+          preloader.style.display = 'none';
+          document.body.style.overflow = '';
+          if (onComplete) onComplete();
+        }
+      });
+    }
+  });
+
+  // Signature logo gentle fade-in at start
+  if (logo) {
+    tl.from(logo, {
+      opacity: 0,
+      y: 12,
+      duration: 0.4,
+      ease: 'power2.out'
+    });
+  }
+
+  // Odometer/Clock timer rolling upward over ~2 seconds
+  for (let i = 1; i <= numSteps; i++) {
+    tl.to(ticker, {
+      y: -i * itemHeight,
+      duration: 0.32,
+      ease: 'power3.inOut',
+      delay: 0.18
+    });
+  }
+}
+
+/* --------------------------------------------------------------------------
+   6. Horizontal & Vertical Text Animations (GSAP + ScrollTrigger + Fallback)
+   -------------------------------------------------------------------------- */
+function initMotion() {
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    return;
+  }
+
+  if (window.gsap && window.ScrollTrigger) {
+    gsap.registerPlugin(ScrollTrigger);
+
+    // I. Hero Vertical Entrance (Page Load)
+    const heroTl = gsap.timeline({ defaults: { ease: 'power3.out' } });
+
+    heroTl
+      .from('header.top', {
+        y: -24,
+        opacity: 0,
+        duration: 0.8,
+        delay: 0.1
+      })
+      .from('.hero-content h1', {
+        y: 45,
+        opacity: 0,
+        duration: 1.1
+      }, '-=0.5')
+      .from('.hero-lead, .hero-sub', {
+        y: 25,
+        opacity: 0,
+        stagger: 0.15,
+        duration: 0.9
+      }, '-=0.7')
+      .from('.hero-portrait-frame', {
+        x: 40,
+        opacity: 0,
+        scale: 0.96,
+        duration: 1.2
+      }, '-=1.0');
+
+    // II. Section Headings: Horizontal Slide-In from Left
+    document.querySelectorAll('section > h2').forEach((heading) => {
+      gsap.from(heading, {
+        scrollTrigger: {
+          trigger: heading,
+          start: 'top 88%',
+          toggleActions: 'play none none none'
+        },
+        x: -40,
+        opacity: 0,
+        duration: 0.85,
+        ease: 'power2.out'
+      });
+    });
+
+    // III. Work & Writing Entries: Staggered Vertical Float Up
+    document.querySelectorAll('#work, #writing').forEach((sec) => {
+      const entries = sec.querySelectorAll('.entry');
+      if (entries.length) {
+        gsap.from(entries, {
+          scrollTrigger: {
+            trigger: sec,
+            start: 'top 82%',
+            toggleActions: 'play none none none'
+          },
+          y: 40,
+          opacity: 0,
+          duration: 0.85,
+          stagger: 0.14,
+          ease: 'power2.out'
+        });
+      }
+    });
+
+    // IV. About Monograph: Intro Reveal + Chapters Entrance (Tony Elumelu Style)
+    const aboutIntro = document.querySelector('.monograph-intro');
+    if (aboutIntro) {
+      gsap.from('.monograph-intro .kicker, .monograph-intro .monograph-name, .monograph-lead p', {
+        scrollTrigger: {
+          trigger: aboutIntro,
+          start: 'top 85%',
+          toggleActions: 'play none none none'
+        },
+        y: 35,
+        opacity: 0,
+        stagger: 0.12,
+        duration: 0.9,
+        ease: 'power2.out'
+      });
+    }
+
+    // Monograph Eras (Tony Elumelu style chapters)
+    document.querySelectorAll('.monograph-era').forEach((era) => {
+      const meta = era.querySelector('.era-meta');
+      const body = era.querySelector('.era-body');
+
+      if (meta) {
+        gsap.from(meta, {
+          scrollTrigger: {
+            trigger: era,
+            start: 'top 85%',
+            toggleActions: 'play none none none'
+          },
+          x: -30,
+          opacity: 0,
+          duration: 0.9,
+          ease: 'power2.out'
+        });
+      }
+
+      if (body) {
+        gsap.from(body, {
+          scrollTrigger: {
+            trigger: era,
+            start: 'top 85%',
+            toggleActions: 'play none none none'
+          },
+          y: 40,
+          opacity: 0,
+          duration: 0.95,
+          delay: 0.1,
+          ease: 'power2.out'
+        });
+      }
+    });
+
+    // V. Contact Section: Staggered Horizontal Slide-In
+    const contactSec = document.querySelector('#contact');
+    if (contactSec) {
+      gsap.from('#contact .contact-line', {
+        scrollTrigger: {
+          trigger: contactSec,
+          start: 'top 85%',
+          toggleActions: 'play none none none'
+        },
+        x: -35,
+        opacity: 0,
+        duration: 0.75,
+        stagger: 0.12,
+        ease: 'power2.out'
+      });
+
+      gsap.from('#contact .social-list li', {
+        scrollTrigger: {
+          trigger: contactSec,
+          start: 'top 80%',
+          toggleActions: 'play none none none'
+        },
+        x: -25,
+        opacity: 0,
+        duration: 0.65,
+        stagger: 0.06,
+        ease: 'power2.out'
+      });
+    }
+  } else {
+    // Zero-dependency IntersectionObserver fallback
+    initIntersectionFallback();
+  }
+}
+
+function initIntersectionFallback() {
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('is-visible');
+      }
+    });
+  }, { threshold: 0.15 });
+
+  document.querySelectorAll('section > h2').forEach((el) => {
+    el.classList.add('no-js-slide-left');
+    observer.observe(el);
+  });
+
+  document.querySelectorAll('.entry, .contact-line, .monograph-era').forEach((el) => {
+    el.classList.add('no-js-fade-up');
+    observer.observe(el);
+  });
+}

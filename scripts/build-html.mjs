@@ -31,19 +31,15 @@ export function generateArticlesHtml(articles) {
     const date = escapeHtml(article.date || '');
     const title = escapeHtml(article.title || 'Untitled Article');
     const url = escapeHtml(article.url || '#');
-    const category = escapeHtml(article.category || 'Article · LinkedIn');
+    const category = escapeHtml(article.category || 'Article');
     const summary = escapeHtml(article.summary || '');
 
-    return `          <div class="cv-row">
-            <div class="cv-date">${date}</div>
-            <div class="cv-detail">
-              <div class="cv-item-title">
-                <a href="${url}" target="_blank" rel="noopener">${title} <span class="arrow">↗</span></a>
-              </div>
-              <div class="cv-item-place">${category}</div>
-              <p class="cv-item-desc">${summary}</p>
-            </div>
-          </div>`;
+    return `          <article class="entry">
+            <p class="theme">${category}</p>
+            <h3 class="entry-title"><a href="${url}" target="_blank" rel="noopener">${title} <svg class="inline-arrow" viewBox="0 0 12 12" width="11" height="11" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M2.5 9.5L9.5 2.5M9.5 2.5H4M9.5 2.5V8"/></svg></a></h3>
+            <p class="entry-desc">${summary}</p>
+            <p class="date">${date}</p>
+          </article>`;
   }).join('\n\n');
 }
 
@@ -70,16 +66,16 @@ export function updateIndexHtml() {
     const endIndex = html.indexOf(endMarker);
     html = `${html.slice(0, startIndex)}\n${articlesHtml}\n          ${html.slice(endIndex)}`;
   } else {
-    // If markers do not exist yet, inject them cleanly inside the articles cv-list
-    const sectionRegex = /(<section class="cv-section" id="articles">[\s\S]*?<div class="cv-list">)([\s\S]*?)(<\/div>\s*<\/section>)/;
+    // If markers do not exist yet, inject them cleanly inside the articles/writing cv-list
+    const sectionRegex = /(<section class="cv-section" id="(?:articles|writing)">[\s\S]*?<div class="cv-list">)([\s\S]*?)(<\/div>\s*<\/section>)/;
     if (!sectionRegex.test(html)) {
-      throw new Error('Could not find articles section in index.html');
+      throw new Error('Could not find articles or writing section in index.html');
     }
     html = html.replace(sectionRegex, `$1\n          ${startMarker}\n${articlesHtml}\n          ${endMarker}\n        $3`);
   }
 
-  // Update articles badge count if present
-  html = html.replace(/(<span class="tab-badge" id="articlesBadge">)\d+(<\/span>)/, `$1${articles.length}$2`);
+  // Update articles / writing badge count if present
+  html = html.replace(/(<span class="tab-badge" id="(?:articlesBadge|writingBadge)">)\d+(<\/span>)/g, `$1${articles.length}$2`);
 
   fs.writeFileSync(htmlPath, html, 'utf8');
   console.log(`Successfully updated index.html with ${articles.length} articles.`);

@@ -1,575 +1,509 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="dark">
+<html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Mustapha Idris Suleiman</title>
-  <meta name="description" content="Mustapha Idris Suleiman — Founder &amp; CEO at Herdbase Africa (Katsina, Abuja, &amp; Lagos), Farmer, AI Researcher. Based in Lagos, Nigeria.">
-  <meta name="author" content="Mustapha Idris Suleiman">
-  <meta name="theme-color" content="#111111">
-
-  <!-- Open Graph -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Mustapha Idris Suleiman — Techno Farmer &amp; Founder, Herdbase Africa</title>
+  <meta name="description" content="Mustapha Idris Suleiman is a techno farmer and founder of Herdbase Africa. Building tools that make livestock businesses fun and profitable.">
   <meta property="og:type" content="profile">
-  <meta property="og:title" content="Mustapha Idris Suleiman">
-  <meta property="og:description" content="Founder &amp; CEO at Herdbase Africa (Katsina, Abuja, &amp; Lagos) · Bridging Artificial Intelligence &amp; Livestock Agriculture across Africa. Based in Lagos, Nigeria.">
+  <meta property="og:title" content="Mustapha Idris Suleiman — Techno Farmer &amp; Founder, Herdbase Africa">
+  <meta property="og:description" content="Techno farmer and founder of Herdbase Africa. Building tools that make livestock businesses fun and profitable.">
   <meta property="og:image" content="assets/mustapha-avatar.jpg">
+  <meta name="theme-color" content="#f7f7f5">
 
-  <!-- Typography: Inter -->
+  <!-- Favicons: Adaptive SVG & High-Res PNGs -->
+  <link rel="icon" type="image/svg+xml" href="assets/favicon.svg?v=2">
+  <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32x32.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="assets/apple-touch-icon.png">
+
+  <!-- Typography: Alex Brush (Cursive), Libre Baskerville (Executive Serif) & Mulish (Editorial Sans) -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;450;500;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Mulish:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
 
-  <link rel="stylesheet" href="styles.css?v=27">
-  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>✦</text></svg>">
+  <!-- Schema.org JSON-LD -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "Mustapha Idris Suleiman",
+    "jobTitle": "Techno Farmer & Founder, Herdbase Africa",
+    "url": "https://mustaphaidrissuleiman.github.io/",
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "Lagos",
+      "addressCountry": "NG"
+    },
+    "sameAs": [
+      "https://www.linkedin.com/in/mustaphaidrissuleiman/",
+      "https://x.com/_mustaphaidris",
+      "https://github.com/mustaphaidrissuleiman/",
+      "https://huggingface.co/mustaphaidris",
+      "https://www.instagram.com/mustaphaidrissuleiman/",
+      "https://www.facebook.com/mustaphaidrissuleiman"
+    ]
+  }
+  </script>
+
+  <link rel="stylesheet" href="styles.css?v=70">
 </head>
 <body>
+  <a class="skip" href="#main">Skip to content</a>
 
-  <!-- Architectural Ambient Lighting Field -->
-  <div class="bg-scene" aria-hidden="true">
-    <div class="ambient-light ambient-light-primary"></div>
-    <div class="ambient-light ambient-light-secondary"></div>
-    <div class="ambient-light ambient-light-tertiary"></div>
-    <div class="bg-mesh-grid"></div>
+  <!-- Fullscreen Kinetic Preloader (Signature Logo + Animated Text Under) -->
+  <div id="preloader" class="preloader" aria-hidden="true">
+    <div class="preloader-inner">
+      <div class="preloader-logo-wrap">
+        <img src="assets/mustapha-signature.svg" alt="Mustapha Idris Suleiman" class="preloader-logo-img" width="560" height="94">
+      </div>
+      <div class="preloader-ticker-wrapper">
+        <div id="preloaderTicker" class="preloader-ticker">
+          <div class="ticker-item">Techno Farmer</div>
+          <div class="ticker-item">Founder &amp; CEO, Herdbase Africa</div>
+          <div class="ticker-item">Applied AI Builder</div>
+          <div class="ticker-item">Agribusiness Innovator</div>
+          <div class="ticker-item">Techno Farmer</div>
+        </div>
+      </div>
+    </div>
   </div>
 
-  <div class="cv-wrap">
-    <!-- Header: Profile Photo + Name + Tagline with link + Place + Theme Toggle + Frozen Tabs -->
-    <header class="cv-header">
-      <div class="cv-header-identity">
-        <img src="assets/mustapha-avatar.jpg" alt="Mustapha Idris Suleiman" class="cv-avatar">
-
-        <div class="cv-header-text">
-          <div class="cv-name-bar">
-            <h1 class="cv-name">Mustapha Idris Suleiman</h1>
-            <button id="themeToggle" class="theme-btn" aria-label="Toggle light or dark theme" title="Toggle theme">
-              <svg class="sun-icon" viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2">
-                <circle cx="12" cy="12" r="5"></circle>
-                <line x1="12" y1="1" x2="12" y2="3"></line>
-                <line x1="12" y1="21" x2="12" y2="23"></line>
-                <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
-                <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
-                <line x1="1" y1="12" x2="3" y2="12"></line>
-                <line x1="21" y1="12" x2="23" y2="12"></line>
-                <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
-                <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
-              </svg>
-              <svg class="moon-icon" viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2">
-                <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
-              </svg>
-            </button>
-          </div>
-
-          <p class="cv-tagline">Founder &amp; CEO at <a href="https://herdbaseafrica.com" target="_blank" rel="noopener" class="inline-link">Herdbase Africa</a> · Bridging Artificial Intelligence &amp; Livestock Agriculture across Africa</p>
-          <p class="cv-place">Lagos, Nigeria</p>
-        </div>
+  <div class="wrap">
+    <!-- Header: Clean Minimal Top Navigation with Signature Logo on Top-Left -->
+    <header class="top">
+      <a class="site-logo-link" href="#top" aria-label="Mustapha Idris Suleiman">
+        <img src="assets/mustapha-signature.svg" alt="Mustapha Idris Suleiman" class="site-nav-logo" width="190" height="32">
+      </a>
+      <div class="top-right">
+        <nav aria-label="Primary">
+          <a href="#work">Work</a>
+          <a href="#about">About</a>
+          <a href="#writing">Writing</a>
+          <a href="#contact">Contact</a>
+        </nav>
       </div>
-
-      <!-- Component Tabs Navigation (Frozen with Header) -->
-      <nav class="cv-tabs-nav" aria-label="Curriculum Vitae Sections">
-        <div class="cv-tabs" role="tablist" id="cvTabsList">
-          <div class="cv-tab-glider" id="cvTabGlider" aria-hidden="true"></div>
-          <button class="cv-tab cv-tab-all is-active" id="tab-btn-all" data-tab="all" role="tab" aria-selected="true" aria-controls="tab-all" tabindex="0" title="View all sections at once">
-            All
-          </button>
-          <button class="cv-tab" id="tab-btn-experience" data-tab="experience" role="tab" aria-selected="false" aria-controls="tab-experience" tabindex="-1">
-            Experience <span class="tab-badge">5</span>
-          </button>
-          <button class="cv-tab" id="tab-btn-projects" data-tab="projects" role="tab" aria-selected="false" aria-controls="tab-projects" tabindex="-1">
-            Projects <span class="tab-badge">4</span>
-          </button>
-          <button class="cv-tab" id="tab-btn-articles" data-tab="articles" role="tab" aria-selected="false" aria-controls="tab-articles" tabindex="-1">
-            Articles <span class="tab-badge" id="articlesBadge">6</span>
-          </button>
-          <button class="cv-tab" id="tab-btn-skills" data-tab="skills" role="tab" aria-selected="false" aria-controls="tab-skills" tabindex="-1">
-            Skills
-          </button>
-          <button class="cv-tab" id="tab-btn-education" data-tab="education" role="tab" aria-selected="false" aria-controls="tab-education" tabindex="-1">
-            Education
-          </button>
-          <button class="cv-tab" id="tab-btn-contact" data-tab="contact" role="tab" aria-selected="false" aria-controls="tab-contact" tabindex="-1">
-            Contact
-          </button>
-        </div>
-      </nav>
     </header>
 
-    <main class="cv-main">
-      <div class="cv-dossier" id="cvDossier">
-        <!-- About Section (Introductory Dossier Lead) -->
-        <section class="cv-section cv-section-about" id="about">
-          <h2 class="cv-section-heading">About</h2>
-          <div class="cv-prose">
-            <p>
-              At <strong>Herdbase Africa</strong>, we build intelligent technology and business infrastructure that helps livestock producers operate efficiently, increase productivity, and build sustainable enterprises.
-            </p>
-            <p>
-              We are transforming Africa’s livestock sector from the ground up—connecting farm-level operations with the broader agricultural value chain.
-            </p>
+    <main id="main">
+      <!-- Hero: Cinematic Executive Split (Tony Elumelu Inspired) -->
+      <div class="hero" id="top">
+        <div class="hero-split">
+          <div class="hero-content">
+            <h1>I build tools to make livestock farming easier and more profitable.</h1>
+            <p class="hero-lead">I’m a livestock farmer, technologist, and entrepreneur. Most of my work revolves around finding practical ways to use technology to solve problems in livestock farming. This includes developing software for farmers, exploring how AI can work with African languages, and helping young people find opportunities in agriculture.</p>
+            <p class="hero-sub">I spend a lot of time working with people across Nigeria, learning, experimenting, and figuring out better ways to get things done.</p>
+            <p class="hero-sub">I want to see more African farms become successful businesses, more young people build their future in agriculture, and more African ideas make their mark on the world.</p>
           </div>
-        </section>
-
-        <!-- Component Tab Panels -->
-        <div class="cv-tabpanels show-all" id="tabPanelsContainer">
-          <!-- Tab 1: Experience -->
-          <div class="cv-tabpanel is-active" id="tab-experience" role="tabpanel" aria-labelledby="tab-btn-experience">
-    <!-- Work Experience Section -->
-          <section class="cv-section" id="experience">
-            <h2 class="cv-section-heading">Professional Experience</h2>
-    
-            <div class="cv-list">
-              <!-- Item 1 -->
-              <div class="cv-row">
-                <div class="cv-date">2025 — Present</div>
-                <div class="cv-detail">
-                  <div class="cv-item-title">
-                    <a href="https://herdbaseafrica.com" target="_blank" rel="noopener">Founder &amp; CEO at Herdbase Africa <span class="arrow">↗</span></a>
-                  </div>
-                  <div class="cv-item-place">Herdbase Africa · Katsina, Abuja, &amp; Lagos, Nigeria · Enterprise Agritech &amp; AI</div>
-                  <ul class="cv-bullets">
-                    <li>Architected and launched Herdbase Africa’s cloud management platform, digitizing livestock records, disease surveillance telemetry, and yield operations for enterprise farmers across Nigeria.</li>
-                    <li>Spearhead research and deployment of applied machine learning and language models tailored for agricultural telemetry, livestock health risk forecasting, and rural data collection.</li>
-                    <li>Direct cross-functional product engineering, field operations, and strategic commercial partnerships, scaling operational presence across Katsina, Abuja, and Lagos.</li>
-                    <li>Establish enterprise data governance, capital allocation frameworks, and resilient cloud architecture (99.8% uptime) ensuring data sovereignty and integrity for rural livestock producers.</li>
-                  </ul>
-                </div>
-              </div>
-    
-              <!-- Item 2 -->
-              <div class="cv-row">
-                <div class="cv-date">2023 — 2025</div>
-                <div class="cv-detail">
-                  <div class="cv-item-title">
-                    IT Specialist &amp; Team Lead at Unified Payments Services
-                  </div>
-                  <div class="cv-item-place">Lagos, Nigeria · Core Financial Infrastructure</div>
-                  <ul class="cv-bullets">
-                    <li>Led infrastructure engineering and system administration for mission-critical payment application clusters, maintaining uninterrupted availability across national financial gateways.</li>
-                    <li>Enforced rigorous enterprise cybersecurity standards, orchestrating PCIDSS and ISO 27001 audit remediation, vulnerability assessments, and identity governance controls.</li>
-                    <li>Formulated ICT risk registries and steered vendor evaluations, managing high-throughput service-level agreements (SLAs) with core financial and telecom partners.</li>
-                    <li>Directed scheduled preventative maintenance, automated disaster recovery failover drills, and zero-downtime deployment pipelines for payment processing nodes.</li>
-                  </ul>
-                </div>
-              </div>
-    
-              <!-- Item 3 -->
-              <div class="cv-row">
-                <div class="cv-date">2022 — 2023</div>
-                <div class="cv-detail">
-                  <div class="cv-item-title">
-                    IT Systems Support Officer at Access Bank PLC
-                  </div>
-                  <div class="cv-item-place">Katsina, Nigeria · Enterprise Banking Systems</div>
-                  <ul class="cv-bullets">
-                    <li>Administered regional branch network infrastructure, core banking workstations, and peripheral payment terminals, resolving Tier-2 system escalations under strict enterprise SLAs.</li>
-                    <li>Maintained Local Area Networks (LAN), Wide Area Networks (WAN), site-to-site VPNs, and primary/secondary ISP links, ensuring uninterrupted connectivity across banking operations.</li>
-                    <li>Coordinated automated data backup routines, off-site replication, and disaster recovery (DR) simulations to validate business continuity preparedness.</li>
-                  </ul>
-                </div>
-              </div>
-  
-            <!-- Item 4 -->
-            <div class="cv-row">
-              <div class="cv-date">2021 — Present</div>
-              <div class="cv-detail">
-                <div class="cv-item-title">
-                  Founder & IT Skills Facilitator at Geeks Arewa
-                </div>
-                <div class="cv-item-place">Kano, Nigeria</div>
-                <p class="cv-item-desc">
-                  Delivered technical mentoring and practical training in computer hardware, networking, troubleshooting, and digital literacy.
-                </p>
-              </div>
-            </div>
-  
-            <!-- Item 5 -->
-            <div class="cv-row">
-              <div class="cv-date">2019 — 2020</div>
-              <div class="cv-detail">
-                <div class="cv-item-title">
-                  Software Developer at Cloudsoft Consulting Ltd.
-                </div>
-                <div class="cv-item-place">Kaduna, Nigeria</div>
-                <p class="cv-item-desc">
-                  Developed custom software modules, translated functional specs into technical documentation, and supported quality assurance.
-                </p>
-              </div>
-            </div>
+          <div class="hero-portrait-frame">
+            <img src="assets/photos/mustapha-studio-direct.jpg" alt="Portrait of Mustapha Idris Suleiman" class="hero-portrait" width="480" height="600" fetchpriority="high">
           </div>
-        </section>
         </div>
+      </div>
 
-        <!-- Tab 2: Projects -->
-        <div class="cv-tabpanel" id="tab-projects" role="tabpanel" aria-labelledby="tab-btn-projects" hidden>
-  <!-- Research & Projects Section (Separated from Articles) -->
-        <section class="cv-section" id="research-projects">
-          <h2 class="cv-section-heading">Research & Projects</h2>
-  
-          <div class="cv-list">
-            <!-- Project 1 -->
-            <div class="cv-row">
-              <div class="cv-date">2024 — 2026</div>
-              <div class="cv-detail">
-                <div class="cv-item-title">
-                  <a href="https://huggingface.co/mustaphaidris/hausa-agri-ner-candidate" target="_blank" rel="noopener">Afro-XLM-RoBERTa Token Classifier <span class="arrow">↗</span></a>
-                </div>
-                <div class="cv-item-place">UNILAG & Hugging Face · Open Source</div>
-                <p class="cv-item-desc">
-                  Annotated a gold-standard 2,000-sentence corpus across 10 semantic entity categories. Fine-tuned Afro-XLM-R to bring African languages into modern conversational AI.
-                </p>
-              </div>
-            </div>
-  
-            <!-- Project 2 -->
-            <div class="cv-row">
-              <div class="cv-date">2023 — Present</div>
-              <div class="cv-detail">
-                <div class="cv-item-title">
-                  <a href="https://herdbaseafrica.com" target="_blank" rel="noopener">Herdbase360 Livestock Enterprise Platform <span class="arrow">↗</span></a>
-                </div>
-                <div class="cv-item-place">Herdbase Africa · Katsina, Abuja, &amp; Lagos, Nigeria</div>
-                <p class="cv-item-desc">
-                  Multi-tenant farm software providing real-time inventory management, batch unit economics, veterinary calendars, and WhatsApp field data capture.
-                </p>
-              </div>
-            </div>
-  
-            <!-- Project 3 -->
-            <div class="cv-row">
-              <div class="cv-date">2023 — 2025</div>
-              <div class="cv-detail">
-                <div class="cv-item-title">
-                  EMV 3DS 2.0 Payment Rail Infrastructure
-                </div>
-                <div class="cv-item-place">Unified Payments Services PLC · Lagos, Nigeria</div>
-                <p class="cv-item-desc">
-                  National payment gateway 3DS server implementation and certification safeguarding card transactions across Nigeria's major fintech unicorns.
-                </p>
-              </div>
-            </div>
-  
-            <!-- Project 4 -->
-            <div class="cv-row">
-              <div class="cv-date">2024</div>
-              <div class="cv-detail">
-                <div class="cv-item-title">
-                  CropScan AI
-                </div>
-                <div class="cv-item-place">Lagos, Nigeria</div>
-                <p class="cv-item-desc">
-                  Offline on-device mobile vision model diagnosing agricultural crop pathologies for smallholder farmers without requiring continuous internet connectivity.
-                </p>
-              </div>
-            </div>
-          </div>
-        </section>
+      <!-- Section: Work (What I'm Building) -->
+      <section id="work" class="work">
+        <h2>What I’m building</h2>
+        <div>
+          <article class="entry">
+            <h3 class="entry-title"><a href="https://herdbaseafrica.com" target="_blank" rel="noopener">Herdbase360 <svg class="inline-arrow" viewBox="0 0 12 12" width="11" height="11" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M2.5 9.5L9.5 2.5M9.5 2.5H4M9.5 2.5V8"/></svg></a></h3>
+            <p class="entry-desc">The all-in-one app that helps you run a livestock farm like a real business. Farmers use it to count every animal, track what they spend on food and medicine, schedule vaccine reminders, and see their real profits. Farm workers can even send daily updates right through WhatsApp, so nobody has to learn complicated computer programs.</p>
+            <p class="links">
+              <a href="https://herdbaseafrica.com" target="_blank" rel="noopener">herdbaseafrica.com <svg class="inline-arrow" viewBox="0 0 12 12" width="10" height="10" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M2.5 9.5L9.5 2.5M9.5 2.5H4M9.5 2.5V8"/></svg></a>
+            </p>
+          </article>
+
+          <article class="entry">
+            <h3 class="entry-title"><a href="https://huggingface.co/mustaphaidris/hausa-agri-ner-candidate" target="_blank" rel="noopener">Hausa Farm AI <svg class="inline-arrow" viewBox="0 0 12 12" width="11" height="11" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M2.5 9.5L9.5 2.5M9.5 2.5H4M9.5 2.5V8"/></svg></a></h3>
+            <p class="entry-desc">Most AI programs only understand English well. But if you visit a livestock market in Northern Nigeria, everyone speaks Hausa. I labeled over 2,000 real sentences and trained an AI model to understand Hausa farm talk, animal names, and market trades. It's completely free and open for anyone to use on Hugging Face.</p>
+            <p class="links">
+              <a href="https://huggingface.co/mustaphaidris/hausa-agri-ner-candidate" target="_blank" rel="noopener">Model on Hugging Face <svg class="inline-arrow" viewBox="0 0 12 12" width="10" height="10" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M2.5 9.5L9.5 2.5M9.5 2.5H4M9.5 2.5V8"/></svg></a>
+            </p>
+          </article>
+
+          <article class="entry">
+            <h3 class="entry-title">CropScan AI</h3>
+            <p class="entry-desc">A phone app that spots crop diseases when you snap a photo. It works completely offline with no Wi-Fi or data connection, because many farms are far away from cell towers.</p>
+          </article>
         </div>
+      </section>
 
-        <!-- Tab 3: Articles -->
-        <div class="cv-tabpanel" id="tab-articles" role="tabpanel" aria-labelledby="tab-btn-articles" hidden>
-  <!-- Articles Section -->
-        <section class="cv-section" id="articles">
-          <h2 class="cv-section-heading">Articles</h2>
-  
-          <div class="cv-list">
-            <!-- ARTICLES_START -->
-          <div class="cv-row">
-            <div class="cv-date">Oct 2026</div>
-            <div class="cv-detail">
-              <div class="cv-item-title">
-                <a href="https://www.linkedin.com/pulse/ado-nigerias-dairy-business-mustapha-idris-suleiman-qppbe/" target="_blank" rel="noopener">An Ado About the Nigeria’s Dairy Business <span class="arrow">↗</span></a>
+      <!-- Section: About & Journey (Tony Elumelu Monograph Style) -->
+      <section id="about" class="about-monograph">
+        <header class="monograph-intro">
+          <div class="monograph-intro-grid">
+            <div class="monograph-intro-media">
+              <div class="monograph-hero-portrait-frame">
+                <img src="assets/photos/mustapha-traditional-cap.jpg" alt="Mustapha Idris Suleiman in traditional embroidered cap" class="monograph-hero-portrait" loading="lazy">
               </div>
-              <div class="cv-item-place">Agribusiness &amp; Dairy · LinkedIn</div>
-              <p class="cv-item-desc">Nigeria’s dairy industry presents an unusual contradiction: one of Africa’s largest cattle populations and consumer markets, yet heavily import-dependent. An analysis of structural bottlenecks and market opportunity.</p>
+            </div>
+            <div class="monograph-intro-text">
+              <p class="kicker">TECHNO FARMER. FOUNDER. APPLIED AI BUILDER.</p>
+              <h2 class="monograph-name">Mustapha Idris Suleiman</h2>
+              <div class="monograph-lead">
+                <p>I live in two worlds that rarely talk to each other: livestock farming and software engineering. Most people think farming is old-fashioned, but in Africa, it’s actually one of the biggest opportunities on earth. The only problem is that millions of farms still run entirely on guesswork.</p>
+                <p>My mission with Herdbase Africa is simple: give every farmer digital tools so they know their real numbers, protect their herds from disease, and turn livestock into a fun, bankable business.</p>
+              </div>
             </div>
           </div>
+        </header>
 
-          <div class="cv-row">
-            <div class="cv-date">Sep 2026</div>
-            <div class="cv-detail">
-              <div class="cv-item-title">
-                <a href="https://www.linkedin.com/pulse/livestock-nigerian-context-mustapha-idris-suleiman-vsxve/" target="_blank" rel="noopener">Livestock: The Nigerian Context <span class="arrow">↗</span></a>
-              </div>
-              <div class="cv-item-place">Macroeconomics &amp; Agriculture · LinkedIn</div>
-              <p class="cv-item-desc">Headcounts, money, and geography: breaking down food security, farmer productivity, livestock financing, meat prices, and disease management across Nigeria.</p>
+        <!-- Chapter 01: Herdbase Africa -->
+        <article class="monograph-era">
+          <div class="era-meta">
+            <span class="era-num">01 —— THE MISSION</span>
+            <div class="era-years">2025<br>—NOW</div>
+          </div>
+          <div class="era-body">
+            <h3 class="era-title">Building Herdbase Africa &amp; Smarter Livestock Systems</h3>
+            <p>I founded Herdbase Africa to solve a problem I saw firsthand: farmers buy animals, buy feed, sell months later, and have no idea if they actually made a profit. We built Herdbase360 to track live inventory, feed expenses, veterinary schedules, and honest unit economics per batch.</p>
+            <p>To make adoption effortless, farm staff log daily animal entries straight through WhatsApp. No complicated software, no training manuals. Just clean data and profitable livestock businesses.</p>
+            <div class="era-media">
+              <img src="assets/photos/mustapha-discussion-wood-bw.jpg" alt="Mustapha Idris Suleiman at conference table in white shirt" class="era-photo" loading="lazy">
             </div>
           </div>
+        </article>
 
-          <div class="cv-row">
-            <div class="cv-date">Sep 2026</div>
-            <div class="cv-detail">
-              <div class="cv-item-title">
-                <a href="https://www.linkedin.com/pulse/why-farmers-should-adopt-technology-day-to-day-record-idris-suleiman-xpuze/" target="_blank" rel="noopener">Why Farmers Should Adopt Technology for Day-to-Day Record Keeping <span class="arrow">↗</span></a>
-              </div>
-              <div class="cv-item-place">Farm Management &amp; Technology · LinkedIn</div>
-              <p class="cv-item-desc">A farmer can tell you what an animal sold for, but still struggle to identify profit. Why digital records transform informal livestock farming into bankable enterprises.</p>
+        <!-- Chapter 02: AI & African Languages -->
+        <article class="monograph-era">
+          <div class="era-meta">
+            <span class="era-num">02 —— APPLIED AI</span>
+            <div class="era-years">2024<br>—2025</div>
+          </div>
+          <div class="era-body">
+            <h3 class="era-title">Teaching AI to Speak African Agriculture</h3>
+            <p>Most AI models today only understand English well. But when farmers trade in Northern Nigeria, everyone speaks Hausa. I spent months annotating thousands of real sentences and fine-tuned language models on Hausa farm talk, livestock names, and market dialogues.</p>
+            <p>I published the model openly on Hugging Face and built CropScan AI to diagnose crop diseases right from a phone camera—even when completely offline with zero cell service. The AI future must include local farmers.</p>
+            <div class="era-media">
+              <img src="assets/photos/mustapha-teaching-hausa-bw.jpg" alt="Mustapha Idris Suleiman teaching in front of whiteboard" class="era-photo" loading="lazy">
             </div>
           </div>
+        </article>
 
-          <div class="cv-row">
-            <div class="cv-date">Aug 2026</div>
-            <div class="cv-detail">
-              <div class="cv-item-title">
-                <a href="https://www.linkedin.com/pulse/another-outlook-farmer-herder-conflict-mustapha-idris-suleiman-zzvme/" target="_blank" rel="noopener">Another outlook on Farmer - Herder conflict <span class="arrow">↗</span></a>
-              </div>
-              <div class="cv-item-place">Policy &amp; Conflict Resolution · LinkedIn</div>
-              <p class="cv-item-desc">Moving beyond separation narratives toward economic integration, resource security, and sustainable coexistence in agricultural value chains.</p>
+        <!-- Chapter 03: National Payment Rails -->
+        <article class="monograph-era">
+          <div class="era-meta">
+            <span class="era-num">03 —— PAYMENT RAILS</span>
+            <div class="era-years">2023<br>—2025</div>
+          </div>
+          <div class="era-body">
+            <h3 class="era-title">Securing National Payment Rails at Unified Payments</h3>
+            <p>At Unified Payments Services PLC, I served as Team Lead for Web Merchant Platforms, overseeing the deployment and operational certification of Nigeria's mission-critical EMV 3DS 2.0 transaction authentication servers.</p>
+            <p>My team secured and routed high-volume payment gateway rails for Nigeria's largest fintech market leaders—including Remita, Paystack, Flutterwave, and Moniepoint—while architecting the Payloft Gateway to eliminate transaction friction and safeguard national payment sovereignty.</p>
+          </div>
+        </article>
+
+        <!-- Chapter 04: Banking Roots -->
+        <article class="monograph-era">
+          <div class="era-meta">
+            <span class="era-num">04 —— BANKING CORE</span>
+            <div class="era-years">2022<br>—2023</div>
+          </div>
+          <div class="era-body">
+            <h3 class="era-title">Core Banking &amp; Transaction Integrity at Access Bank</h3>
+            <p>At Access Bank PLC, Nigeria's largest financial institution, I managed frontline IT operations and core banking application infrastructure. My daily mandate was uninterrupted system availability: maintaining transaction audit integrity, monitoring high-throughput database transactions, and ensuring zero-downtime reliability across thousands of automated ATM and POS terminal networks nationwide.</p>
+          </div>
+        </article>
+
+        <!-- Chapter 05: Grassroots & Foundations -->
+        <article class="monograph-era">
+          <div class="era-meta">
+            <span class="era-num">05 —— FOUNDATIONS</span>
+            <div class="era-years">2019<br>—2022</div>
+          </div>
+          <div class="era-body">
+            <h3 class="era-title">Cloudsoft Consulting &amp; Founding Geeks Arewa</h3>
+            <p>My engineering path began in enterprise software delivery at Cloudsoft Consulting Ltd. (2019–2020), architecting custom relational database schemas and delivering client systems from the ground up.</p>
+            <p>In 2021, I founded Geeks Arewa to open doors for young people across Northern Nigeria through practical hands-on training in software engineering, digital skills, and IT fundamentals. Africa's challenges will be solved by builders who understand local context from the inside out.</p>
+            <div class="era-media">
+              <img src="assets/photos/mustapha-speaking-executive-bw.jpg" alt="Mustapha Idris Suleiman speaking and lecturing in white shirt" class="era-photo" loading="lazy">
             </div>
           </div>
+        </article>
 
-          <div class="cv-row">
-            <div class="cv-date">Jul 2026</div>
-            <div class="cv-detail">
-              <div class="cv-item-title">
-                <a href="https://www.linkedin.com/pulse/future-livestock-farming-smarter-systems-mustapha-idris-suleiman-skowe/" target="_blank" rel="noopener">The Future of Livestock Farming Is Smarter Systems <span class="arrow">↗</span></a>
+        <!-- Institutional Trajectory & Appointments -->
+        <div class="monograph-trajectory">
+          <header class="trajectory-header">
+            <span class="trajectory-kicker">CHRONOLOGY OF WORK &amp; CREDENTIALS</span>
+            <h3 class="trajectory-title">Professional Appointments &amp; Academic Record</h3>
+          </header>
+
+          <div class="trajectory-grid">
+            <!-- Column 1: Professional Appointments -->
+            <div class="trajectory-col">
+              <h4 class="trajectory-col-title">Professional Experience</h4>
+              <div class="trajectory-list">
+                <article class="trajectory-item">
+                  <span class="trajectory-years">2023 — NOW</span>
+                  <div class="trajectory-info">
+                    <h5 class="trajectory-role">Founder &amp; Chief Executive Officer</h5>
+                    <div class="trajectory-org">Herdbase Africa Limited</div>
+                    <p class="trajectory-desc">Directing corporate strategy, product architecture, WhatsApp livestock telemetry, and capital allocation.</p>
+                  </div>
+                </article>
+
+                <article class="trajectory-item">
+                  <span class="trajectory-years">2023 — 2025</span>
+                  <div class="trajectory-info">
+                    <h5 class="trajectory-role">Team Lead, Web Merchant Platforms</h5>
+                    <div class="trajectory-org">Unified Payments Services PLC</div>
+                    <p class="trajectory-desc">Led EMV 3DS 2.0 gateway integrations for Remita, Paystack, Flutterwave, and Moniepoint. Deployed Payloft Gateway.</p>
+                  </div>
+                </article>
+
+                <article class="trajectory-item">
+                  <span class="trajectory-years">2022 — 2023</span>
+                  <div class="trajectory-info">
+                    <h5 class="trajectory-role">IT Operations &amp; Core Banking</h5>
+                    <div class="trajectory-org">Access Bank PLC</div>
+                    <p class="trajectory-desc">Core banking application uptime, transaction audit integrity, and automated ATM/POS network reliability.</p>
+                  </div>
+                </article>
+
+                <article class="trajectory-item">
+                  <span class="trajectory-years">2021 — NOW</span>
+                  <div class="trajectory-info">
+                    <h5 class="trajectory-role">Founder &amp; Community Lead</h5>
+                    <div class="trajectory-org">Geeks Arewa</div>
+                    <p class="trajectory-desc">Training northern Nigerian youth in practical software development, algorithms, and digital infrastructure.</p>
+                  </div>
+                </article>
+
+                <article class="trajectory-item">
+                  <span class="trajectory-years">2019 — 2020</span>
+                  <div class="trajectory-info">
+                    <h5 class="trajectory-role">Software Developer</h5>
+                    <div class="trajectory-org">Cloudsoft Consulting Ltd.</div>
+                    <p class="trajectory-desc">Full-lifecycle software engineering, custom relational database schemas, and client systems delivery.</p>
+                  </div>
+                </article>
               </div>
-              <div class="cv-item-place">Systems Architecture · LinkedIn</div>
-              <p class="cv-item-desc">Moving beyond herd size and intuition toward real-time telemetry, automated tracking, and data-driven unit economics in livestock production.</p>
+            </div>
+
+            <!-- Column 2: Academic Record & Scholarship -->
+            <div class="trajectory-col">
+              <h4 class="trajectory-col-title">Education &amp; Credentials</h4>
+              <div class="trajectory-list">
+                <article class="trajectory-item">
+                  <span class="trajectory-years">2025 — NOW</span>
+                  <div class="trajectory-info">
+                    <h5 class="trajectory-role">Master of Business Administration (MBA)</h5>
+                    <div class="trajectory-org">Nigerian University of Technology &amp; Management (NUTM)</div>
+                    <p class="trajectory-desc">Executive venture finance, technology commercialization, and emerging-market agribusiness strategy.</p>
+                  </div>
+                </article>
+
+                <article class="trajectory-item">
+                  <span class="trajectory-years">2024 — 2026</span>
+                  <div class="trajectory-info">
+                    <h5 class="trajectory-role">Master in Information Technology (M.IT)</h5>
+                    <div class="trajectory-org">University of Lagos (UNILAG)</div>
+                    <p class="trajectory-desc">Research in domain-adapted NLP transformer models for low-resource African languages (Hausa farm talk).</p>
+                  </div>
+                </article>
+
+                <article class="trajectory-item">
+                  <span class="trajectory-years">2017 — 2021</span>
+                  <div class="trajectory-info">
+                    <h5 class="trajectory-role">B.Sc. in Computer Science</h5>
+                    <div class="trajectory-org">Bayero University Kano (BUK)</div>
+                    <p class="trajectory-desc">Distributed computing, relational database design, algorithms, and software architectures.</p>
+                  </div>
+                </article>
+
+                <article class="trajectory-item">
+                  <span class="trajectory-years">2013 — 2015</span>
+                  <div class="trajectory-info">
+                    <h5 class="trajectory-role">National Diploma (ND) in Computer Science</h5>
+                    <div class="trajectory-org">Hassan Usman Katsina Polytechnic</div>
+                    <p class="trajectory-desc">Graduated with Distinction. Core computing fundamentals and programming.</p>
+                  </div>
+                </article>
+              </div>
             </div>
           </div>
+        </div>
+      </section>
 
-          <div class="cv-row">
-            <div class="cv-date">Jul 2026</div>
-            <div class="cv-detail">
-              <div class="cv-item-title">
-                <a href="https://www.linkedin.com/pulse/what-value-leaders-bring-organizations-ai-era-mustapha-idris-suleiman-cqpse/" target="_blank" rel="noopener">What Value Leaders Bring To Organizations In The AI Era? <span class="arrow">↗</span></a>
-              </div>
-              <div class="cv-item-place">Executive Monograph · LinkedIn</div>
-              <p class="cv-item-desc">As AI automates reports, data analysis, and software development, this monograph outlines the enduring human leadership functions machines cannot replace.</p>
-            </div>
-          </div>
+      <!-- Section: Writing (Reflecting Interests) -->
+      <section id="writing">
+        <h2>Writing</h2>
+        <div>
+          <!-- ARTICLES_START -->
+          <article class="entry">
+            <p class="theme">Dairy &amp; Agribusiness · Essay</p>
+            <h3 class="entry-title"><a href="https://www.linkedin.com/pulse/ado-nigerias-dairy-business-mustapha-idris-suleiman-qppbe/" target="_blank" rel="noopener">An Ado About the Nigeria’s Dairy Business <svg class="inline-arrow" viewBox="0 0 12 12" width="11" height="11" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M2.5 9.5L9.5 2.5M9.5 2.5H4M9.5 2.5V8"/></svg></a></h3>
+            <p class="entry-desc">Nigeria has millions of cows and millions of milk drinkers, but we still buy most of our milk and butter from other countries. Here is why that makes no sense, and how we can fix it.</p>
+            <p class="date">Oct 2026</p>
+          </article>
+
+          <article class="entry">
+            <p class="theme">Farming &amp; Economics · Essay</p>
+            <h3 class="entry-title"><a href="https://www.linkedin.com/pulse/livestock-nigerian-context-mustapha-idris-suleiman-vsxve/" target="_blank" rel="noopener">Livestock: The Nigerian Context <svg class="inline-arrow" viewBox="0 0 12 12" width="11" height="11" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M2.5 9.5L9.5 2.5M9.5 2.5H4M9.5 2.5V8"/></svg></a></h3>
+            <p class="entry-desc">Breaking down the big picture: how many animals we have, what meat actually costs, where diseases strike, and why banks are afraid to lend money to farmers.</p>
+            <p class="date">Sep 2026</p>
+          </article>
+
+          <article class="entry">
+            <p class="theme">Farm Tools &amp; Tech · Essay</p>
+            <h3 class="entry-title"><a href="https://www.linkedin.com/pulse/why-farmers-should-adopt-technology-day-to-day-record-idris-suleiman-xpuze/" target="_blank" rel="noopener">Why Farmers Should Adopt Technology for Day-to-Day Record Keeping <svg class="inline-arrow" viewBox="0 0 12 12" width="11" height="11" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M2.5 9.5L9.5 2.5M9.5 2.5H4M9.5 2.5V8"/></svg></a></h3>
+            <p class="entry-desc">If you don&#39;t track what you spend on feed and medicine, you can sell a cow for a lot of cash and still lose money. Simple records turn guessing games into real profits.</p>
+            <p class="date">Sep 2026</p>
+          </article>
+
+          <article class="entry">
+            <p class="theme">Policy &amp; Peace · Essay</p>
+            <h3 class="entry-title"><a href="https://www.linkedin.com/pulse/another-outlook-farmer-herder-conflict-mustapha-idris-suleiman-zzvme/" target="_blank" rel="noopener">Another outlook on Farmer - Herder conflict <svg class="inline-arrow" viewBox="0 0 12 12" width="11" height="11" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M2.5 9.5L9.5 2.5M9.5 2.5H4M9.5 2.5V8"/></svg></a></h3>
+            <p class="entry-desc">Building walls between farmers and herders will never work. The real fix is trade: when both sides do business together, share resources, and make money, peace follows.</p>
+            <p class="date">Aug 2026</p>
+          </article>
+
+          <article class="entry">
+            <p class="theme">Systems &amp; Tech · Essay</p>
+            <h3 class="entry-title"><a href="https://www.linkedin.com/pulse/future-livestock-farming-smarter-systems-mustapha-idris-suleiman-skowe/" target="_blank" rel="noopener">The Future of Livestock Farming Is Smarter Systems <svg class="inline-arrow" viewBox="0 0 12 12" width="11" height="11" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M2.5 9.5L9.5 2.5M9.5 2.5H4M9.5 2.5V8"/></svg></a></h3>
+            <p class="entry-desc">Farming by gut feeling only gets you so far. Simple tracking tools and honest math are how modern farms stay afloat and actually grow.</p>
+            <p class="date">Jul 2026</p>
+          </article>
+
+          <article class="entry">
+            <p class="theme">Leadership &amp; AI · Essay</p>
+            <h3 class="entry-title"><a href="https://www.linkedin.com/pulse/what-value-leaders-bring-organizations-ai-era-mustapha-idris-suleiman-cqpse/" target="_blank" rel="noopener">What Value Leaders Bring To Organizations In The AI Era? <svg class="inline-arrow" viewBox="0 0 12 12" width="11" height="11" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M2.5 9.5L9.5 2.5M9.5 2.5H4M9.5 2.5V8"/></svg></a></h3>
+            <p class="entry-desc">AI can write code, crunch spreadsheets, and draft reports in seconds. So what are human leaders actually here for? The answers that machines can&#39;t copy.</p>
+            <p class="date">Jul 2026</p>
+          </article>
           <!-- ARTICLES_END -->
-          </div>
-        </section>
+
+          <p class="more">
+            <a href="https://www.linkedin.com/in/mustaphaidrissuleiman/" target="_blank" rel="noopener">Follow new essays on LinkedIn <svg class="inline-arrow" viewBox="0 0 12 12" width="10" height="10" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M2.5 9.5L9.5 2.5M9.5 2.5H4M9.5 2.5V8"/></svg></a>
+          </p>
         </div>
+      </section>
 
-        <!-- Tab 4: Skills -->
-        <div class="cv-tabpanel" id="tab-skills" role="tabpanel" aria-labelledby="tab-btn-skills" hidden>
-  <!-- Technical Skills & Core Competencies Section -->
-        <section class="cv-section" id="skills">
-          <h2 class="cv-section-heading">Technical Skills & Core Competencies</h2>
-  
-          <div class="cv-list">
-            <div class="cv-row">
-              <div class="cv-date">Infrastructure</div>
-              <div class="cv-detail">
-                <div class="cv-item-title">IT Infrastructure & Systems</div>
-                <p class="cv-item-desc">Windows Server (2016/2019/2022), Active Directory Domain Services (AD DS), Group Policy (GPO), Microsoft Entra ID (Azure AD), Linux (Ubuntu/RHEL), macOS, Endpoint Configuration.</p>
-              </div>
-            </div>
-  
-            <div class="cv-row">
-              <div class="cv-date">Microsoft & Cloud</div>
-              <div class="cv-detail">
-                <div class="cv-item-title">Microsoft & Cloud Technologies</div>
-                <p class="cv-item-desc">Microsoft 365 Administration (Exchange Online, SharePoint, OneDrive, Teams, Intune MDM), Enterprise Cloud Services, License Management, Software Patch Management.</p>
-              </div>
-            </div>
-  
-            <div class="cv-row">
-              <div class="cv-date">Networking</div>
-              <div class="cv-detail">
-                <div class="cv-item-title">Enterprise Networking & Comms</div>
-                <p class="cv-item-desc">Cisco Routing & Switching, LAN/WAN, TCP/IP, VLANs, Site-to-Site & Client VPNs, Corporate Wi-Fi, DNS/DHCP, Network Monitoring (PRTG/Zabbix), VoIP & Unified Comms.</p>
-              </div>
-            </div>
-  
-            <div class="cv-row">
-              <div class="cv-date">Cybersecurity</div>
-              <div class="cv-detail">
-                <div class="cv-item-title">Cybersecurity & Access Controls</div>
-                <p class="cv-item-desc">Identity & Access Management (IAM), Role-Based Permissions, Multi-Factor Authentication (MFA), Endpoint Detection & Response (EDR), Vulnerability Assessment, IT Risk Registers.</p>
-              </div>
-            </div>
-  
-            <div class="cv-row">
-              <div class="cv-date">Operations & DR</div>
-              <div class="cv-detail">
-                <div class="cv-item-title">Operations, DR & Asset Management</div>
-                <p class="cv-item-desc">Data Backup & Disaster Recovery (Veeam, Cloud Backups), Business Continuity Planning (BCP), ICT Asset Management & CMDB, Preventive Maintenance, Technical Documentation.</p>
-              </div>
-            </div>
-  
-            <div class="cv-row">
-              <div class="cv-date">Governance</div>
-              <div class="cv-detail">
-                <div class="cv-item-title">Vendor Management & HQ Alignment</div>
-                <p class="cv-item-desc">ICT Procurement Evaluation, Technical Specification Drafting, External Vendor & ISP Oversight, Service Level Agreement (SLA) Enforcement, Corporate HQ Alignment.</p>
-              </div>
-            </div>
+      <!-- Section: Contact -->
+      <section id="contact" class="contact">
+        <h2>Contact</h2>
+        <div class="contact-grid">
+          <div class="contact-portrait-frame">
+            <img src="assets/photos/mustapha-farmer-straw-hat.jpg" alt="Mustapha Idris Suleiman wearing farmer straw hat" class="contact-portrait" loading="lazy">
           </div>
-        </section>
+          <div class="contact-details">
+            <p>Want to talk about livestock, AI in Africa, partner with Herdbase, or just say hi? Drop me a message below.</p>
+
+            <!-- Email Direct Line with SVG Icons -->
+            <div class="contact-line">
+              <svg class="contact-icon" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="2" y="4" width="20" height="16" rx="2"></rect>
+                <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"></path>
+              </svg>
+              <a href="mailto:mustaphaidrissuleiman@gmail.com" class="mail">mustaphaidrissuleiman@gmail.com</a>
+              <button id="copyEmailBtn" class="copy-pill" title="Copy email address" aria-label="Copy email address">
+                <svg class="copy-icon" viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                  <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                </svg>
+                <span id="copyFeedback">Copy</span>
+              </button>
+            </div>
+
+            <!-- Phone Line with SVG Icons -->
+            <div class="contact-line phone-line">
+              <svg class="contact-icon" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
+              </svg>
+              <a href="tel:+2348061651401" class="phone-link">+234 806 165 1401</a>
+              <button id="copyPhoneBtn" class="copy-pill" title="Copy phone number" aria-label="Copy phone number">
+                <svg class="copy-icon" viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                  <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                </svg>
+                <span id="copyPhoneFeedback">Copy</span>
+              </button>
+            </div>
+
+            <!-- Social Links with Handles and Authentic SVG Icons -->
+            <ul class="social-list">
+            <li>
+              <a href="https://www.linkedin.com/in/mustaphaidrissuleiman/" target="_blank" rel="noopener" title="LinkedIn" class="social-link social-linkedin">
+                <svg class="social-icon" viewBox="0 0 24 24" width="16" height="16" fill="currentColor">
+                  <path fill-rule="evenodd" clip-rule="evenodd" d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
+                </svg>
+                <span>in/mustaphaidrissuleiman</span>
+              </a>
+            </li>
+            <li>
+              <a href="https://x.com/_mustaphaidris" target="_blank" rel="noopener" title="X (Twitter)" class="social-link social-x">
+                <svg class="social-icon" viewBox="0 0 24 24" width="16" height="16" fill="currentColor">
+                  <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+                </svg>
+                <span>@_mustaphaidris</span>
+              </a>
+            </li>
+            <li>
+              <a href="https://github.com/mustaphaidrissuleiman/" target="_blank" rel="noopener" title="GitHub" class="social-link social-github">
+                <svg class="social-icon" viewBox="0 0 24 24" width="16" height="16" fill="currentColor">
+                  <path fill-rule="evenodd" clip-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.53 1.032 1.53 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"/>
+                </svg>
+                <span>@mustaphaidrissuleiman</span>
+              </a>
+            </li>
+            <li>
+              <a href="https://huggingface.co/mustaphaidris" target="_blank" rel="noopener" title="Hugging Face" class="social-link social-hf">
+                <svg class="social-icon hf-icon" viewBox="0 0 95 88" width="18" height="17">
+                  <path fill="#FFD21E" d="M47.21 76.5a34.75 34.75 0 1 0 0-69.5 34.75 34.75 0 0 0 0 69.5Z" />
+                  <path fill="#FF9D0B" d="M81.96 41.75a34.75 34.75 0 1 0-69.5 0 34.75 34.75 0 0 0 69.5 0Zm-73.5 0a38.75 38.75 0 1 1 77.5 0 38.75 38.75 0 0 1-77.5 0Z" />
+                  <path fill="#3A3B45" d="M58.5 32.3c1.28.44 1.78 3.06 3.07 2.38a5 5 0 1 0-6.76-2.07c.61 1.15 2.55-.72 3.7-.32ZM34.95 32.3c-1.28.44-1.79 3.06-3.07 2.38a5 5 0 1 1 6.76-2.07c-.61 1.15-2.56-.72-3.7-.32Z" />
+                  <path fill="#FF323D" d="M46.96 56.29c9.83 0 13-8.76 13-13.26 0-2.34-1.57-1.6-4.09-.36-2.33 1.15-5.46 2.74-8.9 2.74-7.19 0-13-6.88-13-2.38s3.16 13.26 13 13.26Z" />
+                  <path fill="#3A3B45" fill-rule="evenodd" d="M39.43 54a8.7 8.7 0 0 1 5.3-4.49c.4-.12.81.57 1.24 1.28.4.68.82 1.37 1.24 1.37.45 0 .9-.68 1.33-1.35.45-.7.89-1.38 1.32-1.25a8.61 8.61 0 0 1 5 4.17c3.73-2.94 5.1-7.74 5.1-10.7 0-2.34-1.57-1.6-4.09-.36l-.14.07c-2.31 1.15-5.39 2.67-8.77 2.67s-6.45-1.52-8.77-2.67c-2.6-1.29-4.23-2.1-4.23.29 0 3.05 1.46 8.06 5.47 10.97Z" clip-rule="evenodd" />
+                  <path fill="#FF9D0B" d="M70.71 37a3.25 3.25 0 1 0 0-6.5 3.25 3.25 0 0 0 0 6.5ZM24.21 37a3.25 3.25 0 1 0 0-6.5 3.25 3.25 0 0 0 0 6.5ZM17.52 48c-1.62 0-3.06.66-4.07 1.87a5.97 5.97 0 0 0-1.33 3.76 7.1 7.1 0 0 0-1.94-.3c-1.55 0-2.95.59-3.94 1.66a5.8 5.8 0 0 0-.8 7 5.3 5.3 0 0 0-1.79 2.82c-.24.9-.48 2.8.8 4.74a5.22 5.22 0 0 0-.37 5.02c1.02 2.32 3.57 4.14 8.52 6.1 3.07 1.22 5.89 2 5.91 2.01a44.33 44.33 0 0 0 10.93 1.6c5.86 0 10.05-1.8 12.46-5.34 3.88-5.69 3.33-10.9-1.7-15.92-2.77-2.78-4.62-6.87-5-7.77-.78-2.66-2.84-5.62-6.25-5.62a5.7 5.7 0 0 0-4.6 2.46c-1-1.26-1.98-2.25-2.86-2.82A7.4 7.4 0 0 0 17.52 48Zm0 4c.51 0 1.14.22 1.82.65 2.14 1.36 6.25 8.43 7.76 11.18.5.92 1.37 1.31 2.14 1.31 1.55 0 2.75-1.53.15-3.48-3.92-2.93-2.55-7.72-.68-8.01.08-.02.17-.02.24-.02 1.7 0 2.45 2.93 2.45 2.93s2.2 5.52 5.98 9.3c3.77 3.77 3.97 6.8 1.22 10.83-1.88 2.75-5.47 3.58-9.16 3.58-3.81 0-7.73-.9-9.92-1.46-.11-.03-13.45-3.8-11.76-7 .28-.54.75-.76 1.34-.76 2.38 0 6.7 3.54 8.57 3.54.41 0 .7-.17.83-.6.79-2.85-12.06-4.05-10.98-8.17.2-.73.71-1.02 1.44-1.02 3.14 0 10.2 5.53 11.68 5.53.11 0 .2-.03.24-.1.74-1.2.33-2.04-4.9-5.2-5.21-3.16-8.88-5.06-6.8-7.33.24-.26.58-.38 1-.38 3.17 0 10.66 6.82 10.66 6.82s2.02 2.1 3.25 2.1c.28 0 .52-.1.68-.38.86-1.46-8.06-8.22-8.56-11.01-.34-1.9.24-2.85 1.31-2.85Z" />
+                  <path fill="#FFD21E" d="M38.6 76.69c2.75-4.04 2.55-7.07-1.22-10.84-3.78-3.77-5.98-9.3-5.98-9.3s-.82-3.2-2.69-2.9c-1.87.3-3.24 5.08.68 8.01 3.91 2.93-.78 4.92-2.29 2.17-1.5-2.75-5.62-9.82-7.76-11.18-2.13-1.35-3.63-.6-3.13 2.2.5 2.79 9.43 9.55 8.56 11-.87 1.47-3.93-1.71-3.93-1.71s-9.57-8.71-11.66-6.44c-2.08 2.27 1.59 4.17 6.8 7.33 5.23 3.16 5.64 4 4.9 5.2-.75 1.2-12.28-8.53-13.36-4.4-1.08 4.11 11.77 5.3 10.98 8.15-.8 2.85-9.06-5.38-10.74-2.18-1.7 3.21 11.65 6.98 11.76 7.01 4.3 1.12 15.25 3.49 19.08-2.12Z" />
+                  <path fill="#FF9D0B" d="M77.4 48c1.62 0 3.07.66 4.07 1.87a5.97 5.97 0 0 1 1.33 3.76 7.1 7.1 0 0 1 1.95-.3c1.55 0 2.95.59 3.94 1.66a5.8 5.8 0 0 1 .8 7 5.3 5.3 0 0 1 1.78 2.82c.24.9.48 2.8-.8 4.74a5.22 5.22 0 0 1 .37 5.02c-1.02 2.32-3.57 4.14-8.51 6.1-3.08 1.22-5.9 2-5.92 2.01a44.33 44.33 0 0 1-10.93 1.6c-5.86 0-10.05-1.8-12.46-5.34-3.88-5.69-3.33-10.9 1.7-15.92 2.78-2.78 4.63-6.87 5.01-7.77.78-2.66 2.83-5.62 6.24-5.62a5.7 5.7 0 0 1 4.6 2.46c1-1.26 1.98-2.25 2.87-2.82A7.4 7.4 0 0 1 77.4 48Zm0 4c-.51 0-1.13.22-1.82.65-2.13 1.36-6.25 8.43-7.76 11.18a2.43 2.43 0 0 1-2.14 1.31c-1.54 0-2.75-1.53-.14-3.48 3.91-2.93 2.54-7.72.67-8.01a1.54 1.54 0 0 0-.24-.02c-1.7 0-2.45 2.93-2.45 2.93s-2.2 5.52-5.97 9.3c-3.78 3.77-3.98 6.8-1.22 10.83 1.87 2.75 5.47 3.58 9.15 3.58 3.82 0 7.73-.9 9.93-1.46.1-.03 13.45-3.8 11.76-7-.29-.54-.75-.76-1.34-.76-2.38 0-6.71 3.54-8.57 3.54-.42 0-.71-.17-.83-.6-.8-2.85 12.05-4.05 10.97-8.17-.19-.73-.7-1.02-1.44-1.02-3.14 0-10.2 5.53-11.68 5.53-.1 0-.19-.03-.23-.1-.74-1.2-.34-2.04 4.88-5.2 5.23-3.16 8.9-5.06 6.8-7.33-.23-.26-.57-.38-.98-.38-3.18 0-10.67 6.82-10.67 6.82s-2.02 2.1-3.24 2.1a.74.74 0 0 1-.68-.38c-.87-1.46 8.05-8.22 8.55-11.01.34-1.9-.24-2.85-1.31-2.85Z" />
+                  <path fill="#FFD21E" d="M56.33 76.69c-2.75-4.04-2.56-7.07 1.22-10.84 3.77-3.77 5.97-9.3 5.97-9.3s.82-3.2 2.7-2.9c1.86.3 3.23 5.08-.68 8.01-3.92 2.93.78 4.92 2.28 2.17 1.51-2.75 5.63-9.82 7.76-11.18 2.13-1.35 3.64-.6 3.13 2.2-.5 2.79-9.42 9.55-8.55 11 .86 1.47 3.92-1.71 3.92-1.71s9.58-8.71 11.66-6.44c2.08 2.27-1.58 4.17-6.8 7.33-5.23 3.16-5.63 4-4.9 5.2.75 1.2 12.28-8.53 13.36-4.4 1.08 4.11-11.76 5.3-10.97 8.15.8 2.85 9.05-5.38 10.74-2.18 1.69 3.21-11.65 6.98-11.76 7.01-4.31 1.12-15.26 3.49-19.08-2.12Z" />
+                </svg>
+                <span>mustaphaidris</span>
+              </a>
+            </li>
+            <li>
+              <a href="https://www.instagram.com/mustaphaidrissuleiman/" target="_blank" rel="noopener" title="Instagram" class="social-link social-instagram">
+                <svg class="social-icon" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+                  <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+                  <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+                </svg>
+                <span>@mustaphaidrissuleiman</span>
+              </a>
+            </li>
+            <li>
+              <a href="https://www.facebook.com/mustaphaidrissuleiman" target="_blank" rel="noopener" title="Facebook" class="social-link social-facebook">
+                <svg class="social-icon" viewBox="0 0 24 24" width="16" height="16" fill="currentColor">
+                  <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+                </svg>
+                <span>mustaphaidrissuleiman</span>
+              </a>
+            </li>
+          </ul>
+          </div>
         </div>
-
-        <!-- Tab 5: Education & Credentials -->
-        <div class="cv-tabpanel" id="tab-education" role="tabpanel" aria-labelledby="tab-btn-education" hidden>
-  <!-- Education Section -->
-        <section class="cv-section" id="education">
-          <h2 class="cv-section-heading">Education</h2>
-  
-          <div class="cv-list">
-            <!-- Item 1 -->
-            <div class="cv-row">
-              <div class="cv-date">2026 — Present</div>
-              <div class="cv-detail">
-                <div class="cv-item-title">Master of Business Administration (MBA)</div>
-                <div class="cv-item-place">Nigerian University of Technology and Management (NUTM) · Lagos, Nigeria</div>
-                <p class="cv-item-desc">Executive technology leadership, corporate governance, operational strategy, and enterprise finance.</p>
-              </div>
-            </div>
-  
-            <!-- Item 2 -->
-            <div class="cv-row">
-              <div class="cv-date">2026</div>
-              <div class="cv-detail">
-                <div class="cv-item-title">Master of Information Technology (M.IT)</div>
-                <div class="cv-item-place">University of Lagos (UNILAG) · Lagos, Nigeria</div>
-                <p class="cv-item-desc">Enterprise systems, network architecture, cybersecurity governance, and natural language processing research.</p>
-              </div>
-            </div>
-  
-            <!-- Item 3 -->
-            <div class="cv-row">
-              <div class="cv-date">2021</div>
-              <div class="cv-detail">
-                <div class="cv-item-title">Bachelor of Science (B.Sc.) in Computer Science</div>
-                <div class="cv-item-place">Bayero University Kano (BUK) · Kano, Nigeria</div>
-                <p class="cv-item-desc">Operating systems, distributed computing, algorithms, database systems, and enterprise software engineering.</p>
-              </div>
-            </div>
-  
-            <!-- Item 4 -->
-            <div class="cv-row">
-              <div class="cv-date">2015</div>
-              <div class="cv-detail">
-                <div class="cv-item-title">National Diploma, Computer Science</div>
-                <div class="cv-item-place">Hassan Usman Polytechnic · Katsina, Nigeria</div>
-                <p class="cv-item-desc">Computer hardware engineering, network infrastructure, systems troubleshooting, and practical computing.</p>
-              </div>
-            </div>
-          </div>
-        </section>
-
-  <!-- Credentials & Languages Section -->
-        <section class="cv-section" id="credentials">
-          <h2 class="cv-section-heading">Certifications & Languages</h2>
-          <div class="cv-chips">
-            <span class="cv-chip">Google Cybersecurity Professional Certificate</span>
-            <span class="cv-chip">Google IT Support Professional Certificate</span>
-            <span class="cv-chip">Google Project Management Professional Certificate</span>
-            <span class="cv-chip">AI Foundations for Everyone Specialisation — IBM</span>
-            <span class="cv-chip">Annual Ethics & Compliance — CIBN</span>
-          </div>
-          <div class="cv-languages">
-            <p class="cv-item-desc"><strong>Languages:</strong> English (Fluent / Upper-Intermediate Professional Working Proficiency), Hausa (Native / Fluent)</p>
-          </div>
-        </section>
-
-  <!-- Professional Memberships Section -->
-        <section class="cv-section" id="memberships">
-          <h2 class="cv-section-heading">Professional Memberships</h2>
-  
-          <div class="cv-list">
-            <div class="cv-row">
-              <div class="cv-date">2026 — Present</div>
-              <div class="cv-detail">
-                <div class="cv-item-title">
-                  <a href="https://www.ncs.org.ng" target="_blank" rel="noopener">Nigeria Computer Society (NCS) <span class="arrow">↗</span></a>
-                </div>
-                <div class="cv-item-place">Associate Member · Membership No: 19985</div>
-                <p class="cv-item-desc">
-                  The umbrella organization of Information Technology practitioners, academics, and stakeholders in Nigeria.
-                </p>
-              </div>
-            </div>
-          </div>
-        </section>
-        </div>
-
-        <!-- Tab 6: Contact -->
-        <div class="cv-tabpanel" id="tab-contact" role="tabpanel" aria-labelledby="tab-btn-contact" hidden>
-  <!-- Contact Section -->
-        <section class="cv-section" id="contact">
-          <h2 class="cv-section-heading">Contact</h2>
-  
-          <div class="cv-list">
-            <div class="cv-row contact-row">
-              <div class="cv-date">Phone</div>
-              <div class="cv-detail contact-cell">
-                <a href="tel:+2348061651401" class="contact-link">+234 806 165 1401</a>
-                <button id="copyPhoneBtn" class="copy-pill" title="Copy phone number">
-                  <span id="copyPhoneFeedback">Copy</span>
-                </button>
-              </div>
-            </div>
-  
-            <div class="cv-row contact-row">
-              <div class="cv-date">Email</div>
-              <div class="cv-detail contact-cell">
-                <a href="mailto:mustaphaidrissuleiman@gmail.com" class="contact-link">mustaphaidrissuleiman@gmail.com</a>
-                <button id="copyEmailBtn" class="copy-pill" title="Copy email address">
-                  <span id="copyFeedback">Copy</span>
-                </button>
-              </div>
-            </div>
-  
-            <div class="cv-row contact-row">
-              <div class="cv-date">LinkedIn</div>
-              <div class="cv-detail">
-                <a href="https://www.linkedin.com/in/mustaphaidrissuleiman/" target="_blank" rel="noopener" class="contact-link">
-                  in/mustaphaidrissuleiman <span class="arrow">↗</span>
-                </a>
-              </div>
-            </div>
-  
-            <div class="cv-row contact-row">
-              <div class="cv-date">X (Twitter)</div>
-              <div class="cv-detail">
-                <a href="https://x.com/_mustaphaidris" target="_blank" rel="noopener" class="contact-link">
-                  @_mustaphaidris <span class="arrow">↗</span>
-                </a>
-              </div>
-            </div>
-  
-            <div class="cv-row contact-row">
-              <div class="cv-date">GitHub</div>
-              <div class="cv-detail">
-                <a href="https://github.com/mustaphaidrissuleiman/" target="_blank" rel="noopener" class="contact-link">
-                  @mustaphaidrissuleiman <span class="arrow">↗</span>
-                </a>
-              </div>
-            </div>
-  
-            <div class="cv-row contact-row">
-              <div class="cv-date">Hugging Face</div>
-              <div class="cv-detail">
-                <a href="https://huggingface.co/mustaphaidris" target="_blank" rel="noopener" class="contact-link">
-                  mustaphaidris <span class="arrow">↗</span>
-                </a>
-              </div>
-            </div>
-  
-            <div class="cv-row contact-row">
-              <div class="cv-date">Instagram</div>
-              <div class="cv-detail">
-                <a href="https://www.instagram.com/mustaphaidrissuleiman/" target="_blank" rel="noopener" class="contact-link">
-                  @mustaphaidrissuleiman <span class="arrow">↗</span>
-                </a>
-              </div>
-            </div>
-          </div>
-        </section>
-        </div>
-      </div>
-      </div>
+      </section>
     </main>
 
     <!-- Footer -->
-    <footer class="cv-footer">
-      <p>Mustapha Idris Suleiman · Lagos, Nigeria</p>
-      <button class="print-btn" onclick="window.print()">Print / PDF</button>
+    <footer>
+      <div class="footer-left">
+        <p class="footer-copy">&copy; <span id="year">2026</span> Mustapha Idris Suleiman. All rights reserved.</p>
+        <p class="footer-location">Lagos, Nigeria &middot; Katsina &middot; Abuja</p>
+      </div>
+      <div class="footer-links" aria-label="Legal & Policies">
+        <a href="privacy.html" class="footer-link">Privacy Policy</a>
+        <span class="footer-sep" aria-hidden="true">&middot;</span>
+        <a href="terms.html" class="footer-link">Terms of Use</a>
+      </div>
+      <div class="footer-right">
+        <button class="print-btn" onclick="window.print()" title="Print this monograph / Save as PDF">Print / PDF</button>
+      </div>
     </footer>
   </div>
 
-  <script src="script.js?v=20"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+  <script src="script.js?v=65"></script>
 </body>
 </html>
