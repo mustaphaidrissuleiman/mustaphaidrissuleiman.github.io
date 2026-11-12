@@ -129,15 +129,15 @@ function initPreloader(onComplete) {
   }
 
   const items = ticker.querySelectorAll('.ticker-item');
-  const itemHeight = items.length > 0 ? items[0].offsetHeight : 30;
-  const numSteps = items.length - 1; // 4 rolling transitions
+  // Initially position all items tucked directly under the signature logo
+  gsap.set(items, { opacity: 0, y: -28 });
 
   const tl = gsap.timeline({
     onComplete: () => {
       // Smooth curtain reveal upward
       gsap.to(preloader, {
         yPercent: -100,
-        duration: 0.8,
+        duration: 0.85,
         ease: 'power4.inOut',
         onComplete: () => {
           preloader.style.display = 'none';
@@ -148,25 +148,42 @@ function initPreloader(onComplete) {
     }
   });
 
-  // Signature logo gentle fade-in at start
+  // Signature logo gentle entrance
   if (logo) {
     tl.from(logo, {
       opacity: 0,
-      y: 12,
-      duration: 0.5,
+      scale: 0.96,
+      duration: 0.55,
       ease: 'power2.out'
     });
   }
 
-  // Smooth, readable upward transitions with comfortable pause per title
-  for (let i = 1; i <= numSteps; i++) {
-    tl.to(ticker, {
-      y: -i * itemHeight,
-      duration: 0.5,
-      ease: 'power2.inOut',
-      delay: 0.75 // stays readable for 0.75s before transitioning
-    });
-  }
+  // Each title drops DOWNWARD directly from the signature logo
+  items.forEach((item, index) => {
+    // 1. Drop down from the signature logo
+    tl.fromTo(item,
+      { y: -28, opacity: 0 },
+      {
+        y: 0,
+        opacity: 1,
+        duration: 0.45,
+        ease: 'power3.out'
+      }
+    );
+
+    // 2. Reading pause so the title is clearly registered
+    tl.to({}, { duration: 0.85 });
+
+    // 3. Drop downward out of view before the next item drops in
+    if (index < items.length - 1) {
+      tl.to(item, {
+        y: 28,
+        opacity: 0,
+        duration: 0.35,
+        ease: 'power2.in'
+      });
+    }
+  });
 
   // Brief pause on the final title before lifting the curtain
   tl.to({}, { duration: 0.5 });
