@@ -1057,28 +1057,6 @@ footer {
   user-select: none;
 }
 
-.footer-right {
-  display: flex;
-  align-items: center;
-}
-
-.print-btn {
-  font-family: var(--sans);
-  font-size: 0.785rem;
-  color: var(--muted);
-  background: transparent;
-  border: 1px solid var(--rule);
-  padding: 5px 12px;
-  border-radius: 4px;
-  cursor: pointer;
-  transition: all 0.15s ease;
-}
-
-.print-btn:hover {
-  color: var(--ink);
-  border-color: var(--ink);
-}
-
 @media (max-width: 640px) {
   footer {
     flex-direction: column;
@@ -1447,8 +1425,7 @@ a:hover .inline-arrow {
   header.top nav,
   .top-right,
   .skip,
-  .copy-pill,
-  .print-btn {
+  .copy-pill {
     display: none !important;
   }
 
