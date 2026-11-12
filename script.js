@@ -153,20 +153,23 @@ function initPreloader(onComplete) {
     tl.from(logo, {
       opacity: 0,
       y: 12,
-      duration: 0.4,
+      duration: 0.5,
       ease: 'power2.out'
     });
   }
 
-  // Odometer/Clock timer rolling upward over ~2 seconds
+  // Smooth, readable upward transitions with comfortable pause per title
   for (let i = 1; i <= numSteps; i++) {
     tl.to(ticker, {
       y: -i * itemHeight,
-      duration: 0.32,
-      ease: 'power3.inOut',
-      delay: 0.18
+      duration: 0.5,
+      ease: 'power2.inOut',
+      delay: 0.75 // stays readable for 0.75s before transitioning
     });
   }
+
+  // Brief pause on the final title before lifting the curtain
+  tl.to({}, { duration: 0.5 });
 }
 
 /* --------------------------------------------------------------------------
