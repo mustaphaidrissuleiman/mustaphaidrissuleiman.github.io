@@ -130,7 +130,7 @@ function initPreloader(onComplete) {
 
   const items = ticker.querySelectorAll('.ticker-item');
   // Initially position all items tucked directly under the signature logo
-  gsap.set(items, { opacity: 0, y: -28 });
+  gsap.set(items, { opacity: 0, y: -18 });
 
   const tl = gsap.timeline({
     onComplete: () => {
@@ -162,7 +162,7 @@ function initPreloader(onComplete) {
   items.forEach((item, index) => {
     // 1. Drop down from the signature logo
     tl.fromTo(item,
-      { y: -28, opacity: 0 },
+      { y: -18, opacity: 0 },
       {
         y: 0,
         opacity: 1,
@@ -177,7 +177,7 @@ function initPreloader(onComplete) {
     // 3. Drop downward out of view before the next item drops in
     if (index < items.length - 1) {
       tl.to(item, {
-        y: 28,
+        y: 18,
         opacity: 0,
         duration: 0.35,
         ease: 'power2.in'

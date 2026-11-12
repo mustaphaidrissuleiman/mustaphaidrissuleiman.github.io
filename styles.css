@@ -156,12 +156,13 @@ a:hover .inline-arrow {
 
 /* Downward Dropping Ticker Reel */
 .preloader-ticker-wrapper {
-  height: clamp(1.8rem, 3.5vw, 2.6rem);
+  height: clamp(2.4rem, 6vw, 3.2rem);
   position: relative;
   display: flex;
   justify-content: center;
   align-items: center;
   width: 100%;
+  max-width: 92vw;
   overflow: hidden;
   z-index: 1;
 }
@@ -177,11 +178,13 @@ a:hover .inline-arrow {
 
 .ticker-item {
   position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
   font-family: var(--sans);
-  font-size: clamp(0.95rem, 2.2vw, 1.25rem);
+  font-size: clamp(0.76rem, 3.2vw, 1.05rem);
   font-weight: 600;
   letter-spacing: 0.08em;
   text-transform: uppercase;
@@ -189,6 +192,7 @@ a:hover .inline-arrow {
   white-space: nowrap;
   opacity: 0;
   will-change: transform, opacity;
+  padding: 0 0.5rem;
 }
 
 /* Layout Wrapper: Full-screen editorial canvas */
@@ -383,6 +387,34 @@ header.top nav a.is-active {
 
 .hero-portrait-frame:hover .hero-portrait {
   transform: scale(1.035);
+}
+
+@media (max-width: 640px) {
+  .hero {
+    padding: 2rem 0 2.5rem;
+  }
+  .hero-content h1,
+  .hero-content .hero-statement {
+    font-size: clamp(1.35rem, 5.5vw, 1.7rem);
+    line-height: 1.34;
+    max-width: 100%;
+    margin-bottom: 1rem;
+    letter-spacing: -0.015em;
+    word-break: normal;
+    overflow-wrap: break-word;
+  }
+  .hero-sub {
+    font-size: 0.975rem;
+    line-height: 1.65;
+    max-width: 100%;
+    margin-bottom: 0.85rem;
+  }
+  .hero-split {
+    gap: 1.75rem;
+  }
+  .hero-portrait-frame {
+    max-width: 290px;
+  }
 }
 
 /* ==========================================================================
