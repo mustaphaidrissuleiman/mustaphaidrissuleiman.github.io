@@ -203,54 +203,27 @@ a:hover .inline-arrow {
    Header: Minimalist Top Bar with Signature Logo on Top-Left
    ========================================================================== */
 header.top {
-  position: sticky;
-  top: 0;
-  background: var(--bg);
-  z-index: 50;
-  width: 100%;
-  border-bottom: 1px solid transparent;
-  transition: border-color 0.2s ease, background 0.2s ease;
-}
-
-header.top,
-header.top .header-inner {
   display: flex;
   justify-content: space-between;
   align-items: center;
   gap: 1.5rem;
   flex-wrap: wrap;
+  padding: 1.5rem 0;
   font-family: var(--sans);
   font-size: 0.95rem;
-}
-
-header.top:has(.header-inner) {
-  display: block;
-}
-
-header.top .header-inner {
-  padding-top: 1.5rem;
-  padding-bottom: 1.5rem;
-  transition: padding 0.2s ease;
-}
-
-header.top:not(:has(.header-inner)) {
-  padding: 1.5rem 0;
+  position: sticky;
+  top: 0;
+  background: var(--bg);
+  z-index: 50;
+  transition: border-color 0.2s ease, background 0.2s ease, padding 0.2s ease;
 }
 
 header.top.is-scrolled {
   border-bottom: 1px solid var(--rule);
+  padding: 1.15rem 0;
   background: rgba(247, 247, 245, 0.94);
   backdrop-filter: blur(8px);
   -webkit-backdrop-filter: blur(8px);
-}
-
-header.top.is-scrolled .header-inner {
-  padding-top: 1.15rem;
-  padding-bottom: 1.15rem;
-}
-
-header.top.is-scrolled:not(:has(.header-inner)) {
-  padding: 1.15rem 0;
 }
 
 .site-logo-link {
@@ -322,84 +295,77 @@ header.top nav a.is-active {
 
 
 /* ==========================================================================
-   Hero Section — Cinematic Dark Executive Split (Tony Elumelu Inspired)
+   Hero Section — Cinematic Executive Split (Tony Elumelu Inspired)
    ========================================================================== */
 .hero {
-  background: #0c0d11;
-  background: radial-gradient(circle at 82% 35%, #1b1c24 0%, #0c0d11 72%);
-  color: #ffffff;
-  width: 100%;
-  position: relative;
-  overflow: hidden;
-  border-bottom: 1px solid #1a1b22;
-}
-
-.hero-wrap {
-  padding-top: clamp(3.5rem, 6.5vw, 6rem);
-  padding-bottom: clamp(3.5rem, 6.5vw, 6rem);
+  padding: clamp(2.5rem, 5.5vw, 4.5rem) 0 clamp(2.5rem, 5.5vw, 4rem);
 }
 
 .hero-split {
   display: grid;
   grid-template-columns: 1fr;
-  gap: 2.75rem;
+  gap: 2.25rem;
   align-items: center;
 }
 
-@media (min-width: 860px) {
+@media (min-width: 820px) {
   .hero-split {
-    grid-template-columns: 1.2fr 0.8fr;
-    gap: 4rem;
+    grid-template-columns: 1.18fr 0.82fr;
+    gap: 3.5rem;
   }
 }
 
 .hero-content h1 {
-  font-family: var(--sans);
-  font-weight: 700;
-  font-size: clamp(2.35rem, 4.6vw, 4.15rem);
-  line-height: 1.08;
-  letter-spacing: -0.025em;
-  margin: 0 0 1.5rem;
-  max-width: 17ch;
-  color: #ffffff;
+  font-family: var(--serif);
+  font-weight: 400;
+  font-size: clamp(2.25rem, 4.6vw, 3.65rem);
+  line-height: 1.1;
+  letter-spacing: -0.024em;
+  margin: 0 0 1.25rem;
+  max-width: 18em;
+  font-variation-settings: "opsz" 72;
+  color: var(--ink);
 }
 
 .hero-lead {
   font-family: var(--sans);
-  font-size: clamp(1rem, 1.2vw, 1.125rem);
-  font-weight: 400;
-  color: rgba(255, 255, 255, 0.85);
-  line-height: 1.68;
-  margin: 0;
-  max-width: 38rem;
+  font-size: clamp(1.15rem, 2vw, 1.35rem);
+  font-weight: 500;
+  color: var(--ink);
+  line-height: 1.45;
+  margin: 0 0 1rem;
 }
 
 .hero-sub {
   font-family: var(--sans);
-  font-size: 1rem;
-  color: rgba(255, 255, 255, 0.7);
+  font-size: 1.025rem;
+  color: var(--muted);
   line-height: 1.6;
-  margin: 0.85rem 0 0;
-  max-width: 36rem;
+  margin: 0 0 0.85rem;
+  max-width: 34rem;
+}
+
+.hero-sub:last-child {
+  margin-bottom: 0;
 }
 
 .hero-portrait-frame {
   position: relative;
-  border-radius: 4px;
+  border-radius: 0 !important;
   overflow: hidden;
-  background: #14151a;
-  aspect-ratio: 4 / 5;
+  background: transparent;
+  aspect-ratio: 9 / 12;
   max-width: 380px;
   margin: 0 auto;
-  box-shadow: 0 24px 60px -15px rgba(0, 0, 0, 0.85);
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: none !important;
+  border: none !important;
 }
 
-@media (min-width: 860px) {
+@media (min-width: 820px) {
   .hero-portrait-frame {
     margin: 0 0 0 auto;
     width: 100%;
-    max-width: 380px;
+    max-width: 360px;
   }
 }
 
@@ -409,12 +375,13 @@ header.top nav a.is-active {
   object-fit: cover;
   object-position: center 20%;
   display: block;
-  filter: contrast(1.05) brightness(0.96);
+  border-radius: 0 !important;
+  filter: contrast(1.04);
   transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .hero-portrait-frame:hover .hero-portrait {
-  transform: scale(1.03);
+  transform: scale(1.035);
 }
 
 /* ==========================================================================
