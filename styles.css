@@ -547,34 +547,6 @@ header.top nav a.is-active {
   filter: grayscale(70%) contrast(1.08) brightness(1.01);
 }
 
-.newspaper-cutin .newspaper-caption {
-  font-family: var(--sans);
-  font-size: 0.68rem;
-  line-height: 1.35;
-  color: var(--muted);
-  border-bottom: 1px solid var(--rule);
-  padding: 0.25rem 0.1rem 0.2rem;
-  margin-top: 0.25rem;
-  display: flex;
-  flex-direction: column;
-  gap: 0.1rem;
-}
-
-.newspaper-cutin .newspaper-caption-tag {
-  font-size: 0.62rem;
-  font-weight: 700;
-  letter-spacing: 0.07em;
-  text-transform: uppercase;
-  color: var(--ink);
-}
-
-.newspaper-cutin .newspaper-caption-text {
-  font-family: var(--serif);
-  font-style: italic;
-  color: var(--ink);
-  opacity: 0.85;
-}
-
 @media (max-width: 640px) {
   .hero {
     padding: 1.5rem 0 2rem;
@@ -608,28 +580,19 @@ header.top nav a.is-active {
 
   /* Broadsheet Cut-in on Mobile: Text flowing beside the photo */
   .newspaper-cutin {
-    width: 135px;
-    max-width: 44%;
-    margin: 0.15rem 0 0.65rem 0.85rem;
+    width: 130px;
+    max-width: 42%;
+    margin: 0.15rem 0 0.5rem 0.85rem;
   }
 
   .newspaper-cutin .newspaper-frame {
-    padding: 2.5px;
+    padding: 2px;
   }
 
   .newspaper-dropcap {
     font-size: 2.65rem;
     line-height: 0.82;
     padding: 0.1rem 0.35rem 0 0;
-  }
-
-  .newspaper-cutin .newspaper-caption {
-    font-size: 0.62rem;
-    padding: 0.2rem 0.05rem;
-  }
-
-  .newspaper-cutin .newspaper-caption-tag {
-    font-size: 0.58rem;
   }
 
   .monograph-lead p {
