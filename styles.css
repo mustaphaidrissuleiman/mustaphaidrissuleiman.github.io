@@ -839,6 +839,15 @@ section>h2 {
   font-family: var(--sans);
   font-size: 0.95rem;
   margin-top: 0.65rem;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.25rem 0.65rem;
+}
+
+.links-sep {
+  color: var(--muted);
+  user-select: none;
 }
 
 /* ==========================================================================
