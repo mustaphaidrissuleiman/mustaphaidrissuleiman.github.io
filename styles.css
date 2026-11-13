@@ -575,11 +575,29 @@ header.top nav a.is-active {
 
 .newspaper-cutin {
   display: block;
-  float: right;
-  width: 108px;
-  max-width: 34%;
-  margin: 0.12rem 0 0.5rem 0.85rem;
-  clear: right;
+  float: left;
+  width: 120px;
+  max-width: 38%;
+  margin: 0.15rem 0.95rem 0.55rem 0;
+  clear: left;
+}
+
+.newspaper-cutin.cutin-left {
+  float: left;
+  margin: 0.15rem 0.95rem 0.55rem 0;
+  clear: left;
+}
+
+.newspaper-cutin.cutin-center {
+  float: none;
+  width: 100%;
+  max-width: 100%;
+  margin: 0.85rem auto 1.15rem auto;
+  clear: both;
+}
+
+.newspaper-cutin.cutin-center.portrait-narrow {
+  max-width: 190px;
 }
 
 .newspaper-frame {
