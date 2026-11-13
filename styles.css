@@ -475,88 +475,11 @@ header.top nav a.is-active {
 
 .hero-lead-text {
   font-family: var(--sans);
-  font-size: 1.125rem;
-  line-height: 1.72;
+  font-size: 1.15rem;
+  line-height: 1.76;
   color: var(--ink-secondary);
   max-width: 36rem;
-  margin: 0 0 2rem;
-}
-
-/* Action Buttons */
-.hero-actions {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  gap: 1rem;
-  margin: 0 0 2rem;
-}
-
-.hero-btn-primary {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.5rem;
-  background: var(--ink);
-  color: #ffffff !important;
-  font-family: var(--sans);
-  font-size: 0.925rem;
-  font-weight: 600;
-  padding: 0.75rem 1.35rem;
-  border-radius: 4px;
-  text-decoration: none;
-  border: 1px solid var(--ink);
-  transition: background 0.2s ease, transform 0.15s ease, border-color 0.2s ease;
-}
-
-.hero-btn-primary:hover {
-  background: var(--accent-hover);
-  border-color: var(--accent-hover);
-  color: #ffffff !important;
-  transform: translateY(-1px);
-}
-
-.hero-btn-secondary {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.5rem;
-  background: transparent;
-  color: var(--ink) !important;
-  font-family: var(--sans);
-  font-size: 0.925rem;
-  font-weight: 600;
-  padding: 0.75rem 1.25rem;
-  border-radius: 4px;
-  text-decoration: none;
-  border: 1px solid var(--rule);
-  transition: background 0.2s ease, border-color 0.2s ease, transform 0.15s ease;
-}
-
-.hero-btn-secondary:hover {
-  background: var(--bg-subtle);
-  border-color: var(--ink);
-  color: var(--ink) !important;
-  transform: translateY(-1px);
-}
-
-.hero-quick-meta {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  gap: 0.65rem;
-  font-family: var(--sans);
-  font-size: 0.825rem;
-  color: var(--muted);
-  padding-top: 1.25rem;
-  border-top: 1px solid var(--rule);
-  max-width: 36rem;
-}
-
-.hero-quick-meta strong {
-  color: var(--ink);
-  font-weight: 600;
-}
-
-.hero-quick-meta .meta-sep {
-  color: var(--rule);
+  margin: 0;
 }
 
 /* Portrait Presentation */
@@ -704,15 +627,19 @@ header.top nav a.is-active {
   .mobile-only {
     display: none !important;
   }
+
   .desktop-only {
     display: block !important;
   }
+
   .hero-split.desktop-only {
     display: grid !important;
   }
+
   .monograph-intro-grid.desktop-only {
     display: grid !important;
   }
+
   .newspaper-dropcap {
     float: none !important;
     font-size: inherit !important;
@@ -729,6 +656,7 @@ header.top nav a.is-active {
   .desktop-only {
     display: none !important;
   }
+
   .mobile-only {
     display: block !important;
   }
@@ -872,12 +800,6 @@ section>h2 {
 /* Work section overrides */
 .work h3.entry-title {
   font-size: 1.35rem;
-}
-
-.work .entry-flagship {
-  border-left: 2px solid var(--ink);
-  padding-left: 1.25rem;
-  margin-left: -0.25rem;
 }
 
 .work .entry-flagship h3.entry-title {

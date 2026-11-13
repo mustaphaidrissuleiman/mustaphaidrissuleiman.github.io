@@ -164,18 +164,11 @@ function initPreloader(onComplete) {
     return;
   }
 
-  // Instant skip if reduced motion or already visited in this session
-  const hasVisited = (() => {
-    try { return sessionStorage.getItem('mis_visited_site') === '1'; } catch (_) { return false; }
-  })();
-
-  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches || hasVisited) {
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
     preloader.style.display = 'none';
     if (onComplete) onComplete();
     return;
   }
-
-  try { sessionStorage.setItem('mis_visited_site', '1'); } catch (_) {}
 
   let isDismissed = false;
   const dismissPreloader = () => {
@@ -191,11 +184,9 @@ function initPreloader(onComplete) {
     }, 450);
   };
 
-  // Tap, touch or scroll anywhere to dismiss immediately
+  // Tap or click anywhere on the preloader to dismiss immediately
   preloader.addEventListener('click', dismissPreloader, { once: true });
   preloader.addEventListener('touchstart', dismissPreloader, { passive: true, once: true });
-  window.addEventListener('wheel', dismissPreloader, { passive: true, once: true });
-  window.addEventListener('scroll', dismissPreloader, { passive: true, once: true });
 
   if (!window.gsap) {
     setTimeout(dismissPreloader, 1400);
