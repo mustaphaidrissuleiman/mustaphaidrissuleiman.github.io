@@ -500,88 +500,79 @@ header.top nav a.is-active {
 }
 
 /* ==========================================================================
-   Newspaper Editorial Photo Presentation
+   Newspaper Editorial Inset (Floated Broadsheet Columns)
    ========================================================================== */
-.newspaper-figure {
-  margin: 1.5rem 0 1rem;
+.hero-article-body,
+.monograph-lead,
+.era-body {
+  display: flow-root;
+}
+
+.newspaper-dropcap {
+  float: left;
+  font-family: var(--serif);
+  font-size: clamp(2.75rem, 5.5vw, 3.4rem);
+  line-height: 0.8;
+  padding: 0.15rem 0.45rem 0.1rem 0;
+  color: var(--ink);
+  font-weight: 700;
+}
+
+.newspaper-cutin {
+  float: right;
+  width: 220px;
+  max-width: 42%;
+  margin: 0.25rem 0 1rem 1.5rem;
   padding: 0;
-  display: block;
-  background: transparent;
+  clear: right;
 }
 
-.newspaper-frame {
-  display: block;
-  position: relative;
+.newspaper-cutin .newspaper-frame {
   border: 1px solid var(--rule);
-  padding: 4px;
+  padding: 3px;
   background: #ffffff;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
 }
 
-.newspaper-img {
+.newspaper-cutin .newspaper-img {
   width: 100%;
   height: auto;
   display: block;
-  filter: grayscale(100%) contrast(1.1) brightness(0.98);
+  filter: grayscale(100%) contrast(1.15) brightness(0.97);
   object-fit: cover;
-  border: 1px solid rgba(0, 0, 0, 0.08);
   transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1), filter 0.3s ease;
 }
 
-.newspaper-frame:hover .newspaper-img {
+.newspaper-cutin .newspaper-frame:hover .newspaper-img {
   filter: grayscale(70%) contrast(1.08) brightness(1.01);
 }
 
-.newspaper-caption {
-  margin-top: 0.45rem;
-  padding: 0.35rem 0.15rem 0.25rem;
-  border-bottom: 1px solid var(--rule);
+.newspaper-cutin .newspaper-caption {
   font-family: var(--sans);
-  font-size: 0.74rem;
-  line-height: 1.4;
+  font-size: 0.68rem;
+  line-height: 1.35;
   color: var(--muted);
+  border-bottom: 1px solid var(--rule);
+  padding: 0.25rem 0.1rem 0.2rem;
+  margin-top: 0.25rem;
   display: flex;
-  flex-wrap: wrap;
-  align-items: baseline;
-  gap: 0.35rem;
+  flex-direction: column;
+  gap: 0.1rem;
 }
 
-.newspaper-caption-tag {
-  font-size: 0.66rem;
+.newspaper-cutin .newspaper-caption-tag {
+  font-size: 0.62rem;
   font-weight: 700;
-  letter-spacing: 0.08em;
+  letter-spacing: 0.07em;
   text-transform: uppercase;
   color: var(--ink);
 }
 
-.newspaper-caption-text {
+.newspaper-cutin .newspaper-caption-text {
   font-family: var(--serif);
   font-style: italic;
   color: var(--ink);
   opacity: 0.85;
-}
-
-.hero-portrait-frame {
-  position: relative;
-  max-width: 380px;
-  margin: 0 auto;
-}
-
-@media (min-width: 820px) {
-  .hero-portrait-frame {
-    margin: 0 0 0 auto;
-    width: 100%;
-    max-width: 360px;
-  }
-}
-
-.hero-portrait {
-  width: 100%;
-  height: 100%;
-  aspect-ratio: 9 / 12;
-  object-fit: cover;
-  object-position: center 20%;
-  display: block;
 }
 
 @media (max-width: 640px) {
@@ -594,8 +585,7 @@ header.top nav a.is-active {
     margin-bottom: 0.75rem;
   }
 
-  .hero-content h1,
-  .hero-content .hero-statement {
+  .hero-statement {
     font-size: clamp(1.35rem, 5.5vw, 1.7rem);
     line-height: 1.34;
     max-width: 100%;
@@ -605,47 +595,53 @@ header.top nav a.is-active {
     overflow-wrap: break-word;
   }
 
+  .hero-sub {
+    font-size: 0.95rem;
+    line-height: 1.58;
+    max-width: 100%;
+    margin-bottom: 0.75rem;
+  }
+
   .hero-sub-desktop {
     display: none !important;
   }
 
-  .hero-sub-mobile {
-    display: block !important;
-    font-size: 0.95rem;
-    line-height: 1.58;
-    max-width: 100%;
-    margin-bottom: 0.85rem;
-    color: var(--muted);
+  /* Broadsheet Cut-in on Mobile: Text flowing beside the photo */
+  .newspaper-cutin {
+    width: 135px;
+    max-width: 44%;
+    margin: 0.15rem 0 0.65rem 0.85rem;
   }
 
-  .hero-split {
-    gap: 1.35rem;
+  .newspaper-cutin .newspaper-frame {
+    padding: 2.5px;
   }
 
-  .hero-portrait-frame.newspaper-figure {
-    max-width: 220px;
-    margin: 0.5rem auto 0;
+  .newspaper-dropcap {
+    font-size: 2.65rem;
+    line-height: 0.82;
+    padding: 0.1rem 0.35rem 0 0;
   }
 
-  .hero-portrait-frame .newspaper-frame {
-    aspect-ratio: 1 / 1;
-    overflow: hidden;
-    padding: 3px;
-  }
-
-  .hero-portrait-frame .newspaper-img {
-    height: 100%;
-    object-position: center 20%;
-  }
-
-  .newspaper-caption {
-    font-size: 0.7rem;
-    gap: 0.25rem;
-    padding: 0.3rem 0.1rem 0.2rem;
-  }
-
-  .newspaper-caption-tag {
+  .newspaper-cutin .newspaper-caption {
     font-size: 0.62rem;
+    padding: 0.2rem 0.05rem;
+  }
+
+  .newspaper-cutin .newspaper-caption-tag {
+    font-size: 0.58rem;
+  }
+
+  .monograph-lead p {
+    font-size: 0.985rem;
+    line-height: 1.6;
+    margin-bottom: 0.75rem;
+  }
+
+  .era-body p {
+    font-size: 0.965rem;
+    line-height: 1.65;
+    margin-bottom: 0.75rem;
   }
 }
 
@@ -987,48 +983,9 @@ section>h2 {
 }
 
 @media (max-width: 640px) {
-  .monograph-hero-portrait-frame.newspaper-figure {
-    max-width: 220px;
-    margin: 0 auto 1.15rem;
-  }
-
-  .monograph-hero-portrait-frame .newspaper-frame {
-    aspect-ratio: 1 / 1;
-    overflow: hidden;
-    padding: 3px;
-  }
-
-  .monograph-hero-portrait-frame .newspaper-img {
-    height: 100%;
-    object-position: center 12%;
-  }
-
   .monograph-name {
     font-size: clamp(1.85rem, 6.5vw, 2.35rem);
     margin-bottom: 0.85rem;
-  }
-
-  .monograph-lead p {
-    font-size: 1.05rem;
-    line-height: 1.58;
-    margin-bottom: 0.75rem;
-  }
-
-  .era-media.newspaper-figure {
-    margin-top: 1.15rem;
-    margin-bottom: 0.65rem;
-  }
-
-  .era-media .newspaper-frame {
-    max-height: 220px;
-    aspect-ratio: 16 / 10;
-    overflow: hidden;
-    padding: 3px;
-  }
-
-  .era-media .newspaper-img {
-    height: 100%;
-    object-position: center 25%;
   }
 }
 
