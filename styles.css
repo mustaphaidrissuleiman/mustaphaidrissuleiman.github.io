@@ -1366,20 +1366,19 @@ section>h2 {
   }
 
   .social-list {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 0.6rem;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem 1.4rem;
     margin-top: 1.35rem;
   }
 
   .social-list li a {
-    padding: 0.45rem 0.65rem;
-    background: var(--bg-subtle);
-    border: 1px solid var(--rule);
-    border-radius: 4px;
-    font-size: 0.835rem;
-    width: 100%;
-    justify-content: flex-start;
+    padding: 0;
+    background: transparent;
+    border: none;
+    border-radius: 0;
+    font-size: 0.9rem;
+    width: auto;
   }
 }
 
