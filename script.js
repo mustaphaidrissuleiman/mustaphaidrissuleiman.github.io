@@ -176,7 +176,6 @@ function initPreloader(onComplete) {
   }
 
   try { sessionStorage.setItem('mis_visited_site', '1'); } catch (_) {}
-  document.body.style.overflow = 'hidden';
 
   let isDismissed = false;
   const dismissPreloader = () => {
@@ -188,14 +187,15 @@ function initPreloader(onComplete) {
     preloader.style.transform = 'translateY(-100%)';
     setTimeout(() => {
       preloader.style.display = 'none';
-      document.body.style.overflow = '';
       if (onComplete) onComplete();
     }, 450);
   };
 
-  // Tap or click anywhere on the preloader to dismiss immediately
+  // Tap, touch or scroll anywhere to dismiss immediately
   preloader.addEventListener('click', dismissPreloader, { once: true });
   preloader.addEventListener('touchstart', dismissPreloader, { passive: true, once: true });
+  window.addEventListener('wheel', dismissPreloader, { passive: true, once: true });
+  window.addEventListener('scroll', dismissPreloader, { passive: true, once: true });
 
   if (!window.gsap) {
     setTimeout(dismissPreloader, 1400);
@@ -250,42 +250,6 @@ function initPreloader(onComplete) {
    6. Clean, Stable Entrance Animations (Zero Scroll Jitter)
    -------------------------------------------------------------------------- */
 function initMotion() {
-  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-    return;
-  }
-
-  if (window.gsap) {
-    const heroTl = gsap.timeline({ defaults: { ease: 'power2.out' } });
-
-    // Clean, gentle hero entrance on page load (NO transform on sticky header)
-    heroTl
-      .from('header.top', {
-        opacity: 0,
-        duration: 0.45
-      })
-      .from('.hero-kicker', {
-        opacity: 0,
-        y: 8,
-        duration: 0.4
-      }, '-=0.25')
-      .from('.hero-content h1', {
-        opacity: 0,
-        y: 12,
-        duration: 0.6
-      }, '-=0.3')
-      .from('.hero-sub', {
-        opacity: 0,
-        y: 8,
-        stagger: 0.08,
-        duration: 0.5
-      }, '-=0.45')
-      .from('.hero-portrait-frame', {
-        opacity: 0,
-        scale: 0.98,
-        duration: 0.7
-      }, '-=0.5');
-
-    // All section text, headings, and cards remain rock-solid and stable on scroll.
-    // No scroll-triggered jumps, popping text, or layout jitter.
-  }
+  // Editorial content remains rock-solid, instantly visible, and crisp from millisecond 0.
+  // Zero scroll-triggered jumps, zero text-fading pop-in, zero layout jitter.
 }

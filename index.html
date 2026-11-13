@@ -58,7 +58,7 @@
   }
   </script>
 
-  <link rel="stylesheet" href="styles.css?v=84">
+  <link rel="stylesheet" href="styles.css?v=88">
 </head>
 <body>
   <a class="skip" href="#main">Skip to content</a>
@@ -117,21 +117,41 @@
 
   <div class="wrap">
     <main id="main">
-      <!-- Hero: Broadsheet Newspaper Front-Page Feature -->
-      <div class="hero newspaper-article" id="top">
-        <p class="hero-kicker">Livestock Farmer &middot; Technologist &middot; Entrepreneur</p>
-        <h1 class="hero-statement">I am a Nigerian livestock farmer and technologist working to improve how livestock businesses are managed, financed, and grown.</h1>
+      <!-- Hero: Grounded, First-Person Narrative Split (Desktop) & Broadsheet Newspaper (Mobile) -->
+      <div class="hero" id="top">
+        <!-- Desktop Split Layout (Visible on desktop >= 768px, as it originally was) -->
+        <div class="hero-split desktop-only">
+          <div class="hero-content">
+            <p class="hero-kicker">Livestock Farmer &middot; Technologist &middot; Entrepreneur</p>
+            <h1 class="hero-statement">I am a Nigerian livestock farmer and technologist working to improve how livestock businesses are managed, financed, and grown.</h1>
+            <p class="hero-sub">Through Herdbase Africa, I am building practical technology and business solutions for a more productive and commercially viable African livestock industry.</p>
+            <p class="hero-sub">My background in software engineering and systems operations shaped how I view agriculture: disciplined records, reliable data, and practical technology can transform subsistence guesswork into productive, commercially viable businesses.</p>
+            <p class="hero-sub">My interests also extend to applied research, entrepreneurship, and creating opportunities for young people to build meaningful careers in technology and agriculture.</p>
+          </div>
+          <div class="hero-portrait-frame">
+            <img src="assets/photos/mustapha-studio-direct.jpg" alt="Portrait of Mustapha Idris Suleiman" class="hero-portrait" width="480" height="600" fetchpriority="high" decoding="async">
+          </div>
+        </div>
 
-        <div class="hero-article-body">
-          <figure class="newspaper-cutin hero-portrait-cutin">
-            <div class="newspaper-frame">
-              <img src="assets/photos/mustapha-studio-direct.jpg" alt="Portrait of Mustapha Idris Suleiman" class="newspaper-img" width="480" height="600" fetchpriority="high" decoding="async">
-            </div>
-          </figure>
+        <!-- Mobile Newspaper Layout (Visible only on mobile < 768px) -->
+        <div class="hero-mobile-newspaper mobile-only">
+          <header class="newspaper-dateline-bar">
+            <span>Herdbase Africa &middot; Nigeria</span>
+            <span>Vol. 2026</span>
+          </header>
 
-          <p class="hero-sub"><span class="newspaper-dropcap">T</span>hrough Herdbase Africa, I am building practical technology and business solutions for a more productive and commercially viable African livestock industry.</p>
-          <p class="hero-sub">My background in software engineering and systems operations shaped how I view agriculture: disciplined records, reliable data, and practical technology can transform subsistence guesswork into productive, commercially viable businesses.</p>
-          <p class="hero-sub hero-sub-desktop">My interests also extend to applied research, entrepreneurship, and creating opportunities for young people to build meaningful careers in technology and agriculture.</p>
+          <h1 class="hero-statement">I am a Nigerian livestock farmer and technologist working to improve how livestock businesses are managed, financed, and grown.</h1>
+
+          <div class="newspaper-story-flow">
+            <figure class="newspaper-cutin">
+              <div class="newspaper-frame">
+                <img src="assets/photos/mustapha-studio-direct.jpg" alt="Portrait of Mustapha Idris Suleiman" class="newspaper-img" width="480" height="600" fetchpriority="high" decoding="async">
+              </div>
+            </figure>
+            <p class="newspaper-p"><span class="newspaper-dropcap">T</span>hrough Herdbase Africa, I am building practical technology and business solutions for a more productive and commercially viable African livestock industry.</p>
+            <p class="newspaper-p">My background in software engineering and systems operations shaped how I view agriculture: disciplined records, reliable data, and practical technology can transform subsistence guesswork into productive, commercially viable businesses.</p>
+            <p class="newspaper-p">My interests also extend to applied research, entrepreneurship, and creating opportunities for young people to build meaningful careers in technology and agriculture.</p>
+          </div>
         </div>
       </div>
 
@@ -173,18 +193,39 @@
 
       <!-- Section: About & Journey (Editorial Monograph Style) -->
       <section id="about" class="about-monograph">
-        <header class="monograph-intro">
+        <!-- Desktop Monograph Intro (Original Executive 2-Col Grid) -->
+        <header class="monograph-intro desktop-only">
+          <div class="monograph-intro-grid">
+            <div class="monograph-intro-media">
+              <div class="monograph-hero-portrait-frame">
+                <img src="assets/photos/mustapha-traditional-cap.jpg" alt="Mustapha Idris Suleiman in traditional embroidered cap" class="monograph-hero-portrait" width="586" height="1024" loading="lazy" decoding="async">
+              </div>
+            </div>
+            <div class="monograph-intro-text">
+              <p class="kicker">MY WORK AND WHAT DRIVES IT</p>
+              <h2 class="monograph-name">Mustapha Idris Suleiman</h2>
+              <div class="monograph-lead">
+                <p>Livestock farming is an industry I believe deserves greater attention, better infrastructure, and serious investment.</p>
+                <p>My background in software engineering and systems operations shaped how I view agriculture: disciplined records, reliable data, and practical technology can transform subsistence guesswork into productive, commercially viable businesses.</p>
+                <p>That conviction underpins Herdbase Africa and guides my long-term commitment to agricultural research and technical mentorship.</p>
+              </div>
+            </div>
+          </div>
+        </header>
+
+        <!-- Mobile Newspaper Monograph Intro (Newspaper Cut-in Layout) -->
+        <header class="monograph-intro mobile-only">
           <p class="kicker">MY WORK AND WHAT DRIVES IT</p>
           <h2 class="monograph-name">Mustapha Idris Suleiman</h2>
-          <div class="monograph-lead">
-            <figure class="newspaper-cutin monograph-portrait-cutin">
+          <div class="newspaper-story-flow">
+            <figure class="newspaper-cutin">
               <div class="newspaper-frame">
                 <img src="assets/photos/mustapha-traditional-cap.jpg" alt="Mustapha Idris Suleiman in traditional embroidered cap" class="newspaper-img" width="586" height="1024" loading="lazy" decoding="async">
               </div>
             </figure>
-            <p><span class="newspaper-dropcap">L</span>ivestock farming is an industry I believe deserves greater attention, better infrastructure, and serious investment.</p>
-            <p>My background in software engineering and systems operations shaped how I view agriculture: disciplined records, reliable data, and practical technology can transform subsistence guesswork into productive, commercially viable businesses.</p>
-            <p>That conviction underpins Herdbase Africa and guides my long-term commitment to agricultural research and technical mentorship.</p>
+            <p class="newspaper-p"><span class="newspaper-dropcap">L</span>ivestock farming is an industry I believe deserves greater attention, better infrastructure, and serious investment.</p>
+            <p class="newspaper-p">My background in software engineering and systems operations shaped how I view agriculture: disciplined records, reliable data, and practical technology can transform subsistence guesswork into productive, commercially viable businesses.</p>
+            <p class="newspaper-p">That conviction underpins Herdbase Africa and guides my long-term commitment to agricultural research and technical mentorship.</p>
           </div>
         </header>
 
@@ -196,13 +237,18 @@
           </div>
           <div class="era-body">
             <h3 class="era-title">Why a Systems Technologist Chose Livestock Agriculture</h3>
-            <figure class="newspaper-cutin era-cutin">
+            <!-- Mobile Cut-in (Only visible on mobile) -->
+            <figure class="newspaper-cutin mobile-only">
               <div class="newspaper-frame">
                 <img src="assets/photos/mustapha-discussion-wood-bw.jpg" alt="Mustapha Idris Suleiman at conference table in white shirt" class="newspaper-img" width="1024" height="906" loading="lazy" decoding="async">
               </div>
             </figure>
             <p><span class="newspaper-dropcap">W</span>orking in high-volume banking systems and payment infrastructure taught me an enduring principle: institutions scale when records are auditable, verifiable, and disciplined. Yet across Nigeria and the wider Sahel, livestock—one of the continent's most valuable asset classes—is largely managed without operational data.</p>
             <p>I founded Herdbase Africa to apply that same operational discipline to livestock farming. Software cannot guarantee profit, but disciplined record-keeping gives farmers the visibility they need to understand feed conversion, health expenditures, and real margins.</p>
+            <!-- Desktop Era Photo (Only visible on desktop, below text as originally designed) -->
+            <div class="era-media desktop-only">
+              <img src="assets/photos/mustapha-discussion-wood-bw.jpg" alt="Mustapha Idris Suleiman at conference table in white shirt" class="era-photo" width="1024" height="906" loading="lazy" decoding="async">
+            </div>
           </div>
         </article>
 
@@ -240,13 +286,18 @@
           </div>
           <div class="era-body">
             <h3 class="era-title">Mentoring Young Builders &amp; Applied Academic Research</h3>
-            <figure class="newspaper-cutin era-cutin">
+            <!-- Mobile Cut-in (Only visible on mobile) -->
+            <figure class="newspaper-cutin mobile-only">
               <div class="newspaper-frame">
                 <img src="assets/photos/mustapha-speaking-executive-bw.jpg" alt="Mustapha Idris Suleiman speaking and lecturing in white shirt" class="newspaper-img" width="768" height="1024" loading="lazy" decoding="async">
               </div>
             </figure>
             <p><span class="newspaper-dropcap">I</span>n 2021, I founded Geeks Arewa to open doors for young people across Northern Nigeria through practical training in software engineering, digital literacy, and IT fundamentals. Africa’s economic future depends on builders who understand local problems from the inside out and have the skills to build lasting solutions.</p>
             <p>Alongside my work at Herdbase Africa, I am pursuing an MBA at the Nigerian University of Technology &amp; Management (NUTM) focusing on venture finance and agribusiness commercialization, alongside a Master in Information Technology (M.IT) at the University of Lagos researching domain-adapted language models for African agricultural trade.</p>
+            <!-- Desktop Era Photo (Only visible on desktop, below text as originally designed) -->
+            <div class="era-media desktop-only">
+              <img src="assets/photos/mustapha-speaking-executive-bw.jpg" alt="Mustapha Idris Suleiman speaking and lecturing in white shirt" class="era-photo" width="768" height="1024" loading="lazy" decoding="async">
+            </div>
           </div>
         </article>
 
@@ -545,6 +596,6 @@
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
-  <script src="script.js?v=84"></script>
+  <script src="script.js?v=88"></script>
 </body>
 </html>
