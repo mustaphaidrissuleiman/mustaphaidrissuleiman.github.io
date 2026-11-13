@@ -1,7 +1,7 @@
 {
   "name": "mustapha-portfolio",
   "version": "1.0.0",
-  "description": "Portfolio website of Mustapha Idris Suleiman — Techno Farmer, CEO @HerdbaseAfrica, AI & NLP Researcher, and Software Engineer.",
+  "description": "Personal website of Mustapha Idris Suleiman — Livestock Farmer, Technologist, and Entrepreneur (Founder, Herdbase Africa).",
   "main": "index.html",
   "type": "module",
   "scripts": {

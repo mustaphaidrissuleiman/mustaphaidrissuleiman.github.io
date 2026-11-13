@@ -1,12 +1,32 @@
 [
   {
+    "id": "how-live-weight-pricing-and-the-new-livestock-ministry-will-force-nigerian-ranchers-to-become-data-driven",
+    "title": "How Live-Weight Pricing and the New Livestock Ministry Will Force Nigerian Ranchers to Become Data-Driven",
+    "url": "https://www.linkedin.com/pulse/how-live-weight-pricing-new-livestock-ministry-mustapha-idris-suleiman/",
+    "date": "Oct 2026",
+    "isoDate": "2026-10-23",
+    "category": "Livestock Economics & Policy · Essay",
+    "summary": "Connecting livestock market structure, measurement standards, and farm records. Why the transition toward live-weight pricing and ministry reforms means commercial ranchers can no longer rely on visual estimation to protect their margins.",
+    "source": "linkedin"
+  },
+  {
+    "id": "why-nigerias-national-livestock-information-management-system-nlims-needs-field-level-farm-management-software-to-succeed",
+    "title": "Why Nigeria's National Livestock Information Management System (NLIMS) Needs Field-Level Farm Management Software to Succeed",
+    "url": "https://www.linkedin.com/pulse/why-nigerias-national-livestock-information-management-system-mustapha-idris-suleiman/",
+    "date": "Oct 2026",
+    "isoDate": "2026-10-19",
+    "category": "Livestock Infrastructure & Tech · Essay",
+    "summary": "Connecting macro policy with farm reality: national data infrastructure cannot function in a vacuum. Why national traceability systems depend on usable, field-level software that solves daily operational headaches for farmers on the ground.",
+    "source": "linkedin"
+  },
+  {
     "id": "an-ado-about-the-nigerias-dairy-business",
     "title": "An Ado About Nigeria’s Dairy Business",
     "url": "https://www.linkedin.com/pulse/ado-nigerias-dairy-business-mustapha-idris-suleiman-qppbe/",
     "date": "Oct 2026",
     "isoDate": "2026-10-06",
     "category": "Dairy & Agribusiness · Essay",
-    "summary": "Nigeria has millions of cows and millions of milk drinkers, but we still buy most of our milk and butter from other countries. Here is why that makes no sense, and how we can fix it.",
+    "summary": "Nigeria has millions of cattle and significant consumer demand for dairy, yet imports the vast majority of its milk and butter. An analysis of local production economics, cold-chain gaps, and how commercial aggregation can reverse the deficit.",
     "source": "linkedin"
   },
   {
@@ -16,7 +36,7 @@
     "date": "Sep 2026",
     "isoDate": "2026-09-23",
     "category": "Farming & Economics · Essay",
-    "summary": "Breaking down the big picture: how many animals we have, what meat actually costs, where diseases strike, and why banks are afraid to lend money to farmers.",
+    "summary": "Examining the fundamental economics of Nigerian livestock: herd distribution, feed-to-meat conversion costs, disease management, and the structural barriers preventing financial institutions from lending to commercial producers.",
     "source": "linkedin"
   },
   {
@@ -25,8 +45,8 @@
     "url": "https://www.linkedin.com/pulse/why-farmers-should-adopt-technology-day-to-day-record-idris-suleiman-xpuze/",
     "date": "Sep 2026",
     "isoDate": "2026-09-08",
-    "category": "Farm Tools & Tech · Essay",
-    "summary": "If you don't track what you spend on feed and medicine, you can sell a cow for a lot of cash and still lose money. Simple records turn guessing games into real profits.",
+    "category": "Farm Tools & Management · Essay",
+    "summary": "Without structured daily records of feed consumption and medical interventions, livestock owners risk selling at apparent revenue while losing money on margin. Why simple tracking transforms farm economics.",
     "source": "linkedin"
   },
   {
@@ -35,8 +55,8 @@
     "url": "https://www.linkedin.com/pulse/another-outlook-farmer-herder-conflict-mustapha-idris-suleiman-zzvme/",
     "date": "Aug 2026",
     "isoDate": "2026-08-17",
-    "category": "Policy & Peace · Essay",
-    "summary": "Building walls between farmers and herders will never work. The real fix is trade: when both sides do business together, share resources, and make money, peace follows.",
+    "category": "Policy & Agribusiness · Essay",
+    "summary": "Relying solely on physical separation overlooks the underlying economic dynamics. A perspective on how mutual trade, structured pasture resource sharing, and commercial partnerships create enduring stability.",
     "source": "linkedin"
   },
   {
@@ -45,8 +65,8 @@
     "url": "https://www.linkedin.com/pulse/future-livestock-farming-smarter-systems-mustapha-idris-suleiman-skowe/",
     "date": "Jul 2026",
     "isoDate": "2026-07-23",
-    "category": "Systems & Tech · Essay",
-    "summary": "Farming by gut feeling only gets you so far. Simple tracking tools and honest math are how modern farms stay afloat and actually grow.",
+    "category": "Systems & Operations · Essay",
+    "summary": "Moving past guesswork to operational discipline: how standardized data collection, scheduled veterinary protocols, and transparent metrics enable livestock farms to scale sustainably.",
     "source": "linkedin"
   },
   {
@@ -55,8 +75,8 @@
     "url": "https://www.linkedin.com/pulse/what-value-leaders-bring-organizations-ai-era-mustapha-idris-suleiman-cqpse/",
     "date": "Jul 2026",
     "isoDate": "2026-07-21",
-    "category": "Leadership & AI · Essay",
-    "summary": "AI can write code, crunch spreadsheets, and draft reports in seconds. So what are human leaders actually here for? The answers that machines can't copy.",
+    "category": "Leadership & Technology · Essay",
+    "summary": "As automated tools handle routine coding and analysis, human leadership matters most in context discernment, operational judgment, and setting clear ethical priorities.",
     "source": "linkedin"
   }
 ]

@@ -22,7 +22,7 @@ document.addEventListener('DOMContentLoaded', () => {
    1. Contact Copy Actions (Email & Phone)
    -------------------------------------------------------------------------- */
 function initEmailCopy() {
-  setupCopy('copyEmailBtn', 'copyFeedback', 'mustaphaidrissuleiman@gmail.com');
+  setupCopy('copyEmailBtn', 'copyFeedback', 'mustapha@herdbaseafrica.com');
   setupCopy('copyPhoneBtn', 'copyPhoneFeedback', '+2348061651401');
 
   function setupCopy(btnId, feedbackId, text) {
@@ -88,9 +88,16 @@ function initStickyHeader() {
   const header = document.querySelector('header.top');
   if (!header) return;
 
+  let isScrolled = false;
   function onScroll() {
-    const isScrolled = window.scrollY > 12;
-    header.classList.toggle('is-scrolled', isScrolled);
+    const y = window.scrollY || window.pageYOffset || 0;
+    if (!isScrolled && y > 16) {
+      isScrolled = true;
+      header.classList.add('is-scrolled');
+    } else if (isScrolled && y < 6) {
+      isScrolled = false;
+      header.classList.remove('is-scrolled');
+    }
   }
 
   window.addEventListener('scroll', onScroll, { passive: true });
@@ -98,7 +105,7 @@ function initStickyHeader() {
 }
 
 /* --------------------------------------------------------------------------
-   5. Kinetic Text Preloader (Static Name + Upward Clock Timer Ticker)
+   5. Kinetic Text Preloader (High-Performance & Snappy)
    -------------------------------------------------------------------------- */
 function initPreloader(onComplete) {
   const preloader = document.getElementById('preloader');
@@ -110,261 +117,128 @@ function initPreloader(onComplete) {
     return;
   }
 
-  // Skip if user prefers reduced motion
-  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+  // Instant skip if reduced motion or already visited in this session
+  const hasVisited = (() => {
+    try { return sessionStorage.getItem('mis_visited_site') === '1'; } catch (_) { return false; }
+  })();
+
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches || hasVisited) {
     preloader.style.display = 'none';
     if (onComplete) onComplete();
     return;
   }
 
+  try { sessionStorage.setItem('mis_visited_site', '1'); } catch (_) {}
   document.body.style.overflow = 'hidden';
 
-  if (!window.gsap) {
+  let isDismissed = false;
+  const dismissPreloader = () => {
+    if (isDismissed) return;
+    isDismissed = true;
+    if (window.gsap) gsap.killTweensOf([preloader, ticker.children, logo]);
+    preloader.style.transition = 'opacity 0.35s ease, transform 0.45s cubic-bezier(0.16, 1, 0.3, 1)';
+    preloader.style.opacity = '0';
+    preloader.style.transform = 'translateY(-100%)';
     setTimeout(() => {
       preloader.style.display = 'none';
       document.body.style.overflow = '';
       if (onComplete) onComplete();
-    }, 2000);
+    }, 450);
+  };
+
+  // Tap or click anywhere on the preloader to dismiss immediately
+  preloader.addEventListener('click', dismissPreloader, { once: true });
+  preloader.addEventListener('touchstart', dismissPreloader, { passive: true, once: true });
+
+  if (!window.gsap) {
+    setTimeout(dismissPreloader, 1400);
     return;
   }
 
   const items = ticker.querySelectorAll('.ticker-item');
-  // Initially position all items tucked directly under the signature logo
-  gsap.set(items, { opacity: 0, y: -18 });
+  gsap.set(items, { opacity: 0, y: -14 });
 
+  const isMobile = window.innerWidth <= 640;
   const tl = gsap.timeline({
-    onComplete: () => {
-      // Smooth curtain reveal upward
-      gsap.to(preloader, {
-        yPercent: -100,
-        duration: 0.85,
-        ease: 'power4.inOut',
-        onComplete: () => {
-          preloader.style.display = 'none';
-          document.body.style.overflow = '';
-          if (onComplete) onComplete();
-        }
-      });
-    }
+    onComplete: dismissPreloader
   });
 
-  // Signature logo gentle entrance
+  // Snappy signature entrance
   if (logo) {
     tl.from(logo, {
       opacity: 0,
-      scale: 0.96,
-      duration: 0.55,
+      scale: 0.97,
+      duration: 0.35,
       ease: 'power2.out'
     });
   }
 
-  // Each title drops DOWNWARD directly from the signature logo
+  // Snappy title cycle: total runtime ~2.2s (or ~1.8s on mobile)
+  const enterDur = isMobile ? 0.22 : 0.28;
+  const holdDur = isMobile ? 0.32 : 0.42;
+  const exitDur = isMobile ? 0.18 : 0.22;
+
   items.forEach((item, index) => {
-    // 1. Drop down from the signature logo
     tl.fromTo(item,
-      { y: -18, opacity: 0 },
-      {
-        y: 0,
-        opacity: 1,
-        duration: 0.45,
-        ease: 'power3.out'
-      }
+      { y: -14, opacity: 0 },
+      { y: 0, opacity: 1, duration: enterDur, ease: 'power3.out' }
     );
 
-    // 2. Reading pause so the title is clearly registered
-    tl.to({}, { duration: 0.85 });
+    tl.to({}, { duration: holdDur });
 
-    // 3. Drop downward out of view before the next item drops in
     if (index < items.length - 1) {
       tl.to(item, {
-        y: 18,
+        y: 14,
         opacity: 0,
-        duration: 0.35,
+        duration: exitDur,
         ease: 'power2.in'
       });
     }
   });
 
-  // Brief pause on the final title before lifting the curtain
-  tl.to({}, { duration: 0.5 });
+  tl.to({}, { duration: 0.2 });
 }
 
 /* --------------------------------------------------------------------------
-   6. Horizontal & Vertical Text Animations (GSAP + ScrollTrigger + Fallback)
+   6. Clean, Stable Entrance Animations (Zero Scroll Jitter)
    -------------------------------------------------------------------------- */
 function initMotion() {
   if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
     return;
   }
 
-  if (window.gsap && window.ScrollTrigger) {
-    gsap.registerPlugin(ScrollTrigger);
+  if (window.gsap) {
+    const heroTl = gsap.timeline({ defaults: { ease: 'power2.out' } });
 
-    // I. Hero Vertical Entrance (Page Load)
-    const heroTl = gsap.timeline({ defaults: { ease: 'power3.out' } });
-
+    // Clean, gentle hero entrance on page load (NO transform on sticky header)
     heroTl
       .from('header.top', {
-        y: -24,
         opacity: 0,
-        duration: 0.8,
-        delay: 0.1
+        duration: 0.45
       })
+      .from('.hero-kicker', {
+        opacity: 0,
+        y: 8,
+        duration: 0.4
+      }, '-=0.25')
       .from('.hero-content h1', {
-        y: 45,
         opacity: 0,
-        duration: 1.1
-      }, '-=0.5')
-      .from('.hero-lead, .hero-sub', {
-        y: 25,
+        y: 12,
+        duration: 0.6
+      }, '-=0.3')
+      .from('.hero-sub', {
         opacity: 0,
-        stagger: 0.15,
-        duration: 0.9
-      }, '-=0.7')
+        y: 8,
+        stagger: 0.08,
+        duration: 0.5
+      }, '-=0.45')
       .from('.hero-portrait-frame', {
-        x: 40,
         opacity: 0,
-        scale: 0.96,
-        duration: 1.2
-      }, '-=1.0');
+        scale: 0.98,
+        duration: 0.7
+      }, '-=0.5');
 
-    // II. Section Headings: Horizontal Slide-In from Left
-    document.querySelectorAll('section > h2').forEach((heading) => {
-      gsap.from(heading, {
-        scrollTrigger: {
-          trigger: heading,
-          start: 'top 88%',
-          toggleActions: 'play none none none'
-        },
-        x: -40,
-        opacity: 0,
-        duration: 0.85,
-        ease: 'power2.out'
-      });
-    });
-
-    // III. Work & Writing Entries: Staggered Vertical Float Up
-    document.querySelectorAll('#work, #writing').forEach((sec) => {
-      const entries = sec.querySelectorAll('.entry');
-      if (entries.length) {
-        gsap.from(entries, {
-          scrollTrigger: {
-            trigger: sec,
-            start: 'top 82%',
-            toggleActions: 'play none none none'
-          },
-          y: 40,
-          opacity: 0,
-          duration: 0.85,
-          stagger: 0.14,
-          ease: 'power2.out'
-        });
-      }
-    });
-
-    // IV. About Monograph: Intro Reveal + Chapters Entrance (Tony Elumelu Style)
-    const aboutIntro = document.querySelector('.monograph-intro');
-    if (aboutIntro) {
-      gsap.from('.monograph-intro .kicker, .monograph-intro .monograph-name, .monograph-lead p', {
-        scrollTrigger: {
-          trigger: aboutIntro,
-          start: 'top 85%',
-          toggleActions: 'play none none none'
-        },
-        y: 35,
-        opacity: 0,
-        stagger: 0.12,
-        duration: 0.9,
-        ease: 'power2.out'
-      });
-    }
-
-    // Monograph Eras (Tony Elumelu style chapters)
-    document.querySelectorAll('.monograph-era').forEach((era) => {
-      const meta = era.querySelector('.era-meta');
-      const body = era.querySelector('.era-body');
-
-      if (meta) {
-        gsap.from(meta, {
-          scrollTrigger: {
-            trigger: era,
-            start: 'top 85%',
-            toggleActions: 'play none none none'
-          },
-          x: -30,
-          opacity: 0,
-          duration: 0.9,
-          ease: 'power2.out'
-        });
-      }
-
-      if (body) {
-        gsap.from(body, {
-          scrollTrigger: {
-            trigger: era,
-            start: 'top 85%',
-            toggleActions: 'play none none none'
-          },
-          y: 40,
-          opacity: 0,
-          duration: 0.95,
-          delay: 0.1,
-          ease: 'power2.out'
-        });
-      }
-    });
-
-    // V. Contact Section: Staggered Horizontal Slide-In
-    const contactSec = document.querySelector('#contact');
-    if (contactSec) {
-      gsap.from('#contact .contact-line', {
-        scrollTrigger: {
-          trigger: contactSec,
-          start: 'top 85%',
-          toggleActions: 'play none none none'
-        },
-        x: -35,
-        opacity: 0,
-        duration: 0.75,
-        stagger: 0.12,
-        ease: 'power2.out'
-      });
-
-      gsap.from('#contact .social-list li', {
-        scrollTrigger: {
-          trigger: contactSec,
-          start: 'top 80%',
-          toggleActions: 'play none none none'
-        },
-        x: -25,
-        opacity: 0,
-        duration: 0.65,
-        stagger: 0.06,
-        ease: 'power2.out'
-      });
-    }
-  } else {
-    // Zero-dependency IntersectionObserver fallback
-    initIntersectionFallback();
+    // All section text, headings, and cards remain rock-solid and stable on scroll.
+    // No scroll-triggered jumps, popping text, or layout jitter.
   }
-}
-
-function initIntersectionFallback() {
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach((entry) => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('is-visible');
-      }
-    });
-  }, { threshold: 0.15 });
-
-  document.querySelectorAll('section > h2').forEach((el) => {
-    el.classList.add('no-js-slide-left');
-    observer.observe(el);
-  });
-
-  document.querySelectorAll('.entry, .contact-line, .monograph-era').forEach((el) => {
-    el.classList.add('no-js-fade-up');
-    observer.observe(el);
-  });
 }

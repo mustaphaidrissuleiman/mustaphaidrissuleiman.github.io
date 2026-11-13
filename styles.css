@@ -200,34 +200,47 @@ a:hover .inline-arrow {
   max-width: 88rem;
   width: 100%;
   margin: 0 auto;
-  padding: 0 clamp(1.5rem, 4vw, 4.5rem);
+  padding: 0 clamp(1rem, 3.5vw, 4.5rem);
 }
 
 /* ==========================================================================
    Header: Minimalist Top Bar with Signature Logo on Top-Left
+   Full-bleed edge-to-edge with Safe Area coverage for mobile notches
    ========================================================================== */
 header.top {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  gap: 1.5rem;
-  flex-wrap: wrap;
-  padding: 1.5rem 0;
-  font-family: var(--sans);
-  font-size: 0.95rem;
   position: sticky;
   top: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+  z-index: 100;
   background: var(--bg);
-  z-index: 50;
-  transition: border-color 0.2s ease, background 0.2s ease, padding 0.2s ease;
+  border-bottom: 1px solid transparent;
+  padding-top: env(safe-area-inset-top, 0px);
+  transition: border-bottom-color 0.2s ease, background 0.2s ease;
+  will-change: background-color, border-color;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
 }
 
 header.top.is-scrolled {
-  border-bottom: 1px solid var(--rule);
-  padding: 1.15rem 0;
-  background: rgba(247, 247, 245, 0.94);
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
+  border-bottom-color: var(--rule);
+  background: rgba(247, 247, 245, 0.96);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+
+.header-inner {
+  max-width: 88rem;
+  margin: 0 auto;
+  padding: 1rem clamp(1rem, 3.5vw, 4.5rem);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1.25rem;
+  flex-wrap: wrap;
+  font-family: var(--sans);
+  font-size: 0.95rem;
 }
 
 .site-logo-link {
@@ -249,16 +262,22 @@ header.top.is-scrolled {
 }
 
 @media (max-width: 560px) {
-  header.top {
-    padding: 1rem 0;
-    gap: 0.75rem;
+  .header-inner {
+    padding: 0.65rem clamp(1rem, 3.5vw, 4.5rem);
+    gap: 0.5rem;
   }
+
   .site-nav-logo {
-    height: 26px;
+    height: 24px;
   }
+
   header.top nav {
-    gap: 1rem;
-    font-size: 0.875rem;
+    gap: 0.85rem;
+    font-size: 0.85rem;
+  }
+
+  header.top nav a {
+    padding: 0.25rem 0.15rem;
   }
 }
 
@@ -317,6 +336,16 @@ header.top nav a.is-active {
     grid-template-columns: 1.18fr 0.82fr;
     gap: 3.5rem;
   }
+}
+
+.hero-kicker {
+  font-family: var(--sans);
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin: 0 0 1.15rem;
 }
 
 .hero-content h1,
@@ -391,29 +420,41 @@ header.top nav a.is-active {
 
 @media (max-width: 640px) {
   .hero {
-    padding: 2rem 0 2.5rem;
+    padding: 1.5rem 0 2rem;
   }
+
+  .hero-kicker {
+    font-size: 0.75rem;
+    margin-bottom: 0.75rem;
+  }
+
   .hero-content h1,
   .hero-content .hero-statement {
     font-size: clamp(1.35rem, 5.5vw, 1.7rem);
     line-height: 1.34;
     max-width: 100%;
-    margin-bottom: 1rem;
+    margin-bottom: 0.85rem;
     letter-spacing: -0.015em;
     word-break: normal;
     overflow-wrap: break-word;
   }
+
   .hero-sub {
-    font-size: 0.975rem;
-    line-height: 1.65;
+    font-size: 0.95rem;
+    line-height: 1.6;
     max-width: 100%;
-    margin-bottom: 0.85rem;
+    margin-bottom: 0.75rem;
   }
+
   .hero-split {
-    gap: 1.75rem;
+    gap: 1.35rem;
   }
+
   .hero-portrait-frame {
-    max-width: 290px;
+    max-width: 200px;
+    aspect-ratio: 1 / 1;
+    border-radius: 4px !important;
+    margin: 0.25rem auto 0;
   }
 }
 
@@ -426,6 +467,23 @@ section {
   gap: 1.25rem;
   padding: 2.75rem 0;
   border-top: 1px solid var(--rule);
+}
+
+@media (max-width: 759px) {
+  section {
+    padding: 2.25rem 0;
+    gap: 1rem;
+  }
+
+  section>h2 {
+    font-size: 0.825rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--muted);
+    padding-bottom: 0.45rem;
+    border-bottom: 1px solid var(--rule);
+    margin-bottom: 0.5rem;
+  }
 }
 
 @media (min-width: 760px) {
@@ -460,6 +518,22 @@ section>h2 {
   padding: 0 0 2.25rem;
   margin: 0 0 2.25rem;
   border-bottom: 1px solid var(--rule);
+}
+
+@media (max-width: 640px) {
+  .entry {
+    padding: 0 0 1.65rem;
+    margin: 0 0 1.65rem;
+  }
+
+  .entry h3.entry-title {
+    font-size: 1.25rem;
+  }
+
+  .entry .entry-desc {
+    font-size: 0.975rem;
+    line-height: 1.6;
+  }
 }
 
 .entry:last-child {
@@ -522,6 +596,16 @@ section>h2 {
 /* Work section overrides */
 .work h3.entry-title {
   font-size: 1.35rem;
+}
+
+.work .entry-flagship {
+  border-left: 2px solid var(--ink);
+  padding-left: 1.25rem;
+  margin-left: -0.25rem;
+}
+
+.work .entry-flagship h3.entry-title {
+  font-size: 1.55rem;
 }
 
 .work .links {
@@ -665,6 +749,49 @@ section>h2 {
   overflow-wrap: break-word;
   word-break: normal;
   margin-bottom: 0.5rem;
+}
+
+@media (max-width: 819px) {
+  .monograph-era {
+    padding: clamp(1.85rem, 4.5vw, 2.75rem) 0;
+    gap: 0.75rem;
+  }
+
+  .era-meta {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: 0.65rem;
+    margin-bottom: 0.25rem;
+  }
+
+  .era-num {
+    margin-bottom: 0;
+    font-size: 0.75rem;
+  }
+
+  .era-years {
+    font-size: 1.15rem;
+    line-height: 1.2;
+    margin-bottom: 0;
+    display: inline-flex;
+    align-items: center;
+  }
+
+  .era-years br {
+    display: none;
+  }
+
+  .era-title {
+    font-size: clamp(1.25rem, 4.8vw, 1.55rem);
+    margin-bottom: 0.85rem;
+  }
+
+  .era-body p {
+    font-size: 0.985rem;
+    line-height: 1.7;
+    margin-bottom: 1rem;
+  }
 }
 
 @media (min-width: 820px) {
@@ -983,6 +1110,44 @@ section>h2 {
   font-size: 0.95rem;
 }
 
+@media (max-width: 640px) {
+  .contact-grid {
+    gap: 1.5rem;
+  }
+
+  .contact-portrait-frame {
+    max-width: 180px;
+    margin: 0 auto;
+    border-radius: 4px !important;
+  }
+
+  .contact .mail {
+    font-size: clamp(1.05rem, 4.8vw, 1.35rem);
+  }
+
+  .copy-pill {
+    padding: 4px 10px;
+    font-size: 0.785rem;
+  }
+
+  .social-list {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.6rem;
+    margin-top: 1.35rem;
+  }
+
+  .social-list li a {
+    padding: 0.45rem 0.65rem;
+    background: var(--bg-subtle);
+    border: 1px solid var(--rule);
+    border-radius: 4px;
+    font-size: 0.835rem;
+    width: 100%;
+    justify-content: flex-start;
+  }
+}
+
 .social-list li a {
   display: inline-flex;
   align-items: center;
@@ -1242,7 +1407,7 @@ footer {
   margin: 0;
 }
 
-.legal-highlight-box p + p {
+.legal-highlight-box p+p {
   margin-top: 0.75rem;
 }
 
@@ -1268,8 +1433,8 @@ section.legal-section:last-of-type,
 }
 
 /* Cancel sticky sidebar h2 behavior on legal pages */
-.legal-page section > h2,
-section.legal-section > h2,
+.legal-page section>h2,
+section.legal-section>h2,
 .legal-section h2 {
   position: static !important;
   top: auto !important;
