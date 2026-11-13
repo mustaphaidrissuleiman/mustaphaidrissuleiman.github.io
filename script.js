@@ -11,6 +11,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initEmailCopy();
   initActiveNav();
   initStickyHeader();
+  initMobileMenu();
   const yearEl = document.getElementById('year');
   if (yearEl) yearEl.textContent = new Date().getFullYear();
   initPreloader(() => {
@@ -102,6 +103,52 @@ function initStickyHeader() {
 
   window.addEventListener('scroll', onScroll, { passive: true });
   onScroll();
+}
+
+/* --------------------------------------------------------------------------
+   4b. Mobile Navigation Drawer & Hamburger Toggle
+   -------------------------------------------------------------------------- */
+function initMobileMenu() {
+  const toggle = document.getElementById('menuToggle');
+  const drawer = document.getElementById('mobileDrawer');
+  if (!toggle || !drawer) return;
+
+  function toggleMenu(forceOpen) {
+    const isCurrentlyOpen = toggle.getAttribute('aria-expanded') === 'true';
+    const nextOpen = forceOpen !== undefined ? forceOpen : !isCurrentlyOpen;
+
+    toggle.setAttribute('aria-expanded', String(nextOpen));
+    toggle.setAttribute('aria-label', nextOpen ? 'Close menu' : 'Open menu');
+    drawer.classList.toggle('is-open', nextOpen);
+    drawer.setAttribute('aria-hidden', String(!nextOpen));
+    document.body.style.overflow = nextOpen ? 'hidden' : '';
+  }
+
+  toggle.addEventListener('click', (e) => {
+    e.stopPropagation();
+    toggleMenu();
+  });
+
+  // Close when clicking any nav link in the drawer
+  drawer.querySelectorAll('.mobile-nav-link').forEach((link) => {
+    link.addEventListener('click', () => {
+      toggleMenu(false);
+    });
+  });
+
+  // Close on ESC key
+  window.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && drawer.classList.contains('is-open')) {
+      toggleMenu(false);
+    }
+  });
+
+  // Auto-close if resized to desktop viewport
+  window.addEventListener('resize', () => {
+    if (window.innerWidth > 640 && drawer.classList.contains('is-open')) {
+      toggleMenu(false);
+    }
+  }, { passive: true });
 }
 
 /* --------------------------------------------------------------------------
