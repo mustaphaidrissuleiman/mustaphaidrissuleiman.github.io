@@ -618,12 +618,23 @@ header.top nav a.is-active {
 .newspaper-dropcap {
   float: left;
   font-family: var(--serif);
-  font-size: 2.15rem;
-  line-height: 0.82;
-  padding: 0.04rem 0.16rem 0 0;
-  margin-top: 0.04rem;
+  font-size: 2.75rem;
+  line-height: 0.74;
+  margin-top: 0.16rem;
+  margin-right: 0.18rem;
+  padding: 0;
   color: var(--ink);
   font-weight: 700;
+}
+
+@supports (initial-letter: 2) or (-webkit-initial-letter: 2) {
+  .newspaper-dropcap {
+    -webkit-initial-letter: 2;
+    initial-letter: 2;
+    margin-top: 0;
+    line-height: normal;
+    margin-right: 0.18rem;
+  }
 }
 
 .newspaper-p {
